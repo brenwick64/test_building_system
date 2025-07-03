@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://c470pv7h18snk"]
+
+[ext_resource type="Script" path="res://scripts/classes/Furniture.gd" id="1_seqw2"]
+[ext_resource type="Texture2D" uid="uid://buastrnfbeooa" path="res://assets/objects/large-table.png" id="2_4hph2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p74if"]
+atlas = ExtResource("2_4hph2")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vsva7"]
+size = Vector2(12, 26)
+
+[node name="LargeTable90" type="StaticBody2D" node_paths=PackedStringArray("sprite_2d")]
+rotation = 1.5708
+script = ExtResource("1_seqw2")
+tile_matrix = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, -1)])
+sprite_2d = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_p74if")
+
+[node name="Pivot" type="Marker2D" parent="."]
+position = Vector2(0, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_vsva7")

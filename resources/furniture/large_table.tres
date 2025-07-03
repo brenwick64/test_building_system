@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RFurniture" load_steps=6 format=3 uid="uid://3mkg48yul6yh"]
+
+[ext_resource type="Script" path="res://scripts/resource_definitions/RFurniture.gd" id="1_27v5e"]
+[ext_resource type="PackedScene" uid="uid://dvudffpcdjxan" path="res://scenes/furniture/large_table/large_table_0.tscn" id="1_ojpnp"]
+[ext_resource type="PackedScene" uid="uid://c470pv7h18snk" path="res://scenes/furniture/large_table/large_table_90.tscn" id="2_b1wyy"]
+[ext_resource type="PackedScene" uid="uid://bqcsifvqrjiqb" path="res://scenes/furniture/large_table/large_table_180.tscn" id="2_ck6mm"]
+[ext_resource type="PackedScene" uid="uid://biccw3nty66xk" path="res://scenes/furniture/large_table/large_table_270.tscn" id="3_nv63d"]
+
+[resource]
+script = ExtResource("1_27v5e")
+tile_matrix = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, -1)])
+scene_0 = ExtResource("1_ojpnp")
+scene_90 = ExtResource("2_b1wyy")
+scene_180 = ExtResource("2_ck6mm")
+scene_270 = ExtResource("3_nv63d")

@@ -3,6 +3,7 @@ extends Node
 
 signal action_pressed(event: InputEvent)
 signal action_bar_pressed(number: int)
+signal rotate_pressed
 
 func _handle_clicks(event: InputEvent):
 	if event.is_action_pressed("Action"): 
@@ -24,7 +25,12 @@ func _handle_action_bar(event: InputEvent):
 			action_bar_pressed.emit(action_bar_map[action_name])
 			return
 
+func _handle_hotkeys(event: InputEvent):
+	if event.is_action_pressed("Rotate"):
+		rotate_pressed.emit()
+
 func _unhandled_input(event: InputEvent) -> void:
 	pass
 	_handle_clicks(event)
+	_handle_hotkeys(event)
 	#_handle_action_bar(event)

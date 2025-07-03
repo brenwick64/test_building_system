@@ -29,8 +29,11 @@ input_manager = NodePath("../InputManager")
 tile_manager = NodePath("../TileManager")
 equipped_furniture = ExtResource("4_rell2")
 
-[node name="ItemManager" type="Node" parent="Managers"]
+[node name="ItemManager" type="Node" parent="Managers" node_paths=PackedStringArray("input_manager", "tile_manager", "furniture_manager")]
 script = ExtResource("4_dwymm")
+input_manager = NodePath("../InputManager")
+tile_manager = NodePath("../TileManager")
+furniture_manager = NodePath("../FurnitureManager")
 
 [node name="TileMap" type="Node2D" parent="."]
 
