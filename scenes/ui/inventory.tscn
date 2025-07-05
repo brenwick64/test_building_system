@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkg7mvx22iqt3"]
+
+[ext_resource type="PackedScene" uid="uid://bwy2iee1efgw7" path="res://scenes/ui/item_slot.tscn" id="1_g7teh"]
+[ext_resource type="Theme" uid="uid://d27j5q3aqw7ad" path="res://scenes/ui/main_theme.tres" id="1_me5s4"]
+
+[node name="Inventory" type="Panel"]
+custom_minimum_size = Vector2(830, 100)
+offset_right = 800.0
+offset_bottom = 100.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_me5s4")
+theme_type_variation = &"MainPanel"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ItemSlot1" parent="HBoxContainer" instance=ExtResource("1_g7teh")]
+layout_mode = 2
+
+[node name="ItemSlot2" parent="HBoxContainer" instance=ExtResource("1_g7teh")]
+layout_mode = 2
+
+[node name="ItemSlot3" parent="HBoxContainer" instance=ExtResource("1_g7teh")]
+layout_mode = 2
+
+[node name="ItemSlot4" parent="HBoxContainer" instance=ExtResource("1_g7teh")]
+layout_mode = 2
+
+[node name="ItemSlot5" parent="HBoxContainer" instance=ExtResource("1_g7teh")]
+layout_mode = 2
+
+[node name="ItemSlot6" parent="HBoxContainer" instance=ExtResource("1_g7teh")]
+layout_mode = 2
+
+[node name="ItemSlot7" parent="HBoxContainer" instance=ExtResource("1_g7teh")]
+layout_mode = 2
+
+[node name="ItemSlot8" parent="HBoxContainer" instance=ExtResource("1_g7teh")]
+layout_mode = 2
