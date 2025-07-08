@@ -5,9 +5,9 @@
 [ext_resource type="Script" path="res://scenes/managers/tile/tile.gd" id="2_fsswj"]
 [ext_resource type="Script" path="res://scenes/managers/furniture/furniture_manager.gd" id="3_n04qi"]
 [ext_resource type="Script" path="res://scenes/managers/item/item_manager.gd" id="4_dwymm"]
+[ext_resource type="Resource" uid="uid://3mkg48yul6yh" path="res://resources/furniture/large_table.tres" id="4_rell2"]
 [ext_resource type="Script" path="res://scenes/managers/inventory/inventory_manager.gd" id="6_cimfw"]
 [ext_resource type="Script" path="res://scripts/resource_definitions/RInventoryItem.gd" id="7_6m8l8"]
-[ext_resource type="Resource" uid="uid://baudqorhwqlkd" path="res://resources/debug__inventory_items/large_table.tres" id="7_og8fw"]
 [ext_resource type="PackedScene" uid="uid://bkg7mvx22iqt3" path="res://scenes/ui/inventory/inventory.tscn" id="7_yhwru"]
 [ext_resource type="Resource" uid="uid://byuyao836kfuo" path="res://resources/debug__inventory_items/health_potion.tres" id="8_ma8rl"]
 
@@ -27,18 +27,18 @@ script = ExtResource("1_qkav0")
 script = ExtResource("2_fsswj")
 layer = NodePath("../../TileMap/ShoppeFloor")
 
-[node name="FurnitureManager" type="Node" parent="Managers" node_paths=PackedStringArray("inventory_manager", "input_manager", "tile_manager")]
+[node name="FurnitureManager" type="Node" parent="Managers" node_paths=PackedStringArray("input_manager", "tile_manager")]
 script = ExtResource("3_n04qi")
-inventory_manager = NodePath("../InventoryManager")
 input_manager = NodePath("../InputManager")
 tile_manager = NodePath("../TileManager")
+equipped_furniture = ExtResource("4_rell2")
 
 [node name="ItemManager" type="Node" parent="Managers"]
 script = ExtResource("4_dwymm")
 
 [node name="InventoryManager" type="Node" parent="Managers"]
 script = ExtResource("6_cimfw")
-inv_items = Array[ExtResource("7_6m8l8")]([ExtResource("7_og8fw"), ExtResource("8_ma8rl")])
+inv_items = Array[ExtResource("7_6m8l8")]([ExtResource("8_ma8rl")])
 
 [node name="TileMap" type="Node2D" parent="."]
 
@@ -79,9 +79,4 @@ size_flags_horizontal = 6
 size_flags_vertical = 8
 inventory_manager = NodePath("../../Managers/InventoryManager")
 
-[connection signal="action_bar_pressed" from="Managers/InputManager" to="UI/Inventory" method="_on_input_manager_action_bar_pressed"]
-[connection signal="current_item_updated" from="Managers/InventoryManager" to="Managers/FurnitureManager" method="_on_inventory_manager_current_item_updated"]
 [connection signal="inventory_updated" from="Managers/InventoryManager" to="UI/Inventory" method="_on_inventory_manager_inventory_updated"]
-[connection signal="item_depleted" from="Managers/InventoryManager" to="Managers/FurnitureManager" method="_on_inventory_manager_item_depleted"]
-[connection signal="item_depleted" from="Managers/InventoryManager" to="UI/Inventory" method="_on_inventory_manager_item_depleted"]
-[connection signal="item_selected" from="UI/Inventory" to="Managers/InventoryManager" method="_on_inventory_item_selected"]

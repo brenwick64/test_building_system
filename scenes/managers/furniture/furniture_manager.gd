@@ -1,10 +1,11 @@
 class_name FurnitureManager
 extends Node
 
+@export var inventory_manager: InventoryManager
 @export var input_manager: InputManager
 @export var tile_manager: TileManager
 
-@export var equipped_furniture: RFurniture
+var equipped_furniture: RFurniture
 var furniture_preview: Furniture
 var hovered_tile_coords: Vector2i
 var placed_furniture: Array[Furniture]
@@ -83,6 +84,7 @@ func _on_action_pressed(_event: InputEvent) -> void:
 	if not furniture_preview.is_valid_placement: return
 	_clear_preview()
 	_spawn_furnitrue()
+	inventory_manager.remove_item(equipped_furniture)
 
 func _on_layer_mouse_out() -> void:
 	_clear_preview()
@@ -93,3 +95,15 @@ func _on_rotate_pressed() -> void:
 	_clear_preview()
 	_spawn_preview()
 	_validate_preview()
+
+func _on_inventory_manager_current_item_updated(current_item: RItem) -> void:
+	if current_item is RFurniture:
+		equipped_furniture = current_item
+	else:
+		equipped_furniture = null
+		_clear_preview()
+
+func _on_inventory_manager_item_depleted(item: RItem) -> void:
+	if item is RFurniture:
+		equipped_furniture = null
+		_clear_preview()

@@ -1,5 +1,5 @@
 class_name RFurniture
-extends Resource
+extends RItem
 
 @export var tile_matrix: Array[Vector2i]
 @export var scene_0: PackedScene

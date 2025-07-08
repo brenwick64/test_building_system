@@ -33,4 +33,4 @@ func _unhandled_input(event: InputEvent) -> void:
 	pass
 	_handle_clicks(event)
 	_handle_hotkeys(event)
-	#_handle_action_bar(event)
+	_handle_action_bar(event)

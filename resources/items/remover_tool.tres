@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RItem" load_steps=4 format=3 uid="uid://bcutdsjs3g45p"]
+
+[ext_resource type="PackedScene" uid="uid://68yp7ixsfc4k" path="res://scenes/inventory_items/remover_tool/remover_tool_icon.tscn" id="1_m873b"]
+[ext_resource type="Script" path="res://scripts/resource_definitions/RItem.gd" id="1_t2rba"]
+[ext_resource type="PackedScene" uid="uid://dxgbqqdjynbyp" path="res://scenes/inventory_items/remover_tool/remover_tool.tscn" id="2_ebple"]
+
+[resource]
+script = ExtResource("1_t2rba")
+item_name = "remover_tool"
+item_scene = ExtResource("2_ebple")
+item_icon_scene = ExtResource("1_m873b")

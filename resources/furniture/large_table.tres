@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="RFurniture" load_steps=6 format=3 uid="uid://3mkg48yul6yh"]
+[gd_resource type="Resource" script_class="RFurniture" load_steps=7 format=3 uid="uid://3mkg48yul6yh"]
 
 [ext_resource type="Script" path="res://scripts/resource_definitions/RFurniture.gd" id="1_27v5e"]
+[ext_resource type="PackedScene" uid="uid://bx5531tqyofyx" path="res://scenes/furniture/large_table/large_table_icon.tscn" id="1_fxyyt"]
 [ext_resource type="PackedScene" uid="uid://dvudffpcdjxan" path="res://scenes/furniture/large_table/large_table_0.tscn" id="1_ojpnp"]
 [ext_resource type="PackedScene" uid="uid://c470pv7h18snk" path="res://scenes/furniture/large_table/large_table_90.tscn" id="2_b1wyy"]
 [ext_resource type="PackedScene" uid="uid://bqcsifvqrjiqb" path="res://scenes/furniture/large_table/large_table_180.tscn" id="2_ck6mm"]
@@ -13,3 +14,5 @@ scene_0 = ExtResource("1_ojpnp")
 scene_90 = ExtResource("2_b1wyy")
 scene_180 = ExtResource("2_ck6mm")
 scene_270 = ExtResource("3_nv63d")
+item_name = "large_table"
+item_icon_scene = ExtResource("1_fxyyt")
