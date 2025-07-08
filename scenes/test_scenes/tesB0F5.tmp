@@ -65,8 +65,6 @@ tile_set = ExtResource("1_f72q3")
 
 [node name="ShoppeFurniture" type="Node2D" parent="." groups=["ShoppeFurniture"]]
 
-[node name="ShoppeMerchandise" type="Node2D" parent="." groups=["ShoppeMerchandise"]]
-
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Inventory" parent="UI" node_paths=PackedStringArray("inventory_manager") instance=ExtResource("7_yhwru")]
@@ -87,16 +85,13 @@ inventory_manager = NodePath("../../Managers/InventoryManager")
 
 [connection signal="action_bar_pressed" from="Managers/InputManager" to="UI/Inventory" method="_on_input_manager_action_bar_pressed"]
 [connection signal="action_pressed" from="Managers/InputManager" to="Managers/FurnitureManager" method="_on_input_manager_action_pressed"]
-[connection signal="action_pressed" from="Managers/InputManager" to="Managers/MerchandiseManager" method="_on_input_manager_action_pressed"]
 [connection signal="rotate_pressed" from="Managers/InputManager" to="Managers/FurnitureManager" method="_on_input_manager_rotate_pressed"]
 [connection signal="layer_mouse_out" from="Managers/TileManager" to="Managers/FurnitureManager" method="_on_tile_manager_layer_mouse_out"]
-[connection signal="layer_mouse_out" from="Managers/TileManager" to="Managers/MerchandiseManager" method="_on_tile_manager_layer_mouse_out"]
 [connection signal="new_tile_hovered" from="Managers/TileManager" to="Managers/FurnitureManager" method="_on_tile_manager_new_tile_hovered"]
 [connection signal="new_tile_hovered" from="Managers/TileManager" to="Managers/MerchandiseManager" method="_on_tile_manager_new_tile_hovered"]
 [connection signal="current_item_updated" from="Managers/InventoryManager" to="Managers/FurnitureManager" method="_on_inventory_manager_current_item_updated"]
 [connection signal="current_item_updated" from="Managers/InventoryManager" to="Managers/MerchandiseManager" method="_on_inventory_manager_current_item_updated"]
 [connection signal="inventory_updated" from="Managers/InventoryManager" to="UI/Inventory" method="_on_inventory_manager_inventory_updated"]
 [connection signal="item_depleted" from="Managers/InventoryManager" to="Managers/FurnitureManager" method="_on_inventory_manager_item_depleted"]
-[connection signal="item_depleted" from="Managers/InventoryManager" to="Managers/MerchandiseManager" method="_on_inventory_manager_item_depleted"]
 [connection signal="item_depleted" from="Managers/InventoryManager" to="UI/Inventory" method="_on_inventory_manager_item_depleted"]
 [connection signal="item_selected" from="UI/Inventory" to="Managers/InventoryManager" method="_on_inventory_item_selected"]

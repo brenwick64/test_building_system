@@ -6,8 +6,9 @@ extends Node
 @export var tile_manager: TileManager
 
 var equipped_furniture: RFurniture
-var furniture_preview: Furniture
+
 var hovered_tile_coords: Vector2i
+var furniture_preview: Furniture
 var placed_furniture: Array[Furniture]
 
 ## -- methods --
@@ -16,13 +17,6 @@ func get_furniture_at_coords(tile_coords: Vector2i) -> Furniture:
 		if tile_coords in furniture.occupied_tiles:
 			return furniture
 	return null
-
-## -- overrides --
-func _ready() -> void:
-	input_manager.action_pressed.connect(_on_action_pressed)
-	input_manager.rotate_pressed.connect(_on_rotate_pressed)
-	tile_manager.new_tile_hovered.connect(_on_new_tile_hovered)
-	tile_manager.layer_mouse_out.connect(_on_layer_mouse_out)
 
 ## -- helper functions --
 func _is_used_tile() -> bool:
@@ -71,14 +65,17 @@ func _spawn_furnitrue() -> void:
 	placed_furniture.append(furniture_ins)
 
 ## -- signals --
-func _on_new_tile_hovered(tile_coords: Vector2i) -> void:
+func _on_tile_manager_new_tile_hovered(tile_coords: Vector2i) -> void:
 	if not equipped_furniture: return
 	hovered_tile_coords = tile_coords
 	_clear_preview()
 	_spawn_preview()
 	_validate_preview()
 
-func _on_action_pressed(_event: InputEvent) -> void:
+func _on_tile_manager_layer_mouse_out() -> void:
+	_clear_preview()
+
+func _on_input_manager_action_pressed(event: InputEvent) -> void:
 	if not equipped_furniture: return
 	if not furniture_preview: return
 	if not furniture_preview.is_valid_placement: return
@@ -86,10 +83,7 @@ func _on_action_pressed(_event: InputEvent) -> void:
 	_spawn_furnitrue()
 	inventory_manager.remove_item(equipped_furniture)
 
-func _on_layer_mouse_out() -> void:
-	_clear_preview()
-
-func _on_rotate_pressed() -> void:
+func _on_input_manager_rotate_pressed() -> void:
 	if not equipped_furniture: return
 	equipped_furniture.rotate_clockwise()
 	_clear_preview()

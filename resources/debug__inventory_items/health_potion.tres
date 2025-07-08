@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="RInventoryItem" load_steps=3 format=3 uid="uid://byuyao836kfuo"]
 
-[ext_resource type="Resource" uid="uid://djun25fhw5k6k" path="res://resources/items/health_potion.tres" id="1_hdlwv"]
+[ext_resource type="Resource" uid="uid://d1fwsk5rnq77" path="res://resources/merchandise/health_potion.tres" id="1_e8gmd"]
 [ext_resource type="Script" path="res://scripts/resource_definitions/RInventoryItem.gd" id="1_jg3gj"]
 
 [resource]
 script = ExtResource("1_jg3gj")
-item = ExtResource("1_hdlwv")
+item = ExtResource("1_e8gmd")
 count = 3
 stackable = true
