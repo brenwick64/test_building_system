@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buastrnfbeooa"
-path="res://.godot/imported/large-table.png-9a86f6853c88a218c957c5114498cae1.ctex"
+uid="uid://c1rq5xi7qaj6v"
+path="res://.godot/imported/large-table-horizontal.png-46f3a78b31377b04862b141eff445481.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/objects/large-table.png"
-dest_files=["res://.godot/imported/large-table.png-9a86f6853c88a218c957c5114498cae1.ctex"]
+source_file="res://assets/objects/large-table-horizontal.png"
+dest_files=["res://.godot/imported/large-table-horizontal.png-46f3a78b31377b04862b141eff445481.ctex"]
 
 [params]
 

@@ -12,7 +12,6 @@ size = Vector2(12, 12)
 
 [node name="SmallTable" type="StaticBody2D" node_paths=PackedStringArray("sprite_2d")]
 script = ExtResource("1_s7jyf")
-tile_matrix = Array[Vector2i]([Vector2i(0, 0)])
 sprite_2d = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

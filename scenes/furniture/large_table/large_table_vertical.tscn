@@ -1,16 +1,16 @@
 [gd_scene load_steps=5 format=3 uid="uid://dvudffpcdjxan"]
 
-[ext_resource type="Script" path="res://scripts/classes/Furniture.gd" id="1_ohibq"]
-[ext_resource type="Texture2D" uid="uid://buastrnfbeooa" path="res://assets/objects/large-table.png" id="2_u8rmf"]
+[ext_resource type="Script" path="res://scripts/classes/Furniture.gd" id="1_inl5c"]
+[ext_resource type="Texture2D" uid="uid://buastrnfbeooa" path="res://assets/objects/large-table-vertical.png" id="2_oon4r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p74if"]
-atlas = ExtResource("2_u8rmf")
+atlas = ExtResource("2_oon4r")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vsva7"]
 size = Vector2(12, 26)
 
-[node name="LargeTable0" type="StaticBody2D" node_paths=PackedStringArray("sprite_2d")]
-script = ExtResource("1_ohibq")
+[node name="LargeTableVertical" type="StaticBody2D" node_paths=PackedStringArray("sprite_2d")]
+script = ExtResource("1_inl5c")
 sprite_2d = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

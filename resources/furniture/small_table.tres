@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="RFurniture" load_steps=3 format=3 uid="uid://bu5ndwug5j5e6"]
+[gd_resource type="Resource" script_class="RFurniture" load_steps=5 format=3 uid="uid://bu5ndwug5j5e6"]
 
-[ext_resource type="PackedScene" uid="uid://j2ycc2l8oh13" path="res://scenes/furniture/small_table/small_table.tscn" id="1_0s4mv"]
+[ext_resource type="PackedScene" uid="uid://j2ycc2l8oh13" path="res://scenes/furniture/small_table/small_table_horizontal.tscn" id="1_0s4mv"]
+[ext_resource type="PackedScene" uid="uid://nd7ad22epgir" path="res://scenes/furniture/small_table/small_table_icon.tscn" id="1_etdn7"]
 [ext_resource type="Script" path="res://scripts/resource_definitions/RFurniture.gd" id="1_vcxsj"]
+[ext_resource type="PackedScene" uid="uid://cn54jswaj6xfj" path="res://scenes/furniture/small_table/small_table_vertical.tscn" id="2_p3jfv"]
 
 [resource]
 script = ExtResource("1_vcxsj")
 tile_matrix = Array[Vector2i]([Vector2i(0, 0)])
-scene_0 = ExtResource("1_0s4mv")
-scene_90 = ExtResource("1_0s4mv")
-scene_180 = ExtResource("1_0s4mv")
-scene_270 = ExtResource("1_0s4mv")
+scene_horizontal = ExtResource("1_0s4mv")
+scene_vertical = ExtResource("2_p3jfv")
+item_name = "small_table"
+item_icon_scene = ExtResource("1_etdn7")
