@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RMerchandise" load_steps=4 format=3 uid="uid://ci432k4vf1ymu"]
+
+[ext_resource type="PackedScene" uid="uid://rird0gs0hjqo" path="res://scenes/items/merchandise/dagger/dagger_icon.tscn" id="1_mvkln"]
+[ext_resource type="Script" path="res://scripts/resource_definitions/RMerchandise.gd" id="1_tx7kr"]
+[ext_resource type="PackedScene" uid="uid://cd516f8v14cnn" path="res://scenes/items/merchandise/dagger/dagger.tscn" id="2_xmwj7"]
+
+[resource]
+script = ExtResource("1_tx7kr")
+base_value = 35.0
+item_slot_matrix = Array[Vector2i]([Vector2i(0, 0)])
+item_dimensions = Vector2i(1, 1)
+item_name = "dagger"
+item_scene = ExtResource("2_xmwj7")
+item_icon_scene = ExtResource("1_mvkln")

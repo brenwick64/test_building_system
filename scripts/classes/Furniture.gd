@@ -53,5 +53,8 @@ func set_occupied_tiles(tile_matrix:Array[Vector2i], primary_tile_coords: Vector
 	for coords: Vector2i in tile_matrix:
 		occupied_tiles.append(coords + primary_tile_coords)
 
+#TODO: encapsulate variable logic here instead of merch_manager
 func add_item(item: Item) -> void:
 	pass
+	
+	

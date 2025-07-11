@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjorh15dnpc5o"]
+
+[ext_resource type="Script" path="res://scripts/classes/Merchandise.gd" id="1_00fdh"]
+[ext_resource type="Texture2D" uid="uid://b1egyic48p3d2" path="res://assets/items/weapons/weapons.png" id="2_elrji"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsneo"]
+atlas = ExtResource("2_elrji")
+region = Rect2(1, 1, 30, 7)
+
+[node name="Sword" type="Node2D" node_paths=PackedStringArray("sprite_2d")]
+scale = Vector2(0.85, 0.85)
+script = ExtResource("1_00fdh")
+sprite_2d = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_nsneo")

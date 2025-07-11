@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="RFurniture" load_steps=5 format=3 uid="uid://3mkg48yul6yh"]
 
 [ext_resource type="Script" path="res://scripts/resource_definitions/RFurniture.gd" id="1_27v5e"]
-[ext_resource type="PackedScene" uid="uid://bx5531tqyofyx" path="res://scenes/furniture/large_table/large_table_icon.tscn" id="1_fxyyt"]
-[ext_resource type="PackedScene" uid="uid://c470pv7h18snk" path="res://scenes/furniture/large_table/large_table_horizontal.tscn" id="2_2yow3"]
-[ext_resource type="PackedScene" uid="uid://dvudffpcdjxan" path="res://scenes/furniture/large_table/large_table_vertical.tscn" id="3_gnpe6"]
+[ext_resource type="PackedScene" uid="uid://bx5531tqyofyx" path="res://scenes/items/furniture/large_table/large_table_icon.tscn" id="1_fxyyt"]
+[ext_resource type="PackedScene" uid="uid://c470pv7h18snk" path="res://scenes/items/furniture/large_table/large_table_horizontal.tscn" id="2_2yow3"]
+[ext_resource type="PackedScene" uid="uid://dvudffpcdjxan" path="res://scenes/items/furniture/large_table/large_table_vertical.tscn" id="3_gnpe6"]
 
 [resource]
 script = ExtResource("1_27v5e")

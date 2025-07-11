@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://de3o831n25f2l"]
+[gd_scene load_steps=14 format=4 uid="uid://de3o831n25f2l"]
 
 [ext_resource type="TileSet" uid="uid://jyl0pt03odje" path="res://resources/tilesets/main_tileset.tres" id="1_f72q3"]
 [ext_resource type="Script" path="res://scenes/managers/input/input_manager.gd" id="1_qkav0"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://bkg7mvx22iqt3" path="res://scenes/ui/inventory/inventory.tscn" id="7_yhwru"]
 [ext_resource type="Resource" uid="uid://bbr0atqje1qi6" path="res://resources/debug__inventory_items/small_table.tres" id="8_addx4"]
 [ext_resource type="Resource" uid="uid://byuyao836kfuo" path="res://resources/debug__inventory_items/health_potion.tres" id="8_ma8rl"]
+[ext_resource type="Resource" uid="uid://dj28jglj00hwv" path="res://resources/debug__inventory_items/dagger.tres" id="10_8uhwd"]
+[ext_resource type="Resource" uid="uid://cwexict1pgr1c" path="res://resources/debug__inventory_items/sword.tres" id="11_553lm"]
 
 [node name="TestScene" type="Node2D"]
 
@@ -43,7 +45,7 @@ tile_manager = NodePath("../TileManager")
 
 [node name="InventoryManager" type="Node" parent="Managers"]
 script = ExtResource("6_cimfw")
-inv_items = Array[ExtResource("7_6m8l8")]([ExtResource("7_og8fw"), ExtResource("8_addx4"), ExtResource("8_ma8rl")])
+inv_items = Array[ExtResource("7_6m8l8")]([ExtResource("7_og8fw"), ExtResource("8_addx4"), ExtResource("8_ma8rl"), ExtResource("10_8uhwd"), ExtResource("11_553lm")])
 
 [node name="TileMap" type="Node2D" parent="."]
 
