@@ -7,6 +7,8 @@
 [resource]
 script = ExtResource("1_lhows")
 base_value = 10.0
+item_slot_matrix = Array[Vector2i]([Vector2i(0, 0)])
+item_dimensions = Vector2i(1, 1)
 item_name = "health_potion"
 item_scene = ExtResource("2_uhpg6")
 item_icon_scene = ExtResource("1_4ck5v")

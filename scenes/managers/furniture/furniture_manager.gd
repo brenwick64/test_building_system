@@ -68,8 +68,8 @@ func _spawn_furnitrue() -> void:
 
 ## -- signals --
 func _on_tile_manager_new_tile_hovered(tile_coords: Vector2i) -> void:
-	if not equipped_furniture: return
 	hovered_tile_coords = tile_coords
+	if not equipped_furniture: return
 	_clear_preview()
 	_spawn_preview()
 	_validate_preview()

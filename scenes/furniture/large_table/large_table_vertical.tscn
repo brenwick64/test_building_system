@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvudffpcdjxan"]
+[gd_scene load_steps=6 format=3 uid="uid://dvudffpcdjxan"]
 
 [ext_resource type="Script" path="res://scripts/classes/Furniture.gd" id="1_inl5c"]
 [ext_resource type="Texture2D" uid="uid://buastrnfbeooa" path="res://assets/objects/large-table-vertical.png" id="2_oon4r"]
+[ext_resource type="Script" path="res://scripts/classes/FurnitureItemSlot.gd" id="3_swwsh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p74if"]
 atlas = ExtResource("2_oon4r")
@@ -9,9 +10,11 @@ atlas = ExtResource("2_oon4r")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vsva7"]
 size = Vector2(12, 26)
 
-[node name="LargeTableVertical" type="StaticBody2D" node_paths=PackedStringArray("sprite_2d")]
+[node name="LargeTableVertical" type="StaticBody2D" node_paths=PackedStringArray("sprite_2d", "item_slots")]
 script = ExtResource("1_inl5c")
 sprite_2d = NodePath("Sprite2D")
+item_slots = NodePath("ItemSlots")
+item_slot_matrix = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, -1)])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_p74if")
@@ -22,3 +25,23 @@ position = Vector2(0, 8)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_vsva7")
+
+[node name="ItemSlots" type="Node2D" parent="."]
+
+[node name="1x1Slot1" type="Node2D" parent="ItemSlots"]
+position = Vector2(0, 5)
+script = ExtResource("3_swwsh")
+item_matrix = Array[Vector2i]([Vector2i(0, 0)])
+slot_dimensions = Vector2i(1, 1)
+
+[node name="1x1Slot2" type="Node2D" parent="ItemSlots"]
+position = Vector2(0, -7)
+script = ExtResource("3_swwsh")
+item_matrix = Array[Vector2i]([Vector2i(0, -1)])
+slot_dimensions = Vector2i(1, 1)
+
+[node name="2x1Slot1" type="Node2D" parent="ItemSlots"]
+position = Vector2(0, -1)
+script = ExtResource("3_swwsh")
+item_matrix = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, -1)])
+slot_dimensions = Vector2i(1, 2)

@@ -13,7 +13,6 @@ func rotate_clockwise() -> void:
 	var index: int = ROTATION_VALUES.find(current_degrees)
 	index = (index + 1) % ROTATION_VALUES.size()
 	current_degrees = ROTATION_VALUES[index]
-	print(_get_rotated_tile_matrix(current_degrees))
 	
 func get_furniture() -> PackedScene:
 	match current_degrees:

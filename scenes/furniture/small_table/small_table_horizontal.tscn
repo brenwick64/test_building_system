@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://j2ycc2l8oh13"]
+[gd_scene load_steps=6 format=3 uid="uid://j2ycc2l8oh13"]
 
 [ext_resource type="Script" path="res://scripts/classes/Furniture.gd" id="1_s7jyf"]
 [ext_resource type="Texture2D" uid="uid://cxuir4s1jnw7c" path="res://assets/objects/basic_furniture.png" id="2_u5mnb"]
+[ext_resource type="Script" path="res://scripts/classes/FurnitureItemSlot.gd" id="3_ci3h7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0kp1i"]
 atlas = ExtResource("2_u5mnb")
@@ -10,9 +11,11 @@ region = Rect2(49, 49, 14, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a2665"]
 size = Vector2(12, 12)
 
-[node name="SmallTable" type="StaticBody2D" node_paths=PackedStringArray("sprite_2d")]
+[node name="SmallTableHorizontal" type="StaticBody2D" node_paths=PackedStringArray("sprite_2d", "item_slots")]
 script = ExtResource("1_s7jyf")
 sprite_2d = NodePath("Sprite2D")
+item_slots = NodePath("ItemSlots")
+item_slot_matrix = Array[Vector2i]([Vector2i(0, 0)])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_0kp1i")
@@ -21,3 +24,11 @@ texture = SubResource("AtlasTexture_0kp1i")
 shape = SubResource("RectangleShape2D_a2665")
 
 [node name="Pivot" type="Marker2D" parent="."]
+
+[node name="ItemSlots" type="Node2D" parent="."]
+
+[node name="1x1Slot1" type="Node2D" parent="ItemSlots"]
+position = Vector2(0, -1)
+script = ExtResource("3_ci3h7")
+item_matrix = Array[Vector2i]([Vector2i(0, 0)])
+slot_dimensions = Vector2i(1, 1)
