@@ -51,7 +51,7 @@ func _spawn_preview() -> void:
 func _validate_preview() -> void:
 	if not furniture_preview: return
 	if _is_used_tile() or _is_incorrect_layer():
-		furniture_preview.invalid_placement()
+		furniture_preview.set_invalid_placement()
 
 func _spawn_furnitrue() -> void:
 	var shoppe_furniture: Node2D = get_tree().get_first_node_in_group("ShoppeFurniture")

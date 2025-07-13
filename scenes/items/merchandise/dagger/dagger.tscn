@@ -8,7 +8,7 @@ atlas = ExtResource("2_uo66q")
 region = Rect2(1, 9, 17, 7)
 
 [node name="Dagger" type="Node2D" node_paths=PackedStringArray("sprite_2d")]
-scale = Vector2(0.75, 0.75)
+scale = Vector2(0.65, 0.65)
 script = ExtResource("1_fwrha")
 sprite_2d = NodePath("Sprite2D")
 

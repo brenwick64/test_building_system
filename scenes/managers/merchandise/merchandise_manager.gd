@@ -13,14 +13,6 @@ var merchandise_preview: Merchandise
 var placed_merchandise: Array[Merchandise]
 
 ## -- helper functions --
-#func _get_free_item_tiles(furniture_tiles: Array[Vector2i]) -> Array[Vector2i]:
-	#var occupied_tiles: Array[Vector2i] = []
-	#for merchandise: Merchandise in placed_merchandise:
-		#for tile_coords: Vector2i in merchandise.occupied_tiles:
-			#if tile_coords in furniture_tiles:
-				#occupied_tiles.append(tile_coords)
-	#return furniture_tiles.filter(func(tile): return not tile in occupied_tiles)
-
 func _get_free_item_slot(tile_coords: Vector2i) -> Node2D:
 	var furniture: Furniture = furniture_manager.get_furniture_at_coords(tile_coords)
 	if not furniture: # no furniture to place item on 
@@ -31,6 +23,7 @@ func _get_free_item_slot(tile_coords: Vector2i) -> Node2D:
 
 func _spawn_preview(item_slot: Node2D) -> void:
 	var preview_ins: Merchandise = equipped_merchandise.item_scene.instantiate()
+	preview_ins.rotation = deg_to_rad(equipped_merchandise.get_rotation_deg())
 	preview_ins.set_preview()
 	item_slot.add_child(preview_ins)
 	merchandise_preview = preview_ins
@@ -45,6 +38,7 @@ func _validate_preview() -> void:
 
 func _spawn_merchandise(item_slot: Node2D) -> void:
 	var merchandise_ins: Merchandise = equipped_merchandise.item_scene.instantiate()
+	merchandise_ins.rotation = deg_to_rad(equipped_merchandise.get_rotation_deg())
 	item_slot.placed_item = merchandise_ins
 	item_slot.add_child(merchandise_ins)
 	placed_merchandise.append(merchandise_ins)
@@ -71,6 +65,15 @@ func _on_input_manager_action_pressed(event: InputEvent) -> void:
 	_spawn_merchandise(item_slot)
 	inventory_manager.remove_item(equipped_merchandise)
 
+func _on_input_manager_rotate_pressed() -> void:
+	if not merchandise_preview: return
+	if not equipped_merchandise.is_rotatable: return
+	var item_slot: Node2D = merchandise_preview.get_parent()
+	equipped_merchandise.flip()
+	_clear_preview()
+	_spawn_preview(item_slot)
+	_validate_preview()
+ 
 func _on_inventory_manager_current_item_updated(current_item: RItem) -> void:
 	if current_item is RMerchandise:
 		equipped_merchandise = current_item

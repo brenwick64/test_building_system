@@ -90,7 +90,6 @@ inventory_manager = NodePath("../../Managers/InventoryManager")
 [connection signal="action_pressed" from="Managers/InputManager" to="Managers/FurnitureManager" method="_on_input_manager_action_pressed"]
 [connection signal="action_pressed" from="Managers/InputManager" to="Managers/MerchandiseManager" method="_on_input_manager_action_pressed"]
 [connection signal="rotate_pressed" from="Managers/InputManager" to="Managers/FurnitureManager" method="_on_input_manager_rotate_pressed"]
-[connection signal="rotate_pressed" from="Managers/InputManager" to="Managers/MerchandiseManager" method="_on_input_manager_rotate_pressed"]
 [connection signal="layer_mouse_out" from="Managers/TileManager" to="Managers/FurnitureManager" method="_on_tile_manager_layer_mouse_out"]
 [connection signal="layer_mouse_out" from="Managers/TileManager" to="Managers/MerchandiseManager" method="_on_tile_manager_layer_mouse_out"]
 [connection signal="new_tile_hovered" from="Managers/TileManager" to="Managers/FurnitureManager" method="_on_tile_manager_new_tile_hovered"]
