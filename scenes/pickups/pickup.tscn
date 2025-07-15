@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyvuqi716mqx8"]
+
+[ext_resource type="Script" path="res://scenes/pickups/pickup.gd" id="1_pldmq"]
+[ext_resource type="Script" path="res://scenes/pickups/arc_move_on_spawn.gd" id="2_7c1tb"]
+
+[node name="Pickup" type="Node2D" node_paths=PackedStringArray("arc_move_on_spawn", "pickup_collision", "pickup_delay")]
+script = ExtResource("1_pldmq")
+arc_move_on_spawn = NodePath("Behaviors/ArcMoveOnSpawn")
+pickup_collision = NodePath("Area2D/CollisionShape2D")
+pickup_delay = NodePath("PickupDelay")
+
+[node name="Behaviors" type="Node" parent="."]
+
+[node name="ArcMoveOnSpawn" type="Node2D" parent="Behaviors"]
+script = ExtResource("2_7c1tb")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+[node name="PickupDelay" type="Timer" parent="."]

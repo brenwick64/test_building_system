@@ -1,10 +1,10 @@
 class_name MerchandiseManager
 extends Node
 
+@onready var outline_shader: Shader = preload("res://shaders/outline_shader.gdshader")
+
 @export var furniture_manager: FurnitureManager
 @export var inventory_manager: InventoryManager
-@export var input_manager: InputManager
-@export var tile_manager: TileManager
 
 var equipped_merchandise: RMerchandise
 
@@ -37,8 +37,14 @@ func _validate_preview() -> void:
 	pass
 
 func _spawn_merchandise(item_slot: Node2D) -> void:
-	var merchandise_ins: Merchandise = equipped_merchandise.item_scene.instantiate()
+	var merchandise_ins: Merchandise = equipped_merchandise.new_scene()
 	merchandise_ins.rotation = deg_to_rad(equipped_merchandise.get_rotation_deg())
+	# add outline shader
+	var sprite: Sprite2D = merchandise_ins.get_node("Sprite2D")
+	var material: ShaderMaterial = ShaderMaterial.new()
+	material.shader = outline_shader
+	sprite.material = material
+	# configure variables and add to scene
 	item_slot.placed_item = merchandise_ins
 	item_slot.add_child(merchandise_ins)
 	placed_merchandise.append(merchandise_ins)
@@ -74,7 +80,7 @@ func _on_input_manager_rotate_pressed() -> void:
 	_spawn_preview(item_slot)
 	_validate_preview()
  
-func _on_inventory_manager_current_item_updated(current_item: RItem) -> void:
+func _on_inventory_manager_current_item_updated(current_item: RItemData) -> void:
 	if current_item is RMerchandise:
 		equipped_merchandise = current_item
 		var free_item_slot: Node2D = _get_free_item_slot(hovered_tile_coords)
@@ -86,7 +92,7 @@ func _on_inventory_manager_current_item_updated(current_item: RItem) -> void:
 		equipped_merchandise = null
 		_clear_preview()
 
-func _on_inventory_manager_item_depleted(item: RItem) -> void:
+func _on_inventory_manager_item_depleted(item: RItemData) -> void:
 	if item is RMerchandise:
 		equipped_merchandise = null
 		_clear_preview()

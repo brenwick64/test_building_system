@@ -5,3 +5,8 @@ extends Node2D
 @export var slot_dimensions: Vector2i
 
 var placed_item: Item
+
+func remove() -> void:
+	if not placed_item: return
+	placed_item.remove()
+	placed_item = null

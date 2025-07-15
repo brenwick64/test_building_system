@@ -1,8 +1,7 @@
 class_name Furniture
-extends Node
+extends Item
 
 @export var is_horizontal: bool
-@export var sprite_2d: Sprite2D
 @export var item_slots: Node2D
 @export var item_slot_matrix: Array[Vector2i]
 	
@@ -13,9 +12,6 @@ var occupied_tiles: Array[Vector2i]
 func set_invalid_placement() -> void:
 	sprite_2d.modulate = Color(0.941176, 0.501961, 0.501961, 0.5)
 	is_valid_placement = false
-
-func set_preview() -> void:
-	sprite_2d.modulate = Color(1, 1, 1, 0.5)
 
 func set_occupied_tiles(tile_matrix:Array[Vector2i], primary_tile_coords: Vector2i) -> void:
 	for coords: Vector2i in tile_matrix:
@@ -31,9 +27,13 @@ func get_free_item_slot(item: RMerchandise, tile_coords: Vector2i) -> Node2D:
 	if matched_slot.placed_item: return
 	return matched_slot
 
-#TODO: encapsulate variable logic here instead of merch_manager
-func add_item(item: Item) -> void:
-	pass
+func get_occupied_slot_at_coords(tile_coords: Vector2i) -> Node2D:
+	var hovered_slots: Array[Node2D] = _get_hovered_slots(tile_coords) # gets all slots in hovered tile
+	if not hovered_slots: return
+	for slot: Node2D in hovered_slots:
+		if slot.placed_item:
+			return slot
+	return null
 
 ## -- helper functions --
 func _get_unoccupied_matrix() -> Array[Vector2i]:

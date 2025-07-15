@@ -1,6 +1,6 @@
 extends Panel
 
-signal item_selected(item: RItem)
+signal item_selected(item: RItemData)
 
 @export var item_slot_list: HBoxContainer
 @export var inventory_manager: InventoryManager
@@ -43,7 +43,7 @@ func _matches_item_name(slot: PanelContainer, item_name: String) -> bool:
 	return slot.inventory_item.item.item_name == item_name
 
 ## -- signal handlers --
-func _on_item_selected(item: RItem) -> void:
+func _on_item_selected(item: RItemData) -> void:
 	item_selected.emit(item)
 
 func _on_inventory_manager_inventory_updated(inventory_items: Array[RInventoryItem]) -> void:
@@ -53,7 +53,7 @@ func _on_inventory_manager_inventory_updated(inventory_items: Array[RInventoryIt
 		if is_new_item: _add_new_item_slot(inv_item)
 		else: _update_existing_item_slot(inv_item)
 
-func _on_inventory_manager_item_depleted(item: RItem) -> void:
+func _on_inventory_manager_item_depleted(item: RItemData) -> void:
 	var item_slots: Array[Node] = item_slot_list.get_children()
 	for slot: PanelContainer in item_slots:
 		if not slot.inventory_item: continue

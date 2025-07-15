@@ -1,5 +1,0 @@
-Add new sprites for 1x1 items (dagger) and test them out
-Add 2v1 sprite (longsword) and test
-fix bugs:
-- furniture occupied tiles for items not implemented yet (updating after placing item, see commented out code in merchmanager)
-- items over 1v1 need to be able to rotate to fit different tile furnitures	

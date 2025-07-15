@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://berl3ekmrjw2b"]
+
+[ext_resource type="Script" path="res://scenes/pickups/pickup.gd" id="1_5bc7n"]
+[ext_resource type="Script" path="res://scenes/pickups/arc_move_on_spawn.gd" id="2_m1w1t"]
+[ext_resource type="Texture2D" uid="uid://bhescatb50at1" path="res://assets/objects/small_table.png" id="3_ro5pc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysgf2"]
+atlas = ExtResource("3_ro5pc")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbx5e"]
+size = Vector2(13.3333, 13.3333)
+
+[node name="SmallTablePickup" type="Node2D" node_paths=PackedStringArray("arc_move_on_spawn", "pickup_collision", "pickup_delay")]
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_5bc7n")
+arc_move_on_spawn = NodePath("Behaviors/ArcMoveOnSpawn")
+pickup_collision = NodePath("Area2D/CollisionShape2D")
+pickup_delay = NodePath("PickupDelay")
+
+[node name="Behaviors" type="Node" parent="."]
+
+[node name="ArcMoveOnSpawn" type="Node2D" parent="Behaviors" node_paths=PackedStringArray("pickup")]
+script = ExtResource("2_m1w1t")
+pickup = NodePath("../..")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_ysgf2")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1.58946e-07, 0)
+shape = SubResource("RectangleShape2D_rbx5e")
+
+[node name="PickupDelay" type="Timer" parent="."]

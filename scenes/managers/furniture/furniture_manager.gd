@@ -1,6 +1,8 @@
 class_name FurnitureManager
 extends Node
 
+@onready var outline_shader: Shader = preload("res://shaders/outline_shader.gdshader")
+
 @export var inventory_manager: InventoryManager
 @export var input_manager: InputManager
 @export var tile_manager: TileManager
@@ -17,6 +19,18 @@ func get_furniture_at_coords(tile_coords: Vector2i) -> Furniture:
 		if tile_coords in furniture.occupied_tiles:
 			return furniture
 	return null
+
+func remove_furniture(furniture: Furniture) -> void:
+	# remove any remaining items
+	for item_slot: Node in furniture.item_slots.get_children():
+		item_slot.remove()
+	# remove furniture
+	placed_furniture = placed_furniture.filter(func(f): return f != furniture)
+	furniture.remove()
+
+func remove_merchandise(merchandise: Merchandise) -> void:
+	var item_slot: FurnitureItemSlot = merchandise.get_parent()
+	item_slot.remove()
 
 ## -- helper functions --
 func _is_used_tile() -> bool:
@@ -41,7 +55,7 @@ func _clear_preview() -> void:
 
 func _spawn_preview() -> void:
 	if not hovered_tile_coords: return
-	var preview_ins: Furniture = equipped_furniture.get_furniture().instantiate()
+	var preview_ins: Furniture = equipped_furniture.get_furniture()
 	var pivot: Marker2D = preview_ins.get_node("Pivot")
 	preview_ins.set_preview()
 	preview_ins.global_position = tile_manager.get_gp_from_tile_coords(hovered_tile_coords) as Vector2 - pivot.global_position
@@ -58,10 +72,17 @@ func _spawn_furnitrue() -> void:
 	if not shoppe_furniture:
 		push_warning("warning: cannot add furniture since no ShoppeFurniture scene was detected")
 		return
-	var furniture_ins = equipped_furniture.get_furniture().instantiate()
+	var furniture_ins: Node2D = equipped_furniture.get_furniture()
+	# add global position
 	var pivot: Marker2D = furniture_ins.get_node("Pivot")
 	var tile_global_pos: Vector2 = tile_manager.get_gp_from_tile_coords(hovered_tile_coords)
 	furniture_ins.global_position = shoppe_furniture.to_local(tile_global_pos) as Vector2 - pivot.global_position
+	# add shader
+	var sprite: Sprite2D = furniture_ins.get_node("Sprite2D")
+	var material: ShaderMaterial = ShaderMaterial.new()
+	material.set_shader(outline_shader)
+	sprite.material = material
+	# configure variables and add to scene
 	furniture_ins.set_occupied_tiles(equipped_furniture.get_tile_matrix(), hovered_tile_coords)
 	shoppe_furniture.add_child(furniture_ins)
 	placed_furniture.append(furniture_ins)
@@ -92,7 +113,7 @@ func _on_input_manager_rotate_pressed() -> void:
 	_spawn_preview()
 	_validate_preview()
 
-func _on_inventory_manager_current_item_updated(current_item: RItem) -> void:
+func _on_inventory_manager_current_item_updated(current_item: RItemData) -> void:
 	if current_item is RFurniture:
 		equipped_furniture = current_item
 		_clear_preview()
@@ -102,7 +123,7 @@ func _on_inventory_manager_current_item_updated(current_item: RItem) -> void:
 		equipped_furniture = null
 		_clear_preview()
 
-func _on_inventory_manager_item_depleted(item: RItem) -> void:
+func _on_inventory_manager_item_depleted(item: RItemData) -> void:
 	if item is RFurniture:
 		equipped_furniture = null
 		_clear_preview()

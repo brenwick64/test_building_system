@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="RMerchandise" load_steps=4 format=3 uid="uid://ci432k4vf1ymu"]
+[gd_resource type="Resource" script_class="RMerchandise" load_steps=5 format=3 uid="uid://ci432k4vf1ymu"]
 
 [ext_resource type="PackedScene" uid="uid://rird0gs0hjqo" path="res://scenes/items/merchandise/dagger/dagger_icon.tscn" id="1_ht5u5"]
+[ext_resource type="PackedScene" uid="uid://cktfl1s0hrdhn" path="res://scenes/items/merchandise/dagger/dagger_pickup.tscn" id="2_by2wd"]
 [ext_resource type="PackedScene" uid="uid://cd516f8v14cnn" path="res://scenes/items/merchandise/dagger/dagger.tscn" id="2_yvc03"]
 [ext_resource type="Script" path="res://scripts/resource_definitions/RMerchandise.gd" id="3_mbuuv"]
 
@@ -10,6 +11,8 @@ is_rotatable = true
 base_value = 35.0
 item_slot_matrix = Array[Vector2i]([Vector2i(0, 0)])
 item_dimensions = Vector2i(1, 1)
+item_id = "002"
 item_name = "dagger"
 item_scene = ExtResource("2_yvc03")
-item_icon_scene = ExtResource("1_ht5u5")
+item_icon = ExtResource("1_ht5u5")
+item_pickup = ExtResource("2_by2wd")

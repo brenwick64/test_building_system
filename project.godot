@@ -14,13 +14,18 @@ config/name="test_building_system"
 run/main_scene="res://scenes/test_scenes/test_scene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
+[autoload]
+
+ItemDb="*res://scripts/globals/ItemDB.gd"
+
 [file_customization]
 
 folder_colors={
 "res://assets/": "orange",
 "res://resources/": "green",
 "res://scenes/": "purple",
-"res://scripts/": "yellow"
+"res://scripts/": "yellow",
+"res://shaders/": "teal"
 }
 
 [input]

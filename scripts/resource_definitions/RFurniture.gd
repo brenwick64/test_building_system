@@ -1,5 +1,5 @@
 class_name RFurniture
-extends RItem
+extends RItemData
 
 @export var tile_matrix: Array[Vector2i]
 @export var scene_horizontal: PackedScene
@@ -8,18 +8,29 @@ extends RItem
 const ROTATION_VALUES: Array[int] = [0, 90]
 var current_degrees: int = ROTATION_VALUES[0]
 
+## -- constructors
+func new_horizontal_scene() -> Furniture:
+	var horizontal_ins: Node2D = scene_horizontal.instantiate()
+	horizontal_ins.item_id = item_id
+	return horizontal_ins
+	
+func new_vertical_scene() -> Furniture:
+	var vertical_ins: Node2D = scene_vertical.instantiate()
+	vertical_ins.item_id = item_id
+	return vertical_ins
+
 ## -- methods --
 func rotate_clockwise() -> void:
 	var index: int = ROTATION_VALUES.find(current_degrees)
 	index = (index + 1) % ROTATION_VALUES.size()
 	current_degrees = ROTATION_VALUES[index]
 	
-func get_furniture() -> PackedScene:
+func get_furniture() -> Node2D:
 	match current_degrees:
-		0: return scene_vertical
-		90: return scene_horizontal
+		0: return new_horizontal_scene()
+		90: return new_vertical_scene()
 	push_error("error: current rotation degrees for " + resource_name + "is invalid: " + str(current_degrees))
-	return scene_horizontal
+	return new_horizontal_scene()
 
 func get_tile_matrix() -> Array[Vector2i]:
 	match current_degrees:

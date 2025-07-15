@@ -5,7 +5,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2th01"]
 atlas = ExtResource("1_d8ywi")
-region = Rect2(116, 5, 9, 10)
+region = Rect2(115, 4, 11, 12)
 
 [node name="HealthPotion" type="Node2D" node_paths=PackedStringArray("sprite_2d")]
 scale = Vector2(0.75, 0.75)

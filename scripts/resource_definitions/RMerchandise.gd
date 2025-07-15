@@ -1,5 +1,5 @@
 class_name RMerchandise
-extends RItem
+extends RItemData
 
 @export var is_rotatable: bool
 @export var base_value: float
