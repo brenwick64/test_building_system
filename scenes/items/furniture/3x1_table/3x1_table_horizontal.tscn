@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxlv5x2e3t4g6"]
+
+[ext_resource type="Script" path="res://scripts/classes/Furniture.gd" id="1_84dtw"]
+[ext_resource type="Texture2D" uid="uid://b453sfq5653i7" path="res://assets/objects/3x1-table-horizontal-final.png" id="2_5y7y7"]
+[ext_resource type="Script" path="res://scripts/classes/FurnitureItemSlot.gd" id="3_8bm5w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3kdv"]
+atlas = ExtResource("2_5y7y7")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vsva7"]
+size = Vector2(47, 12)
+
+[node name="3x1TableHorizontal" type="StaticBody2D" node_paths=PackedStringArray("item_slots", "sprite_2d")]
+script = ExtResource("1_84dtw")
+is_horizontal = true
+item_slots = NodePath("ItemSlots")
+item_slot_matrix = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0)])
+sprite_2d = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_t3kdv")
+
+[node name="Pivot" type="Marker2D" parent="."]
+position = Vector2(-16, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_vsva7")
+
+[node name="ItemSlots" type="Node2D" parent="."]
+
+[node name="1x1Slot1" type="Node2D" parent="ItemSlots"]
+position = Vector2(-13, -1)
+script = ExtResource("3_8bm5w")
+item_matrix = Array[Vector2i]([Vector2i(0, 0)])
+slot_dimensions = Vector2i(1, 1)
+
+[node name="1x1Slot2" type="Node2D" parent="ItemSlots"]
+position = Vector2(0, -1)
+script = ExtResource("3_8bm5w")
+item_matrix = Array[Vector2i]([Vector2i(1, 0)])
+slot_dimensions = Vector2i(1, 1)
+
+[node name="1x1Slot3" type="Node2D" parent="ItemSlots"]
+position = Vector2(13, -1)
+script = ExtResource("3_8bm5w")
+item_matrix = Array[Vector2i]([Vector2i(2, 0)])
+slot_dimensions = Vector2i(1, 1)
+
+[node name="2x1Slot1" type="Node2D" parent="ItemSlots"]
+position = Vector2(-7, -1)
+script = ExtResource("3_8bm5w")
+item_matrix = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0)])
+slot_dimensions = Vector2i(2, 1)
+
+[node name="2x1Slot2" type="Node2D" parent="ItemSlots"]
+position = Vector2(7, -1)
+script = ExtResource("3_8bm5w")
+item_matrix = Array[Vector2i]([Vector2i(1, 0), Vector2i(2, 0)])
+slot_dimensions = Vector2i(2, 1)
+
+[node name="3x1Slot3" type="Node2D" parent="ItemSlots"]
+position = Vector2(0, -1)
+script = ExtResource("3_8bm5w")
+item_matrix = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0)])
+slot_dimensions = Vector2i(3, 1)

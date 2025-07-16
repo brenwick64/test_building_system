@@ -7,7 +7,7 @@ atlas = ExtResource("1_vq5ca")
 region = Rect2(116, 5, 9, 10)
 
 [node name="HealthPotionIcon" type="TextureRect"]
-custom_minimum_size = Vector2(35, 35)
+custom_minimum_size = Vector2(25, 25)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

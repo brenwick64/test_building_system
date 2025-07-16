@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://de3o831n25f2l"]
+[gd_scene load_steps=18 format=4 uid="uid://de3o831n25f2l"]
 
 [ext_resource type="TileSet" uid="uid://jyl0pt03odje" path="res://resources/tilesets/main_tileset.tres" id="1_f72q3"]
 [ext_resource type="Script" path="res://scenes/managers/input/input_manager.gd" id="1_qkav0"]
@@ -15,14 +15,15 @@
 [ext_resource type="Resource" uid="uid://cwexict1pgr1c" path="res://resources/debug__inventory_items/sword.tres" id="11_553lm"]
 [ext_resource type="Script" path="res://scenes/managers/tool/tool_manager.gd" id="12_1e4ls"]
 [ext_resource type="Resource" uid="uid://bi4qong3ck70f" path="res://resources/debug__inventory_items/remover_tool.tres" id="12_skpuo"]
+[ext_resource type="Resource" uid="uid://cbd5jbkqxm2xl" path="res://resources/debug__inventory_items/3x1_table.tres" id="13_rg5hq"]
 [ext_resource type="Script" path="res://scenes/managers/tool/tool_handler.gd" id="13_yxg4t"]
 
 [node name="TestScene" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(6, 2)
+position = Vector2(133, 88)
 anchor_mode = 0
-zoom = Vector2(2, 2)
+zoom = Vector2(2.5, 2.5)
 
 [node name="Managers" type="Node" parent="."]
 
@@ -46,7 +47,7 @@ inventory_manager = NodePath("../InventoryManager")
 
 [node name="InventoryManager" type="Node" parent="Managers"]
 script = ExtResource("6_cimfw")
-inv_items = Array[ExtResource("7_6m8l8")]([ExtResource("7_og8fw"), ExtResource("8_addx4"), ExtResource("8_ma8rl"), ExtResource("10_8uhwd"), ExtResource("11_553lm"), ExtResource("12_skpuo")])
+inv_items = Array[ExtResource("7_6m8l8")]([ExtResource("8_addx4"), ExtResource("7_og8fw"), ExtResource("13_rg5hq"), ExtResource("8_ma8rl"), ExtResource("10_8uhwd"), ExtResource("11_553lm"), ExtResource("12_skpuo")])
 
 [node name="ToolManager" type="Node" parent="Managers" node_paths=PackedStringArray("remover_tool_handler", "furniture_manager")]
 script = ExtResource("12_1e4ls")

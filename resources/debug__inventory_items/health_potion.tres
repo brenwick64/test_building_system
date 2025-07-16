@@ -6,5 +6,5 @@
 [resource]
 script = ExtResource("1_jg3gj")
 item = ExtResource("1_e8gmd")
-count = 8
+count = 99
 stackable = true
