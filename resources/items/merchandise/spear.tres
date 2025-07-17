@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="RMerchandise" load_steps=5 format=3 uid="uid://ckj6b72w7s742"]
+
+[ext_resource type="Script" path="res://scripts/resource_definitions/RMerchandise.gd" id="1_7q5or"]
+[ext_resource type="PackedScene" uid="uid://dfpyyvqfj3vh4" path="res://scenes/items/merchandise/spear/spear_icon.tscn" id="1_eg6tp"]
+[ext_resource type="PackedScene" uid="uid://c1xs615pm2ahl" path="res://scenes/items/merchandise/spear/spear_pickup.tscn" id="2_3ueac"]
+[ext_resource type="PackedScene" uid="uid://cosx3rv5jwe5p" path="res://scenes/items/merchandise/spear/spear.tscn" id="3_sacsw"]
+
+[resource]
+script = ExtResource("1_7q5or")
+is_rotatable = true
+base_value = 110.0
+item_slot_matrix = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0)])
+item_dimensions = Vector2i(3, 1)
+item_id = "010"
+item_name = "spear"
+item_scene = ExtResource("3_sacsw")
+item_icon = ExtResource("1_eg6tp")
+item_pickup = ExtResource("2_3ueac")

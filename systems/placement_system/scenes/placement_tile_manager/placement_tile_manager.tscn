@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcsf7pc32gvwd"]
+
+[ext_resource type="Script" path="res://systems/placement_system/scenes/placement_tile_manager/placement_tile_manager.gd" id="1_cx6bw"]
+
+[node name="PlacementTileManager" type="Node"]
+script = ExtResource("1_cx6bw")

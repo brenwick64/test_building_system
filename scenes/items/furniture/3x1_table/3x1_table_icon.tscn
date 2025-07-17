@@ -1,8 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://lapb21a3j7ar"]
 
-[ext_resource type="Texture2D" uid="uid://cbija4iw41b6d" path="res://assets/objects/3x1-table-vertical-final.png" id="1_v5sdt"]
+[ext_resource type="Texture2D" uid="uid://bv42tnduih635" path="res://assets/objects/3x1-table-vertical-final.png" id="1_v5sdt"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vyg22"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2j4si"]
 atlas = ExtResource("1_v5sdt")
 
 [node name="3x1TableIcon" type="TextureRect"]
@@ -17,4 +17,4 @@ offset_right = 8.0
 offset_bottom = 23.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_vyg22")
+texture = SubResource("AtlasTexture_2j4si")

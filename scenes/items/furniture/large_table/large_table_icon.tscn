@@ -1,8 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://bx5531tqyofyx"]
 
-[ext_resource type="Texture2D" uid="uid://buastrnfbeooa" path="res://assets/objects/large-table-vertical.png" id="1_ovnms"]
+[ext_resource type="Texture2D" uid="uid://ba1wxribwt1d6" path="res://assets/objects/large-table-vertical.png" id="1_ovnms"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x8ipi"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nx5qd"]
 atlas = ExtResource("1_ovnms")
 
 [node name="LargeTableIcon" type="TextureRect"]
@@ -17,4 +17,4 @@ offset_right = 8.0
 offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_x8ipi")
+texture = SubResource("AtlasTexture_nx5qd")

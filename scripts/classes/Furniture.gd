@@ -14,12 +14,16 @@ func set_invalid_placement() -> void:
 	is_valid_placement = false
 
 func set_occupied_tiles(tile_matrix:Array[Vector2i], primary_tile_coords: Vector2i) -> void:
+	print(tile_matrix)
 	for coords: Vector2i in tile_matrix:
 		occupied_tiles.append(coords + primary_tile_coords)
 
 func get_free_item_slot(item: RMerchandise, tile_coords: Vector2i) -> Node2D:
+	print(tile_coords)
 	var hovered_slots: Array[Node2D] = _get_hovered_slots(tile_coords) # gets all slots in hovered tile
 	if not hovered_slots: return
+	print("hovered_slots")
+	print(hovered_slots)
 	var valid_slots: Array[Node2D] = _get_valid_slots(hovered_slots) # gets all slots that are 100% free
 	if not valid_slots: return
 	var matched_slot = _get_matched_slot(item, valid_slots) # gets slot that matches item dimension
@@ -52,9 +56,9 @@ func _get_hovered_slots(tile_coords: Vector2i) -> Array[Node2D]:
 			hovered_slots.append(slot)
 	return hovered_slots
 
-func _get_valid_slots(item_slots: Array[Node2D]) -> Array[Node2D]:
+func _get_valid_slots(slots: Array[Node2D]) -> Array[Node2D]:
 	var valid_slots: Array[Node2D] = []
-	for slot in item_slots:
+	for slot in slots:
 		var is_valid: bool = slot.item_matrix.all(func(v): return v in _get_unoccupied_matrix())
 		if is_valid:
 			valid_slots.append(slot)

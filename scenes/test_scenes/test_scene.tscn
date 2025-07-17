@@ -1,61 +1,36 @@
-[gd_scene load_steps=18 format=4 uid="uid://de3o831n25f2l"]
+[gd_scene load_steps=15 format=4 uid="uid://de3o831n25f2l"]
 
 [ext_resource type="TileSet" uid="uid://jyl0pt03odje" path="res://resources/tilesets/main_tileset.tres" id="1_f72q3"]
 [ext_resource type="Script" path="res://scenes/managers/input/input_manager.gd" id="1_qkav0"]
-[ext_resource type="Script" path="res://scenes/managers/tile/tile_manager.gd" id="2_fsswj"]
-[ext_resource type="Script" path="res://scenes/managers/furniture/furniture_manager.gd" id="3_n04qi"]
-[ext_resource type="Script" path="res://scenes/managers/merchandise/merchandise_manager.gd" id="4_nimrl"]
 [ext_resource type="Script" path="res://scenes/managers/inventory/inventory_manager.gd" id="6_cimfw"]
 [ext_resource type="Script" path="res://scripts/resource_definitions/RInventoryItem.gd" id="7_6m8l8"]
 [ext_resource type="Resource" uid="uid://baudqorhwqlkd" path="res://resources/debug__inventory_items/large_table.tres" id="7_og8fw"]
 [ext_resource type="PackedScene" uid="uid://bkg7mvx22iqt3" path="res://scenes/ui/inventory/inventory.tscn" id="7_yhwru"]
 [ext_resource type="Resource" uid="uid://bbr0atqje1qi6" path="res://resources/debug__inventory_items/small_table.tres" id="8_addx4"]
-[ext_resource type="Resource" uid="uid://byuyao836kfuo" path="res://resources/debug__inventory_items/health_potion.tres" id="8_ma8rl"]
+[ext_resource type="Resource" uid="uid://125hymt2neby" path="res://resources/debug__inventory_items/2x2_table.tres" id="10_0eu6s"]
 [ext_resource type="Resource" uid="uid://dj28jglj00hwv" path="res://resources/debug__inventory_items/dagger.tres" id="10_8uhwd"]
 [ext_resource type="Resource" uid="uid://cwexict1pgr1c" path="res://resources/debug__inventory_items/sword.tres" id="11_553lm"]
-[ext_resource type="Script" path="res://scenes/managers/tool/tool_manager.gd" id="12_1e4ls"]
 [ext_resource type="Resource" uid="uid://bi4qong3ck70f" path="res://resources/debug__inventory_items/remover_tool.tres" id="12_skpuo"]
+[ext_resource type="Resource" uid="uid://cc0no5sam6b5w" path="res://resources/debug__inventory_items/spear.tres" id="13_jybmd"]
 [ext_resource type="Resource" uid="uid://cbd5jbkqxm2xl" path="res://resources/debug__inventory_items/3x1_table.tres" id="13_rg5hq"]
-[ext_resource type="Script" path="res://scenes/managers/tool/tool_handler.gd" id="13_yxg4t"]
+[ext_resource type="PackedScene" uid="uid://sp58wos84hs4" path="res://systems/placement_system/scenes/placement_system.tscn" id="19_tdy0a"]
 
 [node name="TestScene" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(133, 88)
+position = Vector2(60, 49)
 anchor_mode = 0
-zoom = Vector2(2.5, 2.5)
+zoom = Vector2(2, 2)
 
-[node name="Managers" type="Node" parent="."]
-
-[node name="InputManager" type="Node" parent="Managers"]
+[node name="InputManager" type="Node" parent="."]
 script = ExtResource("1_qkav0")
 
-[node name="TileManager" type="Node" parent="Managers" node_paths=PackedStringArray("layer")]
-script = ExtResource("2_fsswj")
-layer = NodePath("../../TileMap/ShoppeFloor")
-
-[node name="FurnitureManager" type="Node" parent="Managers" node_paths=PackedStringArray("inventory_manager", "input_manager", "tile_manager")]
-script = ExtResource("3_n04qi")
-inventory_manager = NodePath("../InventoryManager")
-input_manager = NodePath("../InputManager")
-tile_manager = NodePath("../TileManager")
-
-[node name="MerchandiseManager" type="Node" parent="Managers" node_paths=PackedStringArray("furniture_manager", "inventory_manager")]
-script = ExtResource("4_nimrl")
-furniture_manager = NodePath("../FurnitureManager")
-inventory_manager = NodePath("../InventoryManager")
-
-[node name="InventoryManager" type="Node" parent="Managers"]
+[node name="InventoryManager" type="Node" parent="."]
 script = ExtResource("6_cimfw")
-inv_items = Array[ExtResource("7_6m8l8")]([ExtResource("8_addx4"), ExtResource("7_og8fw"), ExtResource("13_rg5hq"), ExtResource("8_ma8rl"), ExtResource("10_8uhwd"), ExtResource("11_553lm"), ExtResource("12_skpuo")])
+inv_items = Array[ExtResource("7_6m8l8")]([ExtResource("8_addx4"), ExtResource("7_og8fw"), ExtResource("13_rg5hq"), ExtResource("10_0eu6s"), ExtResource("10_8uhwd"), ExtResource("11_553lm"), ExtResource("13_jybmd"), ExtResource("12_skpuo")])
 
-[node name="ToolManager" type="Node" parent="Managers" node_paths=PackedStringArray("remover_tool_handler", "furniture_manager")]
-script = ExtResource("12_1e4ls")
-remover_tool_handler = NodePath("RemoverTool")
-furniture_manager = NodePath("../FurnitureManager")
-
-[node name="RemoverTool" type="Node" parent="Managers/ToolManager"]
-script = ExtResource("13_yxg4t")
+[node name="PlacementSystem" parent="." node_paths=PackedStringArray("placeable_layer") instance=ExtResource("19_tdy0a")]
+placeable_layer = NodePath("../TileMap/ShoppeFloor")
 
 [node name="TileMap" type="Node2D" parent="."]
 
@@ -94,25 +69,14 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 6
 size_flags_vertical = 8
-inventory_manager = NodePath("../../Managers/InventoryManager")
+inventory_manager = NodePath("../../InventoryManager")
 
-[connection signal="action_bar_pressed" from="Managers/InputManager" to="UI/Inventory" method="_on_input_manager_action_bar_pressed"]
-[connection signal="action_pressed" from="Managers/InputManager" to="Managers/FurnitureManager" method="_on_input_manager_action_pressed"]
-[connection signal="action_pressed" from="Managers/InputManager" to="Managers/MerchandiseManager" method="_on_input_manager_action_pressed"]
-[connection signal="action_pressed" from="Managers/InputManager" to="Managers/ToolManager" method="_on_input_manager_action_pressed"]
-[connection signal="rotate_pressed" from="Managers/InputManager" to="Managers/FurnitureManager" method="_on_input_manager_rotate_pressed"]
-[connection signal="rotate_pressed" from="Managers/InputManager" to="Managers/MerchandiseManager" method="_on_input_manager_rotate_pressed"]
-[connection signal="layer_mouse_out" from="Managers/TileManager" to="Managers/FurnitureManager" method="_on_tile_manager_layer_mouse_out"]
-[connection signal="layer_mouse_out" from="Managers/TileManager" to="Managers/MerchandiseManager" method="_on_tile_manager_layer_mouse_out"]
-[connection signal="layer_mouse_out" from="Managers/TileManager" to="Managers/ToolManager" method="_on_tile_manager_layer_mouse_out"]
-[connection signal="new_tile_hovered" from="Managers/TileManager" to="Managers/FurnitureManager" method="_on_tile_manager_new_tile_hovered"]
-[connection signal="new_tile_hovered" from="Managers/TileManager" to="Managers/MerchandiseManager" method="_on_tile_manager_new_tile_hovered"]
-[connection signal="new_tile_hovered" from="Managers/TileManager" to="Managers/ToolManager" method="_on_tile_manager_new_tile_hovered"]
-[connection signal="current_item_updated" from="Managers/InventoryManager" to="Managers/FurnitureManager" method="_on_inventory_manager_current_item_updated"]
-[connection signal="current_item_updated" from="Managers/InventoryManager" to="Managers/MerchandiseManager" method="_on_inventory_manager_current_item_updated"]
-[connection signal="current_item_updated" from="Managers/InventoryManager" to="Managers/ToolManager" method="_on_inventory_manager_current_item_updated"]
-[connection signal="inventory_updated" from="Managers/InventoryManager" to="UI/Inventory" method="_on_inventory_manager_inventory_updated"]
-[connection signal="item_depleted" from="Managers/InventoryManager" to="Managers/FurnitureManager" method="_on_inventory_manager_item_depleted"]
-[connection signal="item_depleted" from="Managers/InventoryManager" to="Managers/MerchandiseManager" method="_on_inventory_manager_item_depleted"]
-[connection signal="item_depleted" from="Managers/InventoryManager" to="UI/Inventory" method="_on_inventory_manager_item_depleted"]
-[connection signal="item_selected" from="UI/Inventory" to="Managers/InventoryManager" method="_on_inventory_item_selected"]
+[connection signal="action_bar_pressed" from="InputManager" to="UI/Inventory" method="_on_input_manager_action_bar_pressed"]
+[connection signal="action_pressed" from="InputManager" to="PlacementSystem" method="_on_input_manager_action_pressed"]
+[connection signal="rotate_pressed" from="InputManager" to="PlacementSystem" method="_on_input_manager_rotate_pressed"]
+[connection signal="equipped_item_updated" from="InventoryManager" to="PlacementSystem" method="_on_inventory_manager_equipped_item_updated"]
+[connection signal="inventory_updated" from="InventoryManager" to="UI/Inventory" method="_on_inventory_manager_inventory_updated"]
+[connection signal="item_depleted" from="InventoryManager" to="PlacementSystem" method="_on_inventory_manager_item_depleted"]
+[connection signal="item_depleted" from="InventoryManager" to="UI/Inventory" method="_on_inventory_manager_item_depleted"]
+[connection signal="furniture_placed" from="PlacementSystem" to="InventoryManager" method="_on_placement_system_furniture_placed"]
+[connection signal="item_selected" from="UI/Inventory" to="InventoryManager" method="_on_inventory_item_selected"]

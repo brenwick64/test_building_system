@@ -25,7 +25,7 @@ func _on_tile_manager_layer_mouse_out() -> void:
 	if not tool_handler: return
 	tool_handler.handle_layer_mouse_out()
 	
-func _on_input_manager_action_pressed(event: InputEvent) -> void:
+func _on_input_manager_action_pressed(_event: InputEvent) -> void:
 	if not equipped_tool: return
 	var tool_handler: ToolHandler = _get_tool_handler(equipped_tool)
 	if not tool_handler: return

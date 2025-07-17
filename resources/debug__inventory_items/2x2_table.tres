@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RInventoryItem" load_steps=3 format=3 uid="uid://125hymt2neby"]
+
+[ext_resource type="Script" path="res://scripts/resource_definitions/RInventoryItem.gd" id="1_q825x"]
+[ext_resource type="Resource" uid="uid://b7oboix80563t" path="res://resources/items/furniture/2x2_table.tres" id="1_uqcbb"]
+
+[resource]
+script = ExtResource("1_q825x")
+item = ExtResource("1_uqcbb")
+count = 2
+stackable = true

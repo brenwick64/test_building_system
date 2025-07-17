@@ -1,7 +1,7 @@
 class_name InventoryManager
 extends Node
 
-signal current_item_updated(current_item: RItemData)
+signal equipped_item_updated(current_item: RItemData)
 signal inventory_updated(inventory_items: Array[RInventoryItem])
 signal item_depleted(item: RItemData)
 
@@ -48,4 +48,7 @@ func _increment_existing_item(new_item: RItemData) -> void:
 
 func _on_inventory_item_selected(item: RItemData) -> void:
 	current_item = item
-	current_item_updated.emit(current_item)
+	equipped_item_updated.emit(current_item)
+
+func _on_placement_system_furniture_placed(furniture_data: RFurniture) -> void:
+	remove_item(furniture_data)

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RInventoryItem" load_steps=3 format=3 uid="uid://cc0no5sam6b5w"]
+
+[ext_resource type="Script" path="res://scripts/resource_definitions/RInventoryItem.gd" id="1_dqkpj"]
+[ext_resource type="Resource" uid="uid://ckj6b72w7s742" path="res://resources/items/merchandise/spear.tres" id="1_gd1q6"]
+
+[resource]
+script = ExtResource("1_dqkpj")
+item = ExtResource("1_gd1q6")
+count = 99
+stackable = true

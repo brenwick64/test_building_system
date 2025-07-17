@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuup0kq3dvqmb"]
+
+[ext_resource type="Script" path="res://systems/placement_system/scenes/furniture_manager/furniture_manager.gd" id="1_cj711"]
+
+[node name="FurnitureManager" type="Node"]
+script = ExtResource("1_cj711")

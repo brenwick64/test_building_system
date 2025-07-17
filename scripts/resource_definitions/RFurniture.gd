@@ -1,6 +1,10 @@
 class_name RFurniture
 extends RItemData
 
+#FIXME: This variable is required if a furniture has the same width and height
+# and you wish to rotate it
+@export var is_symmetrical: bool
+
 @export var tile_matrix: Array[Vector2i]
 @export var scene_horizontal: PackedScene
 @export var scene_vertical: PackedScene
@@ -47,7 +51,11 @@ func _get_rotated_tile_matrix(degrees: int) -> Array[Vector2i]:
 	for i: int in range(iterations):
 		var cur_matrix: Array[Vector2i] = []
 		for vector: Vector2i in new_matrix:
-			var clockwise_vector: Vector2i = Vector2i(vector.y, (vector.x * -1))
-			cur_matrix.append(clockwise_vector)
+			if is_symmetrical:
+				var clockwise_vector: Vector2i = Vector2i((vector.y * -1), (vector.x * -1))
+				cur_matrix.append(clockwise_vector)
+			else:
+				var clockwise_vector: Vector2i = Vector2i(vector.y, (vector.x * -1))
+				cur_matrix.append(clockwise_vector)
 		new_matrix = cur_matrix
 	return new_matrix

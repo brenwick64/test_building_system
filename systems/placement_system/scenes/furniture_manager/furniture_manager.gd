@@ -1,10 +1,10 @@
 class_name FurnitureManager
 extends Node
 
+signal furniture_placed(furniture_data: RFurniture)
+
 @onready var outline_shader: Shader = preload("res://shaders/outline_shader.gdshader")
 
-@export var inventory_manager: InventoryManager
-@export var input_manager: InputManager
 @export var tile_manager: TileManager
 
 var equipped_furniture: RFurniture
@@ -13,6 +13,10 @@ var hovered_tile_coords: Vector2i
 var furniture_preview: Furniture
 var placed_furniture: Array[Furniture]
 
+func _ready() -> void:
+	tile_manager.new_tile_hovered.connect(_on_tile_manager_new_tile_hovered)
+	tile_manager.layer_mouse_out.connect(_on_tile_manager_layer_mouse_out)
+	
 ## -- methods --
 func get_furniture_at_coords(tile_coords: Vector2i) -> Furniture:
 	for furniture: Furniture in placed_furniture:
@@ -98,22 +102,25 @@ func _on_tile_manager_new_tile_hovered(tile_coords: Vector2i) -> void:
 func _on_tile_manager_layer_mouse_out() -> void:
 	_clear_preview()
 
-func _on_input_manager_action_pressed(event: InputEvent) -> void:
+## -- handlers --
+func handle_action_pressed(_event: InputEvent) -> void:
+	print("action_pressed")
 	if not equipped_furniture: return
 	if not furniture_preview: return
 	if not furniture_preview.is_valid_placement: return
 	_clear_preview()
 	_spawn_furnitrue()
-	inventory_manager.remove_item(equipped_furniture)
+	furniture_placed.emit(equipped_furniture)
 
-func _on_input_manager_rotate_pressed() -> void:
+func handle_rotate_pressed() -> void:
+	print("rotate pressed")
 	if not equipped_furniture: return
 	equipped_furniture.rotate_clockwise()
 	_clear_preview()
 	_spawn_preview()
 	_validate_preview()
 
-func _on_inventory_manager_current_item_updated(current_item: RItemData) -> void:
+func handle_equipped_item_updated(current_item: RItemData) -> void:
 	if current_item is RFurniture:
 		equipped_furniture = current_item
 		_clear_preview()
@@ -123,7 +130,7 @@ func _on_inventory_manager_current_item_updated(current_item: RItemData) -> void
 		equipped_furniture = null
 		_clear_preview()
 
-func _on_inventory_manager_item_depleted(item: RItemData) -> void:
+func handle_item_depleted(item: RItemData) -> void:
 	if item is RFurniture:
 		equipped_furniture = null
 		_clear_preview()

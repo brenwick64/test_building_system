@@ -1,0 +1,3 @@
+- decouple building system nodes from other managers and add top-level signals
+- have items that run out stay in inventory as empty
+- try and dynamically create pickup, and icon nodes

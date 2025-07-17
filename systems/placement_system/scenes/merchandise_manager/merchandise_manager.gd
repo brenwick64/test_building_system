@@ -3,7 +3,11 @@ extends Node
 
 @onready var outline_shader: Shader = preload("res://shaders/outline_shader.gdshader")
 
+@export var tile_manager: TileManager
 @export var furniture_manager: FurnitureManager
+
+#TODO: decouple from this level
+@export var input_manager: InputManager
 @export var inventory_manager: InventoryManager
 
 var equipped_merchandise: RMerchandise
@@ -11,6 +15,14 @@ var equipped_merchandise: RMerchandise
 var hovered_tile_coords: Vector2i
 var merchandise_preview: Merchandise
 var placed_merchandise: Array[Merchandise]
+
+func _ready() -> void:
+	tile_manager.new_tile_hovered.connect(_on_tile_manager_new_tile_hovered)
+	tile_manager.layer_mouse_out.connect(_on_tile_manager_layer_mouse_out)
+	input_manager.action_pressed.connect(_on_input_manager_action_pressed)
+	input_manager.rotate_pressed.connect(_on_input_manager_rotate_pressed)
+	inventory_manager.current_item_updated.connect(_on_inventory_manager_current_item_updated)
+	inventory_manager.item_depleted.connect(_on_inventory_manager_item_depleted)
 
 ## -- helper functions --
 func _get_free_item_slot(tile_coords: Vector2i) -> Node2D:
@@ -62,7 +74,7 @@ func _on_tile_manager_new_tile_hovered(tile_coords: Vector2i) -> void:
 func _on_tile_manager_layer_mouse_out() -> void:
 	_clear_preview()
 
-func _on_input_manager_action_pressed(event: InputEvent) -> void:
+func _on_input_manager_action_pressed(_event: InputEvent) -> void:
 	if not equipped_merchandise: return
 	if not merchandise_preview: return
 	if not merchandise_preview.is_valid_placement: return
