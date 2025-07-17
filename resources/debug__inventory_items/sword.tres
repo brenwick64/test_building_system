@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RInventoryItem" load_steps=3 format=3 uid="uid://cwexict1pgr1c"]
 
-[ext_resource type="Resource" uid="uid://bs35pcjo4v6fo" path="res://resources/items/merchandise/sword.tres" id="1_emk50"]
-[ext_resource type="Script" path="res://scripts/resource_definitions/RInventoryItem.gd" id="1_rpajr"]
+[ext_resource type="Resource" uid="uid://bs35pcjo4v6fo" path="res://systems/placement_system/resources/merchandise/sword.tres" id="1_emk50"]
+[ext_resource type="Script" path="res://systems/placement_system/scripts/resource_definitions/RInventoryItem.gd" id="1_rpajr"]
 
 [resource]
 script = ExtResource("1_rpajr")

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RInventoryItem" load_steps=3 format=3 uid="uid://bi4qong3ck70f"]
 
-[ext_resource type="Resource" uid="uid://cddlqdia5f2qe" path="res://resources/items/tools/remover_tool.tres" id="1_8wqi3"]
-[ext_resource type="Script" path="res://scripts/resource_definitions/RInventoryItem.gd" id="1_pp1kj"]
+[ext_resource type="Resource" uid="uid://cddlqdia5f2qe" path="res://systems/placement_system/resources/tools/remover_tool.tres" id="1_8wqi3"]
+[ext_resource type="Script" path="res://systems/placement_system/scripts/resource_definitions/RInventoryItem.gd" id="1_pp1kj"]
 
 [resource]
 script = ExtResource("1_pp1kj")

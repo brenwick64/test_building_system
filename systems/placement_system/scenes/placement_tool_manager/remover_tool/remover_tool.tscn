@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ihoylr88qtrb"]
-
-[ext_resource type="Script" path="res://systems/placement_system/scenes/placement_tool_manager/remover_tool/remover_tool.gd" id="1_jb2bc"]
-
-[node name="RemoverTool" type="Node"]
-script = ExtResource("1_jb2bc")

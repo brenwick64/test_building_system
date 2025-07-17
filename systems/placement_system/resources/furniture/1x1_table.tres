@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="RFurniture" load_steps=6 format=3 uid="uid://bu5ndwug5j5e6"]
+
+[ext_resource type="PackedScene" uid="uid://j2ycc2l8oh13" path="res://systems/placement_system/scenes/placeable_furniture/1x1_table/1x1_table_horizontal.tscn" id="1_0s4mv"]
+[ext_resource type="PackedScene" uid="uid://nd7ad22epgir" path="res://systems/placement_system/scenes/placeable_furniture/1x1_table/1x1_table_icon.tscn" id="1_etdn7"]
+[ext_resource type="Script" path="res://systems/placement_system/scripts/resource_definitions/RFurniture.gd" id="1_vcxsj"]
+[ext_resource type="PackedScene" uid="uid://cn54jswaj6xfj" path="res://systems/placement_system/scenes/placeable_furniture/1x1_table/1x1_table_vertical.tscn" id="2_p3jfv"]
+[ext_resource type="PackedScene" uid="uid://berl3ekmrjw2b" path="res://systems/placement_system/scenes/placeable_furniture/1x1_table/1x1_table_pickup.tscn" id="2_pk13f"]
+
+[resource]
+script = ExtResource("1_vcxsj")
+tile_matrix = Array[Vector2i]([Vector2i(0, 0)])
+scene_horizontal = ExtResource("1_0s4mv")
+scene_vertical = ExtResource("2_p3jfv")
+item_id = "005"
+item_name = "small_table"
+item_icon = ExtResource("1_etdn7")
+item_pickup = ExtResource("2_pk13f")

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RInventoryItem" load_steps=3 format=3 uid="uid://bq1nk6fi0hgn8"]
+
+[ext_resource type="Resource" uid="uid://h0g2ysbe1e85" path="res://systems/placement_system/resources/merchandise/shield.tres" id="1_fb4vh"]
+[ext_resource type="Script" path="res://systems/placement_system/scripts/resource_definitions/RInventoryItem.gd" id="1_glhi6"]
+
+[resource]
+script = ExtResource("1_glhi6")
+item = ExtResource("1_fb4vh")
+count = 4
+stackable = true

@@ -1,6 +1,6 @@
 extends PanelContainer
 
-signal item_selected(item: RItem)
+signal item_selected(item: RItemData)
 
 @export var item_btn: Button
 @export var index_label: Label

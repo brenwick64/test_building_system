@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RTool" load_steps=4 format=3 uid="uid://cddlqdia5f2qe"]
+
+[ext_resource type="Script" path="res://systems/placement_system/scripts/resource_definitions/RTool.gd" id="1_cqomj"]
+[ext_resource type="PackedScene" uid="uid://68yp7ixsfc4k" path="res://systems/placement_system/scenes/tools/remover_tool/remover_tool_icon.tscn" id="1_m873b"]
+[ext_resource type="PackedScene" uid="uid://dxgbqqdjynbyp" path="res://systems/placement_system/scenes/tools/remover_tool/remover_tool.tscn" id="2_ebple"]
+
+[resource]
+script = ExtResource("1_cqomj")
+item_id = ""
+item_name = "remover_tool"
+item_scene = ExtResource("2_ebple")
+item_icon = ExtResource("1_m873b")

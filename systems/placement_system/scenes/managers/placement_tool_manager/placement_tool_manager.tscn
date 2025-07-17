@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://mlayytwtssik"]
+
+[ext_resource type="Script" path="res://systems/placement_system/scenes/managers/placement_tool_manager/placement_tool_manager.gd" id="1_1j741"]
+
+[node name="PlacementToolManager" type="Node"]
+script = ExtResource("1_1j741")

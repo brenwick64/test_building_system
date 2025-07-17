@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4t86v4a7e6oo"]
-
-[ext_resource type="Script" path="res://systems/placement_system/scenes/merchandise_manager/merchandise_manager.gd" id="1_76t70"]
-
-[node name="MerchandiseManager" type="Node"]
-script = ExtResource("1_76t70")

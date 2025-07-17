@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bneh3lhqwt124"]
+
+[ext_resource type="Script" path="res://systems/placement_system/scripts/classes/Merchandise.gd" id="1_p2rrv"]
+[ext_resource type="Texture2D" uid="uid://cjleepjbs4tq5" path="res://assets/objects/outline original.png" id="2_jr1jf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkkl0"]
+atlas = ExtResource("2_jr1jf")
+region = Rect2(106, 83, 19, 19)
+
+[node name="Shield" type="Node2D" node_paths=PackedStringArray("sprite_2d")]
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_p2rrv")
+sprite_2d = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_mkkl0")
