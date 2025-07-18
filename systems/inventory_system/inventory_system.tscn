@@ -1,16 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://bkrvwr8ppww3l"]
+[gd_scene load_steps=2 format=3 uid="uid://bkrvwr8ppww3l"]
 
 [ext_resource type="Script" path="res://systems/inventory_system/inventory_system.gd" id="1_5n45g"]
-[ext_resource type="Script" path="res://systems/placement_system/scripts/resource_definitions/RInventoryItem.gd" id="2_ii8nd"]
-[ext_resource type="Resource" uid="uid://bbr0atqje1qi6" path="res://resources/debug__inventory_items/small_table.tres" id="3_81g5d"]
-[ext_resource type="Resource" uid="uid://baudqorhwqlkd" path="res://resources/debug__inventory_items/large_table.tres" id="4_ss66b"]
-[ext_resource type="Resource" uid="uid://cbd5jbkqxm2xl" path="res://resources/debug__inventory_items/3x1_table.tres" id="5_hypty"]
-[ext_resource type="Resource" uid="uid://125hymt2neby" path="res://resources/debug__inventory_items/2x2_table.tres" id="6_80v83"]
-[ext_resource type="Resource" uid="uid://dj28jglj00hwv" path="res://resources/debug__inventory_items/dagger.tres" id="7_omx0h"]
-[ext_resource type="Resource" uid="uid://cwexict1pgr1c" path="res://resources/debug__inventory_items/sword.tres" id="8_ooxg5"]
-[ext_resource type="Resource" uid="uid://cc0no5sam6b5w" path="res://resources/debug__inventory_items/spear.tres" id="9_dk1ua"]
-[ext_resource type="Resource" uid="uid://bi4qong3ck70f" path="res://resources/debug__inventory_items/remover_tool.tres" id="10_81jmr"]
 
 [node name="InventorySystem" type="Node"]
 script = ExtResource("1_5n45g")
-inv_items = Array[ExtResource("2_ii8nd")]([ExtResource("3_81g5d"), ExtResource("4_ss66b"), ExtResource("5_hypty"), ExtResource("6_80v83"), ExtResource("7_omx0h"), ExtResource("8_ooxg5"), ExtResource("9_dk1ua"), ExtResource("10_81jmr")])

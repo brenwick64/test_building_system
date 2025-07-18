@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RItemData" load_steps=4 format=3 uid="uid://d3iy5kni28kpk"]
+
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="1_704xg"]
+[ext_resource type="Texture2D" uid="uid://c40jetqgpgtxl" path="res://systems/placement_system/scenes/furniture/2x2_table/2x2_table_texture.tres" id="1_x8oh8"]
+[ext_resource type="Resource" uid="uid://b7oboix80563t" path="res://systems/placement_system/resources/furniture/2x2_table.tres" id="2_jqs2g"]
+
+[resource]
+script = ExtResource("1_704xg")
+item_id = "f-003"
+item_name = "2x2_table"
+item_texture = ExtResource("1_x8oh8")
+placeable_data = ExtResource("2_jqs2g")

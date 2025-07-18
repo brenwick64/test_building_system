@@ -1,9 +1,6 @@
-[gd_resource type="Resource" script_class="RMerchandise" load_steps=5 format=3 uid="uid://d1fwsk5rnq77"]
+[gd_resource type="Resource" script_class="RPlaceableMerchandise" load_steps=2 format=3 uid="uid://dql58g8k8ru1d"]
 
-[ext_resource type="PackedScene" uid="uid://b10f0noeaogny" path="res://systems/placement_system/scenes/placeable_merchandise/health_potion/health_potion_icon.tscn" id="1_4ck5v"]
-[ext_resource type="Script" path="res://systems/placement_system/scripts/resource_definitions/RMerchandise.gd" id="1_lhows"]
-[ext_resource type="PackedScene" uid="uid://clmxqeogpfbbb" path="res://systems/placement_system/scenes/placeable_merchandise/health_potion/health_potion_pickup.tscn" id="2_88jbx"]
-[ext_resource type="PackedScene" uid="uid://bcvrwwec2ehdj" path="res://systems/placement_system/scenes/placeable_merchandise/health_potion/health_potion.tscn" id="2_uhpg6"]
+[ext_resource type="Script" path="res://systems/placement_system/scripts/resource_definitions/RPlaceableMerchandise.gd" id="1_lhows"]
 
 [resource]
 script = ExtResource("1_lhows")
@@ -11,8 +8,3 @@ is_rotatable = false
 base_value = 10.0
 item_slot_matrix = Array[Vector2i]([Vector2i(0, 0)])
 item_dimensions = Vector2i(1, 1)
-item_id = "001"
-item_name = "health_potion"
-item_scene = ExtResource("2_uhpg6")
-item_icon = ExtResource("1_4ck5v")
-item_pickup = ExtResource("2_88jbx")

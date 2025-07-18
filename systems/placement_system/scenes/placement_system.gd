@@ -1,7 +1,7 @@
 extends Node
 
-signal furniture_placed(furniture_data: RFurniture)
-signal merchandise_placed(merchandise_data: RMerchandise)
+signal furniture_placed(furniture_data: RItemData)
+signal merchandise_placed(merchandise_data: RItemData)
 
 # required variables
 @export var placeable_layer: TileMapLayer
@@ -21,10 +21,10 @@ func _call_child_handlers(handler_name: String, args: Array = []):
 			child.callv(handler_name, args)
 			
 ## -- internal signal handlers --
-func _on_furniture_placed(furniture_data: RFurniture) -> void:
+func _on_furniture_placed(furniture_data: RItemData) -> void:
 	furniture_placed.emit(furniture_data)
 
-func _on_merchandise_placed(merchandise_data: RMerchandise) -> void:
+func _on_merchandise_placed(merchandise_data: RItemData) -> void:
 	merchandise_placed.emit(merchandise_data)
 
 ## -- external signal handlers --

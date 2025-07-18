@@ -1,13 +1,13 @@
 class_name FurnitureManager
 extends Node
 
-signal furniture_placed(furniture_data: RFurniture)
+signal furniture_placed(furniture_data: RItemData)
 
 @onready var outline_shader: Shader = preload("res://shaders/outline_shader.gdshader")
 
 @export var tile_manager: TileManager
 
-var equipped_furniture: RFurniture
+var equipped_furniture_data: RItemData
 var hovered_tile_coords: Vector2i
 var furniture_preview: Furniture
 var placed_furniture: Array[Furniture]
@@ -37,7 +37,7 @@ func remove_merchandise(merchandise: Merchandise) -> void:
 
 ## -- helper functions --
 func _is_used_tile() -> bool:
-	for vector in equipped_furniture.get_tile_matrix():
+	for vector in equipped_furniture_data.placeable_data.get_tile_matrix():
 		var preview_tile_coords: Vector2i = hovered_tile_coords + vector
 		for furniture: Furniture in placed_furniture:
 			if preview_tile_coords in furniture.occupied_tiles: 
@@ -45,7 +45,7 @@ func _is_used_tile() -> bool:
 	return false
 
 func _is_incorrect_layer() -> bool:
-	for vector in equipped_furniture.get_tile_matrix():
+	for vector in equipped_furniture_data.placeable_data.get_tile_matrix():
 		var preview_tile_coords: Vector2i = hovered_tile_coords + vector
 		var tile_data: TileData = tile_manager.layer.get_cell_tile_data(preview_tile_coords)
 		if not tile_data: return true
@@ -58,7 +58,8 @@ func _clear_preview() -> void:
 
 func _spawn_preview() -> void:
 	if not hovered_tile_coords: return
-	var preview_ins: Furniture = equipped_furniture.get_furniture()
+	var placeable: RPlaceableFurniture = equipped_furniture_data.placeable_data
+	var preview_ins: Furniture = placeable.get_furniture()
 	var pivot: Marker2D = preview_ins.get_node("Pivot")
 	preview_ins.set_preview()
 	preview_ins.global_position = tile_manager.get_gp_from_tile_coords(hovered_tile_coords) as Vector2 - pivot.global_position
@@ -75,7 +76,7 @@ func _spawn_furnitrue() -> void:
 	if not shoppe_furniture:
 		push_warning("warning: cannot add furniture since no ShoppeFurniture scene was detected")
 		return
-	var furniture_ins: Node2D = equipped_furniture.get_furniture()
+	var furniture_ins: Node2D = equipped_furniture_data.placeable_data.get_furniture()
 	# add global position
 	var pivot: Marker2D = furniture_ins.get_node("Pivot")
 	var tile_global_pos: Vector2 = tile_manager.get_gp_from_tile_coords(hovered_tile_coords)
@@ -86,14 +87,14 @@ func _spawn_furnitrue() -> void:
 	material.set_shader(outline_shader)
 	sprite.material = material
 	# configure variables and add to scene
-	furniture_ins.set_occupied_tiles(equipped_furniture.get_tile_matrix(), hovered_tile_coords)
+	furniture_ins.set_occupied_tiles(equipped_furniture_data.placeable_data	.get_tile_matrix(), hovered_tile_coords)
 	shoppe_furniture.add_child(furniture_ins)
 	placed_furniture.append(furniture_ins)
 
 ## -- signals --
 func _on_tile_manager_new_tile_hovered(tile_coords: Vector2i) -> void:
 	hovered_tile_coords = tile_coords
-	if not equipped_furniture: return
+	if not equipped_furniture_data: return
 	_clear_preview()
 	_spawn_preview()
 	_validate_preview()
@@ -104,32 +105,33 @@ func _on_tile_manager_layer_mouse_out() -> void:
 
 ## -- handlers --
 func handle_action_pressed(_event: InputEvent) -> void:
-	if not equipped_furniture: return
+	if not equipped_furniture_data: return
 	if not furniture_preview: return
 	if not furniture_preview.is_valid_placement: return
 	_clear_preview()
 	_spawn_furnitrue()
-	furniture_placed.emit(equipped_furniture)
+	furniture_placed.emit(equipped_furniture_data)
 
 func handle_rotate_pressed() -> void:
-	print("rotate pressed")
-	if not equipped_furniture: return
-	equipped_furniture.rotate_clockwise()
+	if not equipped_furniture_data: return
+	var placeable: RPlaceable = equipped_furniture_data.placeable_data
+	if not placeable: return
+	placeable.rotate_clockwise()
 	_clear_preview()
 	_spawn_preview()
 	_validate_preview()
 
 func handle_equipped_item_updated(current_item: RItemData) -> void:
-	if current_item is RFurniture:
-		equipped_furniture = current_item
+	if current_item.placeable_data and current_item.placeable_data is RPlaceableFurniture:
+		equipped_furniture_data = current_item
 		_clear_preview()
 		_spawn_preview()
 		_validate_preview()
 	else:
-		equipped_furniture = null
+		equipped_furniture_data = null
 		_clear_preview()
 
 func handle_item_depleted(item: RItemData) -> void:
-	if item is RFurniture:
-		equipped_furniture = null
+	if item.placeable_data and item.placeable_data is RPlaceableFurniture:
+		equipped_furniture_data = null
 		_clear_preview()

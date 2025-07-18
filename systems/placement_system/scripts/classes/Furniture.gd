@@ -17,12 +17,12 @@ func set_occupied_tiles(tile_matrix:Array[Vector2i], primary_tile_coords: Vector
 	for coords: Vector2i in tile_matrix:
 		occupied_tiles.append(coords + primary_tile_coords)
 
-func get_free_item_slot(item: RMerchandise, tile_coords: Vector2i) -> Node2D:
+func get_free_item_slot(item: RItemData, tile_coords: Vector2i) -> Node2D:
 	var hovered_slots: Array[Node2D] = _get_hovered_slots(tile_coords) # gets all slots in hovered tile
 	if not hovered_slots: return
 	var valid_slots: Array[Node2D] = _get_valid_slots(hovered_slots) # gets all slots that are 100% free
 	if not valid_slots: return
-	var matched_slot = _get_matched_slot(item, valid_slots) # gets slot that matches item dimension
+	var matched_slot = _get_matched_slot(item.placeable_data, valid_slots) # gets slot that matches item dimension
 	if not matched_slot: return
 	if matched_slot.placed_item: return
 	return matched_slot
@@ -60,7 +60,7 @@ func _get_valid_slots(slots: Array[Node2D]) -> Array[Node2D]:
 			valid_slots.append(slot)
 	return valid_slots
 
-func _get_matched_slot(item: RMerchandise, hovered_slots: Array[Node2D]) -> Node2D:
+func _get_matched_slot(item: RPlaceableMerchandise, hovered_slots: Array[Node2D]) -> Node2D:
 	if not is_horizontal and not item.is_rotated: item.rotate_clockwise()
 	if is_horizontal and item.is_rotated: item.rotate_counter_clockwise()
 	for slot: Node2D in hovered_slots:
@@ -68,7 +68,7 @@ func _get_matched_slot(item: RMerchandise, hovered_slots: Array[Node2D]) -> Node
 			return slot
 	return null
 
-func _rotate_item(item: RMerchandise) -> void:
+func _rotate_item(item: RPlaceableMerchandise) -> void:
 	if item.is_rotated:
 		item.rotate_counter_clockwise()
 	else:

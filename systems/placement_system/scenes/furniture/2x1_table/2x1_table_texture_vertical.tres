@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://d3flab2gp3qyh"]
+
+[ext_resource type="Texture2D" uid="uid://ba1wxribwt1d6" path="res://assets/objects/large-table-vertical.png" id="1_lydwq"]
+
+[resource]
+atlas = ExtResource("1_lydwq")
+region = Rect2(0, 0, 16, 32)

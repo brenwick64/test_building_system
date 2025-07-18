@@ -50,8 +50,8 @@ func _on_inventory_item_selected(item: RItemData) -> void:
 	current_item = item
 	equipped_item_updated.emit(current_item)
 
-func _on_placement_system_furniture_placed(furniture_data: RFurniture) -> void:
+func _on_placement_system_furniture_placed(furniture_data: RItemData) -> void:
 	remove_item(furniture_data)
 
-func _on_placement_system_merchandise_placed(merchandise_data: RMerchandise) -> void:
+func _on_placement_system_merchandise_placed(merchandise_data: RItemData) -> void:
 	remove_item(merchandise_data)

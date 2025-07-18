@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://j2ycc2l8oh13"]
+
+[ext_resource type="Script" path="res://systems/placement_system/scripts/classes/Furniture.gd" id="1_b4t30"]
+[ext_resource type="Texture2D" uid="uid://cccnpfo5we477" path="res://systems/placement_system/scenes/furniture/1x1_table/1x1_table_texture.tres" id="2_x4co1"]
+[ext_resource type="Script" path="res://systems/placement_system/scripts/classes/FurnitureItemSlot.gd" id="3_seyak"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a2665"]
+size = Vector2(12, 12)
+
+[node name="1x1TableHorizontal" type="StaticBody2D" node_paths=PackedStringArray("item_slots", "sprite_2d")]
+script = ExtResource("1_b4t30")
+item_slot_matrix = Array[Vector2i]([Vector2i(0, 0)])
+item_slots = NodePath("ItemSlots")
+sprite_2d = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_x4co1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_a2665")
+
+[node name="Pivot" type="Marker2D" parent="."]
+
+[node name="ItemSlots" type="Node2D" parent="."]
+
+[node name="1x1Slot1" type="Node2D" parent="ItemSlots"]
+position = Vector2(0, -1)
+script = ExtResource("3_seyak")
+item_matrix = Array[Vector2i]([Vector2i(0, 0)])
+slot_dimensions = Vector2i(1, 1)

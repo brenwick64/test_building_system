@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RItemData" load_steps=5 format=3 uid="uid://dkpdd832rs62y"]
+
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="1_61jd4"]
+[ext_resource type="PackedScene" uid="uid://dli1rptrnetkd" path="res://systems/item_system/scenes/health_potion/health_potion.tscn" id="1_q4hb0"]
+[ext_resource type="Resource" uid="uid://dql58g8k8ru1d" path="res://systems/placement_system/resources/merchandise/health_potion.tres" id="2_abt7r"]
+[ext_resource type="Texture2D" uid="uid://cbituoysuw48g" path="res://systems/item_system/scenes/health_potion/health_potion_texture.tres" id="2_ui61o"]
+
+[resource]
+script = ExtResource("1_61jd4")
+item_id = "i-001"
+item_name = "health_potion"
+item_texture = ExtResource("2_ui61o")
+item_base_scene = ExtResource("1_q4hb0")
+placeable_data = ExtResource("2_abt7r")
