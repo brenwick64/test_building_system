@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="RItemData" load_steps=5 format=3 uid="uid://nbbs8pdg1x8b"]
+
+[ext_resource type="PackedScene" uid="uid://ywklenuy37wl" path="res://systems/item_system/scenes/items/dagger/dagger.tscn" id="1_ycy7f"]
+[ext_resource type="Texture2D" uid="uid://y1848nk3s1lf" path="res://systems/item_system/scenes/items/dagger/dagger_texture.tres" id="2_mlcwf"]
+[ext_resource type="Resource" uid="uid://c7c4onpmh21i4" path="res://systems/placement_system/placeable_data/merchandise/dagger.tres" id="3_2x7ps"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="4_m5g2h"]
+
+[resource]
+script = ExtResource("4_m5g2h")
+item_id = "i-002"
+item_name = "dagger"
+icon_scale_multiplier = 1.75
+placeable_scale_multiplier = 0.55
+item_texture = ExtResource("2_mlcwf")
+item_base_scene = ExtResource("1_ycy7f")
+placeable_data = ExtResource("3_2x7ps")

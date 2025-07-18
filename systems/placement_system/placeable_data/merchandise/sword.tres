@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RPlaceableMerchandise" load_steps=2 format=3 uid="uid://dmtor03abw7cm"]
+
+[ext_resource type="Script" path="res://systems/placement_system/scripts/resource_definitions/RPlaceableMerchandise.gd" id="1_8rew2"]
+
+[resource]
+script = ExtResource("1_8rew2")
+is_rotatable = true
+base_value = 25.0
+item_slot_matrix = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0)])
+item_dimensions = Vector2i(2, 1)

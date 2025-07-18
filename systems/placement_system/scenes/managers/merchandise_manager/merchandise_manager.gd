@@ -52,6 +52,7 @@ func _spawn_merchandise(item_slot: Node2D) -> void:
 	sprite.material = material
 	# configure variables and add to scene
 	item_slot.placed_item = merchandise_ins
+	item_slot.placed_item_data = equipped_merchandise
 	item_slot.add_child(merchandise_ins)
 	placed_merchandise.append(merchandise_ins)
 
@@ -81,9 +82,9 @@ func handle_action_pressed(_event: InputEvent) -> void:
 
 func handle_rotate_pressed() -> void:
 	if not merchandise_preview: return
-	if not equipped_merchandise.is_rotatable: return
+	if not equipped_merchandise.placeable_data.is_rotatable: return
 	var item_slot: Node2D = merchandise_preview.get_parent()
-	equipped_merchandise.flip()
+	equipped_merchandise.placeable_data.flip()
 	_clear_preview()
 	_spawn_preview(item_slot)
 	_validate_preview()

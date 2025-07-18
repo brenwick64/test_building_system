@@ -29,7 +29,7 @@ func remove_furniture(furniture: Furniture) -> void:
 		item_slot.remove()
 	# remove furniture
 	placed_furniture = placed_furniture.filter(func(f): return f != furniture)
-	furniture.remove()
+	furniture.remove(furniture.furniture_data)
 
 func remove_merchandise(merchandise: Merchandise) -> void:
 	var item_slot: FurnitureItemSlot = merchandise.get_parent()
@@ -80,6 +80,7 @@ func _spawn_furnitrue() -> void:
 	# add global position
 	var pivot: Marker2D = furniture_ins.get_node("Pivot")
 	var tile_global_pos: Vector2 = tile_manager.get_gp_from_tile_coords(hovered_tile_coords)
+	furniture_ins.furniture_data = equipped_furniture_data
 	furniture_ins.global_position = shoppe_furniture.to_local(tile_global_pos) as Vector2 - pivot.global_position
 	# add shader
 	var sprite: Sprite2D = furniture_ins.get_node("Sprite2D")

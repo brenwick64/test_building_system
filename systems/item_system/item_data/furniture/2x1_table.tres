@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="RItemData" load_steps=5 format=3 uid="uid://ctd0aljxu3ooc"]
+
+[ext_resource type="PackedScene" uid="uid://c470pv7h18snk" path="res://systems/placement_system/scenes/furniture/2x1_table/2x1_table_horizontal.tscn" id="1_4kcdc"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="1_goku3"]
+[ext_resource type="Texture2D" uid="uid://d3flab2gp3qyh" path="res://systems/placement_system/scenes/furniture/2x1_table/2x1_table_texture_vertical.tres" id="2_tkekh"]
+[ext_resource type="Resource" uid="uid://3mkg48yul6yh" path="res://systems/placement_system/placeable_data/furniture/2x1_table.tres" id="3_5muhp"]
+
+[resource]
+script = ExtResource("1_goku3")
+item_id = "f-002"
+item_name = "2x1_table"
+icon_scale_multiplier = 1.5
+placeable_scale_multiplier = 1.0
+pickup_scale_multiplier = 0.65
+item_texture = ExtResource("2_tkekh")
+item_base_scene = ExtResource("1_4kcdc")
+placeable_data = ExtResource("3_5muhp")

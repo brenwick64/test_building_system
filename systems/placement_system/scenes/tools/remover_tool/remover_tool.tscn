@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://ckgq4vk384pq2"]
+[gd_scene load_steps=2 format=3 uid="uid://ckgq4vk384pq2"]
+
+[ext_resource type="Texture2D" uid="uid://ckqfdgq45l535" path="res://systems/placement_system/scenes/tools/remover_tool/remover_tool_texture.tres" id="1_gctvg"]
 
 [node name="RemoverTool" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gctvg")

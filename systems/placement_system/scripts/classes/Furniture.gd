@@ -4,7 +4,8 @@ extends Item
 @export var is_horizontal: bool
 @export var item_slots: Node2D
 @export var item_slot_matrix: Array[Vector2i]
-	
+
+var furniture_data: RItemData
 var is_valid_placement: bool = true
 var occupied_tiles: Array[Vector2i]
 

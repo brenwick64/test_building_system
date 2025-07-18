@@ -1,9 +1,11 @@
 class_name Item
 extends Node2D
 
-var item_id: String
+@onready var pickup_wrapper: PackedScene = preload("res://systems/item_system/scenes/pickup/pickup.tscn")
 
 @export var sprite_2d: Sprite2D
+
+var item_id: String
 
 ## -- methods --
 func set_preview() -> void:
@@ -19,18 +21,16 @@ func unfocus() -> void:
 	shader_material.set_shader_parameter("width", 0)
 	shader_material.set_shader_parameter("pattern", 1)
 
-func remove() -> void:
-	_spawn_pickup()
+func remove(item_data: RItemData) -> void:
+	_spawn_pickup(item_data)
 	queue_free()
 
 # -- helper functions --
-func _spawn_pickup() -> void:
-	pass
-	#var item_data: RItemData = ItemDb.get_item(item_id)
-	#if not item_data:
-		#push_error("error: cant spawn item. no item found in DB for id: " + name)
-		#return
-	#var start_pos: Vector2 = global_position
-	#var end_pos: Vector2 = global_position + Vector2(25, 25)
-	#var pickup_ins: Node2D = item_data.new_pickup(start_pos, end_pos)
-	#get_tree().root.add_child(pickup_ins)
+func _spawn_pickup(item_data: RItemData) -> void:
+	if not item_data:
+		push_error("error: cant spawn item. no item found in DB for id: " + name)
+		return
+	var start_pos: Vector2 = global_position
+	var end_pos: Vector2 = global_position + Vector2(25, 25)
+	var pickup_ins: Node2D = item_data.new_pickup_scene(pickup_wrapper, start_pos, end_pos)
+	get_tree().root.add_child(pickup_ins)
