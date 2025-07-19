@@ -1,3 +1,1 @@
 - have items that run out stay in inventory as empty
-- try and dynamically create pickup, and icon nodes
-- decouple items and "placeable items" found within the placement system.  Keep the constructors!

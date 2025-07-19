@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="RItemData" load_steps=10 format=3 uid="uid://b01cl5cc1g0sp"]
+
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemIcon.gd" id="1_e6jrk"]
+[ext_resource type="Texture2D" uid="uid://ce71xoki3jp8k" path="res://systems/placement_system/scenes/furniture/3x1_table/3x1_table_texture_vertical.tres" id="2_1e8c5"]
+[ext_resource type="PackedScene" uid="uid://dxlv5x2e3t4g6" path="res://systems/placement_system/scenes/furniture/3x1_table/3x1_table_horizontal.tscn" id="3_m6gs1"]
+[ext_resource type="Texture2D" uid="uid://bv42tnduih635" path="res://assets/objects/3x1-table-vertical-final.png" id="4_gmdc4"]
+[ext_resource type="PackedScene" uid="uid://dr5cvccxg54a4" path="res://systems/placement_system/scenes/furniture/3x1_table/3x1_table_vertical.tscn" id="5_xujbr"]
+[ext_resource type="Script" path="res://systems/placement_system/scripts/resource_definitions/RPlaceableFurniture.gd" id="6_oaw6p"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="7_257ek"]
+
+[sub_resource type="Resource" id="Resource_goo4i"]
+script = ExtResource("1_e6jrk")
+texture = ExtResource("2_1e8c5")
+icon_scale_multiplier = 1.25
+
+[sub_resource type="Resource" id="Resource_scgpf"]
+script = ExtResource("6_oaw6p")
+is_symmetrical = false
+tile_matrix = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0)])
+scene_horizontal = ExtResource("3_m6gs1")
+scene_vertical = ExtResource("5_xujbr")
+
+[resource]
+script = ExtResource("7_257ek")
+item_id = "f-004"
+item_name = "3x1_table"
+placeable_scale_multiplier = 1.0
+pickup_scale_multiplier = 0.65
+item_texture = ExtResource("4_gmdc4")
+item_base_scene = ExtResource("3_m6gs1")
+placeable = SubResource("Resource_scgpf")
+icon = SubResource("Resource_goo4i")

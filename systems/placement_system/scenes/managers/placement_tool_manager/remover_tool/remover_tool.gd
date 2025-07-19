@@ -2,7 +2,7 @@ class_name ToolHandler
 extends Node
 
 var hovered_tile: Vector2i
-var hovered_node: Item
+var hovered_node: PlaceableItem
 
 ## -- helper functions --
 func _clear_hovered_node() -> void:
@@ -17,7 +17,7 @@ func _highlight_hovered_node() -> void:
 func handle_new_tile_hovered(tile_coords: Vector2i, furniture_manager: FurnitureManager) -> void:
 	hovered_tile = tile_coords
 	_clear_hovered_node()
-	var furniture: Furniture = furniture_manager.get_furniture_at_coords(tile_coords)
+	var furniture: PlaceableFurniture = furniture_manager.get_furniture_at_coords(tile_coords)
 	if not furniture: return
 	var occupied_item_slot: FurnitureItemSlot = furniture.get_occupied_slot_at_coords(tile_coords)
 	if occupied_item_slot:
@@ -31,11 +31,11 @@ func handle_layer_mouse_out() -> void:
 
 func handle_action_pressed(furniture_manager: FurnitureManager) -> void:
 	if not hovered_node: return
-	if hovered_node is Furniture:
-		furniture_manager.remove_furniture(hovered_node as Furniture)
+	if hovered_node is PlaceableFurniture:
+		furniture_manager.remove_furniture(hovered_node as PlaceableFurniture)
 		hovered_node = null
-	elif hovered_node is Merchandise:
-		furniture_manager.remove_merchandise(hovered_node as Merchandise)
+	elif hovered_node is PlaceableMerchandise:
+		furniture_manager.remove_merchandise(hovered_node as PlaceableMerchandise)
 		hovered_node = null
 	# TODO: hacky way of checking for another item
 	handle_new_tile_hovered(hovered_tile, furniture_manager)

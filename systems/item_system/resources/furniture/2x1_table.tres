@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="RItemData" load_steps=9 format=3 uid="uid://ctd0aljxu3ooc"]
+
+[ext_resource type="PackedScene" uid="uid://c470pv7h18snk" path="res://systems/placement_system/scenes/furniture/2x1_table/2x1_table_horizontal.tscn" id="1_4kcdc"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="1_goku3"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemIcon.gd" id="1_q6fmp"]
+[ext_resource type="Texture2D" uid="uid://d3flab2gp3qyh" path="res://systems/placement_system/scenes/furniture/2x1_table/2x1_table_texture_vertical.tres" id="2_tkekh"]
+[ext_resource type="PackedScene" uid="uid://dvudffpcdjxan" path="res://systems/placement_system/scenes/furniture/2x1_table/2x1_table_vertical.tscn" id="4_yplji"]
+[ext_resource type="Script" path="res://systems/placement_system/scripts/resource_definitions/RPlaceableFurniture.gd" id="5_fkb6q"]
+
+[sub_resource type="Resource" id="Resource_g127f"]
+script = ExtResource("1_q6fmp")
+texture = ExtResource("2_tkekh")
+icon_scale_multiplier = 1.5
+
+[sub_resource type="Resource" id="Resource_hiqxk"]
+script = ExtResource("5_fkb6q")
+is_symmetrical = false
+tile_matrix = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0)])
+scene_horizontal = ExtResource("1_4kcdc")
+scene_vertical = ExtResource("4_yplji")
+
+[resource]
+script = ExtResource("1_goku3")
+item_id = "f-002"
+item_name = "2x1_table"
+placeable_scale_multiplier = 1.0
+pickup_scale_multiplier = 0.65
+item_texture = ExtResource("2_tkekh")
+item_base_scene = ExtResource("1_4kcdc")
+placeable = SubResource("Resource_hiqxk")
+icon = SubResource("Resource_g127f")

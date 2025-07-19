@@ -1,8 +1,7 @@
 class_name RPlaceableMerchandise
-extends RPlaceable
+extends RPlaceableItem
 
 @export var is_rotatable: bool
-@export var base_value: float
 @export var item_slot_matrix: Array[Vector2i]
 @export var item_dimensions: Vector2i
 

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="RTool" load_steps=6 format=3 uid="uid://ctyuc3ycewbnj"]
+
+[ext_resource type="PackedScene" uid="uid://ckgq4vk384pq2" path="res://systems/placement_system/scenes/tools/remover_tool/remover_tool.tscn" id="1_2826s"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemIcon.gd" id="1_r4504"]
+[ext_resource type="Script" path="res://systems/placement_system/scripts/resource_definitions/RTool.gd" id="1_so11x"]
+[ext_resource type="Texture2D" uid="uid://ckqfdgq45l535" path="res://systems/placement_system/scenes/tools/remover_tool/remover_tool_texture.tres" id="2_104el"]
+
+[sub_resource type="Resource" id="Resource_xyttx"]
+script = ExtResource("1_r4504")
+texture = ExtResource("2_104el")
+icon_scale_multiplier = 1.0
+
+[resource]
+script = ExtResource("1_so11x")
+item_id = "t-001"
+item_name = "remover_tool"
+placeable_scale_multiplier = 1.0
+pickup_scale_multiplier = 1.0
+item_texture = ExtResource("2_104el")
+item_base_scene = ExtResource("1_2826s")
+icon = SubResource("Resource_xyttx")

@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://scenes/ui/inventory/inventory.gd" id="2_8a6w1"]
 
 [node name="Inventory" type="Panel" node_paths=PackedStringArray("item_slot_list")]
-custom_minimum_size = Vector2(830, 100)
-offset_right = 800.0
+custom_minimum_size = Vector2(1040, 100)
+offset_right = 1040.0
 offset_bottom = 100.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -17,8 +17,8 @@ item_slot_list = NodePath("HBoxContainer")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1036.0
+offset_bottom = 100.0
 
 [node name="ItemSlot1" parent="HBoxContainer" instance=ExtResource("1_g7teh")]
 layout_mode = 2
@@ -51,3 +51,11 @@ index = 7
 [node name="ItemSlot8" parent="HBoxContainer" instance=ExtResource("1_g7teh")]
 layout_mode = 2
 index = 8
+
+[node name="ItemSlot9" parent="HBoxContainer" instance=ExtResource("1_g7teh")]
+layout_mode = 2
+index = 9
+
+[node name="ItemSlot10" parent="HBoxContainer" instance=ExtResource("1_g7teh")]
+layout_mode = 2
+index = 10

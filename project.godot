@@ -14,15 +14,27 @@ config/name="test_building_system"
 run/main_scene="res://scenes/test_scenes/test_scene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
+[autoload]
+
+ItemsDb="*res://systems/item_system/scripts/globals/ItemsDB.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_resource_groups/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
+"res://addons/": "red",
 "res://assets/": "orange",
 "res://resources/": "green",
 "res://scenes/": "purple",
-"res://scripts/": "yellow",
 "res://shaders/": "teal"
 }
+
+[godot_resource_groups]
+
+auto_rebuild=true
 
 [input]
 

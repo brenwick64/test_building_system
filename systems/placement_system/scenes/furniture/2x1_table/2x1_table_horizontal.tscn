@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c470pv7h18snk"]
 
-[ext_resource type="Script" path="res://systems/placement_system/scripts/classes/Furniture.gd" id="1_f3dq8"]
+[ext_resource type="Script" path="res://systems/placement_system/scripts/classes/PlaceableFurniture.gd" id="1_f3dq8"]
 [ext_resource type="Texture2D" uid="uid://qfmspeb0nafl" path="res://systems/placement_system/scenes/furniture/2x1_table/2x1_table_texture_horizontal.tres" id="2_au5kh"]
 [ext_resource type="Script" path="res://systems/placement_system/scripts/classes/FurnitureItemSlot.gd" id="3_w8vi3"]
 

@@ -33,7 +33,7 @@ func refresh_ui() -> void:
 func _ready() -> void:
 	circle_panel.visible = false
 	if inventory_item:
-		var item_icon: TextureRect = inventory_item.item.new_icon_scene()
+		var item_icon: TextureRect = inventory_item.item.icon.new_icon_scene()
 		item_btn.add_child(item_icon)
 	refresh_ui()
 

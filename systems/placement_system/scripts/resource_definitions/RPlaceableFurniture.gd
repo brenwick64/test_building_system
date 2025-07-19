@@ -1,5 +1,5 @@
 class_name RPlaceableFurniture
-extends RPlaceable
+extends RPlaceableItem
 
 #FIXME: This variable is required if a furniture has the same width and height
 # and you wish to rotate it
@@ -9,18 +9,16 @@ extends RPlaceable
 @export var scene_horizontal: PackedScene
 @export var scene_vertical: PackedScene
 
-var item_id: String
-
 const ROTATION_VALUES: Array[int] = [0, 90]
 var current_degrees: int = ROTATION_VALUES[0]
 
 ## -- constructors
-func new_horizontal_scene() -> Furniture:
+func new_horizontal_scene() -> PlaceableFurniture:
 	var horizontal_ins: Node2D = scene_horizontal.instantiate()
 	horizontal_ins.item_id = item_id
 	return horizontal_ins
 	
-func new_vertical_scene() -> Furniture:
+func new_vertical_scene() -> PlaceableFurniture:
 	var vertical_ins: Node2D = scene_vertical.instantiate()
 	vertical_ins.item_id = item_id
 	return vertical_ins
