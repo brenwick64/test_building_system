@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0im1174l1qii"]
+
+[ext_resource type="Script" path="res://systems/item_system/scenes/pickup/behaviors/arc_move_on_spawn.gd" id="1_xpeh8"]
+
+[node name="ArcMoveOnSpawn" type="Node2D"]
+script = ExtResource("1_xpeh8")

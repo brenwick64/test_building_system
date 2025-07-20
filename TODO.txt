@@ -1,1 +1,2 @@
 - have items that run out stay in inventory as empty
+- have pickup behaviors follow checkbox config at pickup level

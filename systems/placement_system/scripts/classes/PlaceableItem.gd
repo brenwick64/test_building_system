@@ -33,5 +33,5 @@ func _spawn_pickup() -> void:
 		return
 	var start_pos: Vector2 = global_position
 	var end_pos: Vector2 = global_position + Vector2(25, 25)
-	var pickup_ins: Node2D = item_data.new_pickup_scene(pickup_wrapper, start_pos, end_pos)
+	var pickup_ins: Node2D = item_data.pickup.new_pickup_scene(start_pos, end_pos)
 	get_tree().root.add_child(pickup_ins)

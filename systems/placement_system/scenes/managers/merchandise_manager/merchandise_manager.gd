@@ -28,7 +28,7 @@ func _get_free_item_slot(tile_coords: Vector2i) -> Node2D:
 	return free_item_slot
 
 func _spawn_preview(item_slot: Node2D) -> void:
-	var preview_ins: PlaceableItem = equipped_merchandise.new_item_scene()
+	var preview_ins: PlaceableItem = equipped_merchandise.placeable.new_placeable_scene()
 	preview_ins.rotation = deg_to_rad(equipped_merchandise.placeable.get_rotation_deg())
 	preview_ins.set_preview()
 	item_slot.add_child(preview_ins)
@@ -43,7 +43,7 @@ func _validate_preview() -> void:
 	pass
 
 func _spawn_merchandise(item_slot: Node2D) -> void:
-	var merchandise_ins: PlaceableMerchandise = equipped_merchandise.new_item_scene()
+	var merchandise_ins: PlaceableMerchandise = equipped_merchandise.placeable.new_placeable_scene()
 	merchandise_ins.rotation = deg_to_rad(equipped_merchandise.placeable.get_rotation_deg())
 	# add outline shader
 	var sprite: Sprite2D = merchandise_ins.get_node("Sprite2D")

@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="RItemData" load_steps=10 format=3 uid="uid://dkpdd832rs62y"]
+
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemIcon.gd" id="1_cjjl4"]
+[ext_resource type="Texture2D" uid="uid://cbituoysuw48g" path="res://scenes/items/merchandise/health_potion/health_potion_texture.tres" id="2_qxn1f"]
+[ext_resource type="PackedScene" uid="uid://dli1rptrnetkd" path="res://scenes/items/merchandise/health_potion/health_potion_placeable.tscn" id="3_nl57l"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RPickup.gd" id="4_aiavq"]
+[ext_resource type="Script" path="res://systems/placement_system/scripts/resource_definitions/RPlaceableMerchandise.gd" id="4_r4cqs"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="5_2w6js"]
+
+[sub_resource type="Resource" id="Resource_d2rpn"]
+script = ExtResource("1_cjjl4")
+texture = ExtResource("2_qxn1f")
+icon_scale_multiplier = 2.5
+
+[sub_resource type="Resource" id="Resource_1pojf"]
+script = ExtResource("4_aiavq")
+pickup_scale_multiplier = 0.65
+
+[sub_resource type="Resource" id="Resource_o3htc"]
+script = ExtResource("4_r4cqs")
+is_rotatable = false
+item_slot_matrix = Array[Vector2i]([Vector2i(0, 0)])
+item_dimensions = Vector2i(1, 1)
+placeable_scene = ExtResource("3_nl57l")
+placeable_scale_multiplier = 0.65
+
+[resource]
+script = ExtResource("5_2w6js")
+item_id = "i-001"
+item_name = "health_potion"
+placeable = SubResource("Resource_o3htc")
+icon = SubResource("Resource_d2rpn")
+pickup = SubResource("Resource_1pojf")

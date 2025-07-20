@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ywklenuy37wl"]
+
+[ext_resource type="Script" path="res://systems/placement_system/scripts/classes/PlaceableMerchandise.gd" id="1_xeokf"]
+[ext_resource type="Texture2D" uid="uid://y1848nk3s1lf" path="res://scenes/items/merchandise/dagger/dagger_texture.tres" id="2_v44mp"]
+
+[node name="DaggerPlaceable" type="Node2D" node_paths=PackedStringArray("sprite_2d")]
+script = ExtResource("1_xeokf")
+sprite_2d = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_v44mp")

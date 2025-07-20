@@ -1,7 +1,7 @@
 class_name ItemsDB
 extends Node
 
-@onready var items_rg: ResourceGroup = preload("res://systems/item_system/resources/resource_groups/items.tres")
+@onready var items_rg: ResourceGroup = preload("res://resource_groups/items.tres")
 
 static var items_arr: Array[RItemData]
 

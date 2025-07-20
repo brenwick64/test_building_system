@@ -1,22 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://dyvuqi716mqx8"]
 
 [ext_resource type="Script" path="res://systems/item_system/scenes/pickup/pickup.gd" id="1_pldmq"]
-[ext_resource type="Script" path="res://systems/item_system/scenes/pickup/arc_move_on_spawn.gd" id="2_7c1tb"]
+[ext_resource type="PackedScene" uid="uid://d0im1174l1qii" path="res://systems/item_system/scenes/pickup/behaviors/arc_move_on_spawn.tscn" id="2_tip4e"]
 
-[node name="Pickup" type="Node2D" node_paths=PackedStringArray("arc_move_on_spawn", "pickup_collision", "pickup_delay")]
+[node name="Pickup" type="Sprite2D" node_paths=PackedStringArray("pickup_area", "pickup_delay", "arc_move_on_spawn")]
 script = ExtResource("1_pldmq")
-arc_move_on_spawn = NodePath("Behaviors/ArcMoveOnSpawn")
-pickup_collision = NodePath("Area2D/CollisionShape2D")
+pickup_area = NodePath("PickupArea")
 pickup_delay = NodePath("PickupDelay")
+arc_move_on_spawn = NodePath("Behaviors/ArcMoveOnSpawn")
 
 [node name="Behaviors" type="Node" parent="."]
 
-[node name="ArcMoveOnSpawn" type="Node2D" parent="Behaviors" node_paths=PackedStringArray("pickup")]
-script = ExtResource("2_7c1tb")
-pickup = NodePath("../..")
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="ArcMoveOnSpawn" parent="Behaviors" instance=ExtResource("2_tip4e")]
 
 [node name="PickupDelay" type="Timer" parent="."]
+
+[node name="PickupArea" type="Area2D" parent="."]
