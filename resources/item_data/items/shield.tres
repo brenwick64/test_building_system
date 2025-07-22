@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="RItemData" load_steps=10 format=3 uid="uid://u7yianekymrl"]
+[gd_resource type="Resource" script_class="RItemData" load_steps=11 format=3 uid="uid://u7yianekymrl"]
 
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemIcon.gd" id="1_3kgqm"]
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="1_wku5k"]
 [ext_resource type="Texture2D" uid="uid://b76tvqqne6gn8" path="res://scenes/items/merchandise/shield/shield_texture.tres" id="2_1bfd1"]
 [ext_resource type="PackedScene" uid="uid://b84rkepqb1fu0" path="res://scenes/items/merchandise/shield/shield_placeable.tscn" id="3_a4d76"]
+[ext_resource type="PackedScene" uid="uid://bdiqu205lq0nt" path="res://scenes/items/merchandise/shield/shield_pickup.tscn" id="3_eime7"]
 [ext_resource type="Script" path="res://systems/placement_system/scripts/resource_definitions/RPlaceableMerchandise.gd" id="3_qj6to"]
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RPickup.gd" id="4_xstkf"]
 
@@ -14,6 +15,7 @@ icon_scale_multiplier = 1.6
 
 [sub_resource type="Resource" id="Resource_84kdj"]
 script = ExtResource("4_xstkf")
+pickup_scene = ExtResource("3_eime7")
 pickup_scale_multiplier = 0.65
 
 [sub_resource type="Resource" id="Resource_7hyyp"]

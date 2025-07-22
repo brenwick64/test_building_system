@@ -24,7 +24,6 @@ func _on_arc_move_on_spawn_arc_motion_finished():
 # step 2 - enable collisions after pickup delay
 func _on_pickup_delay_timeout():
 	pickup_area.monitoring = true
-	print("mintoring: " + str(name))
 
 # step 3 - send item info to inventory manager
 func _on_pickup_area_area_entered(area):

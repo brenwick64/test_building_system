@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://7t02h8skcv2m"]
+
+[ext_resource type="PackedScene" uid="uid://dyvuqi716mqx8" path="res://systems/item_system/scenes/pickup/pickup.tscn" id="1_nd8jv"]
+[ext_resource type="Texture2D" uid="uid://d3flab2gp3qyh" path="res://scenes/items/furniture/2x1_table/2x1_table_texture_vertical.tres" id="2_oqyr3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a0ps7"]
+size = Vector2(12, 26)
+
+[node name="Pickup" instance=ExtResource("1_nd8jv")]
+texture = ExtResource("2_oqyr3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" index="0"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_a0ps7")

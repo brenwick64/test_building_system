@@ -11,8 +11,10 @@ arc_move_on_spawn = NodePath("Behaviors/ArcMoveOnSpawn")
 
 [node name="Behaviors" type="Node" parent="."]
 
-[node name="ArcMoveOnSpawn" parent="Behaviors" instance=ExtResource("2_tip4e")]
+[node name="ArcMoveOnSpawn" parent="Behaviors" node_paths=PackedStringArray("pickup") instance=ExtResource("2_tip4e")]
+pickup = NodePath("../..")
 
 [node name="PickupDelay" type="Timer" parent="."]
 
 [node name="PickupArea" type="Area2D" parent="."]
+collision_mask = 0

@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="RItemData" load_steps=10 format=3 uid="uid://y35mf4vnwjbm"]
+[gd_resource type="Resource" script_class="RItemData" load_steps=11 format=3 uid="uid://y35mf4vnwjbm"]
 
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemIcon.gd" id="1_mapvm"]
 [ext_resource type="Texture2D" uid="uid://bs1wfwx6hbhh2" path="res://scenes/items/merchandise/sword/sword_texture.tres" id="2_3ua2d"]
 [ext_resource type="PackedScene" uid="uid://c2wcbva5t4qnh" path="res://scenes/items/merchandise/sword/sword_placeable.tscn" id="3_4gjdc"]
+[ext_resource type="PackedScene" uid="uid://djxcuv4un04j5" path="res://scenes/items/merchandise/sword/sword_pickup.tscn" id="3_mgevk"]
 [ext_resource type="Script" path="res://systems/placement_system/scripts/resource_definitions/RPlaceableMerchandise.gd" id="4_wkimr"]
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RPickup.gd" id="4_wlj7s"]
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="5_v8lqt"]
@@ -14,6 +15,7 @@ icon_scale_multiplier = 1.75
 
 [sub_resource type="Resource" id="Resource_dyowg"]
 script = ExtResource("4_wlj7s")
+pickup_scene = ExtResource("3_mgevk")
 pickup_scale_multiplier = 0.65
 
 [sub_resource type="Resource" id="Resource_tn30v"]

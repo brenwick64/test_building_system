@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="RItemData" load_steps=11 format=3 uid="uid://ctd0aljxu3ooc"]
+[gd_resource type="Resource" script_class="RItemData" load_steps=12 format=3 uid="uid://ctd0aljxu3ooc"]
 
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="1_goku3"]
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemIcon.gd" id="1_q6fmp"]
 [ext_resource type="Texture2D" uid="uid://d3flab2gp3qyh" path="res://scenes/items/furniture/2x1_table/2x1_table_texture_vertical.tres" id="2_uet7y"]
 [ext_resource type="PackedScene" uid="uid://c470pv7h18snk" path="res://scenes/items/furniture/2x1_table/2x1_table_horizontal.tscn" id="3_g3jm7"]
+[ext_resource type="PackedScene" uid="uid://7t02h8skcv2m" path="res://scenes/items/furniture/2x1_table/2x1_table_pickup.tscn" id="3_tftp7"]
 [ext_resource type="PackedScene" uid="uid://dvudffpcdjxan" path="res://scenes/items/furniture/2x1_table/2x1_table_vertical.tscn" id="4_5vdl2"]
 [ext_resource type="Script" path="res://systems/placement_system/scripts/resource_definitions/RPlaceableFurniture.gd" id="5_fkb6q"]
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RPickup.gd" id="5_jcbew"]
@@ -15,6 +16,7 @@ icon_scale_multiplier = 1.5
 
 [sub_resource type="Resource" id="Resource_x1ylk"]
 script = ExtResource("5_jcbew")
+pickup_scene = ExtResource("3_tftp7")
 pickup_scale_multiplier = 0.75
 
 [sub_resource type="Resource" id="Resource_hiqxk"]

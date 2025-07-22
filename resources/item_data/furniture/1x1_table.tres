@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="RItemData" load_steps=11 format=3 uid="uid://c8qo30hr4rp43"]
+[gd_resource type="Resource" script_class="RItemData" load_steps=12 format=3 uid="uid://c8qo30hr4rp43"]
 
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="1_boi68"]
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemIcon.gd" id="1_pbc8p"]
 [ext_resource type="Texture2D" uid="uid://cccnpfo5we477" path="res://scenes/items/furniture/1x1_table/1x1_table_texture.tres" id="2_r6qem"]
 [ext_resource type="PackedScene" uid="uid://j2ycc2l8oh13" path="res://scenes/items/furniture/1x1_table/1x1_table_horizontal.tscn" id="3_0r7xl"]
+[ext_resource type="PackedScene" uid="uid://0x42holhtbjg" path="res://scenes/items/furniture/1x1_table/1x1_table_pickup.tscn" id="3_ujtkd"]
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RPickup.gd" id="4_it7qm"]
 [ext_resource type="Script" path="res://systems/placement_system/scripts/resource_definitions/RPlaceableFurniture.gd" id="5_1xej4"]
 [ext_resource type="PackedScene" uid="uid://cn54jswaj6xfj" path="res://scenes/items/furniture/1x1_table/1x1_table_vertical.tscn" id="5_qwv8t"]
@@ -15,6 +16,7 @@ icon_scale_multiplier = 2.0
 
 [sub_resource type="Resource" id="Resource_v6l3y"]
 script = ExtResource("4_it7qm")
+pickup_scene = ExtResource("3_ujtkd")
 pickup_scale_multiplier = 0.75
 
 [sub_resource type="Resource" id="Resource_k4som"]
