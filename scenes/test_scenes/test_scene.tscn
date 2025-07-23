@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://jyl0pt03odje" path="res://resources/tilesets/main_tileset.tres" id="1_f72q3"]
 [ext_resource type="Script" path="res://scenes/input/input_manager.gd" id="1_qkav0"]
 [ext_resource type="PackedScene" uid="uid://bkrvwr8ppww3l" path="res://systems/inventory_system/inventory_system.tscn" id="3_bq3bc"]
-[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RInventoryItem.gd" id="4_x64uq"]
+[ext_resource type="Script" path="res://systems/inventory_system/scripts/RInventoryItem.gd" id="4_x64uq"]
 [ext_resource type="Resource" uid="uid://c8qo30hr4rp43" path="res://resources/item_data/furniture/1x1_table.tres" id="5_spqxq"]
 [ext_resource type="Resource" uid="uid://ctd0aljxu3ooc" path="res://resources/item_data/furniture/2x1_table.tres" id="6_a2cpm"]
 [ext_resource type="Resource" uid="uid://d3iy5kni28kpk" path="res://resources/item_data/furniture/2x2_table.tres" id="7_jh72w"]
@@ -131,6 +131,11 @@ grow_vertical = 0
 size_flags_horizontal = 6
 size_flags_vertical = 8
 inventory_manager = NodePath("../../InventorySystem")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+motion_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
 
 [connection signal="action_bar_pressed" from="InputManager" to="UI/Inventory" method="_on_input_manager_action_bar_pressed"]
 [connection signal="action_pressed" from="InputManager" to="PlacementSystem" method="_on_input_manager_action_pressed"]
