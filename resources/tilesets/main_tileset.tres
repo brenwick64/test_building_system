@@ -97,14 +97,22 @@ texture = ExtResource("3_wsofh")
 1:1/0/terrains_peering_bit/top_side = 2
 1:1/0/terrains_peering_bit/top_right_corner = 2
 1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -3, -8, -3.125, 8, -8, 8)
 2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -3, -8, -3.125, 8, -8, 8)
 2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -3, -8, -3.125, 8, -8, 8)
 1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(3.625, -8, 8, -8, 8, 8, 3.75, 8, 3.75, 1.75)
 0:1/0 = 0
 0:1/0/terrain_set = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(3.625, -8, 8, -8, 8, 8, 3.75, 8, 3.75, 1.75)
 0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(3.625, -8, 8, -8, 8, 8, 3.75, 8, 3.75, 1.75)
 
 [resource]
 physics_layer_0/collision_layer = 1
