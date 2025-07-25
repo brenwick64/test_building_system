@@ -7,6 +7,9 @@ extends CharacterBody2D
 
 var last_direction: String = "down"
 
+func _ready() -> void:
+	pass
+
 ## -- helper functions --
 func _get_movement_vector() -> Vector2:
 	# Handles cases of digital and analog player inputs (keyboard = digital, controller = analog)

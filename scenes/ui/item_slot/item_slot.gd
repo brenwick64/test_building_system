@@ -22,8 +22,13 @@ func clear_item() -> void:
 	refresh_ui()
 
 func refresh_ui() -> void:
+	# remove item icon
+	for child: Node in item_btn.get_children():
+		child.queue_free()
 	index_label.text = str(index)
 	if inventory_item:
+		var icon: TextureRect = inventory_item.item.icon.new_icon_scene()
+		item_btn.add_child(icon)
 		item_count.text = str(inventory_item.count)
 		_show_btn_ui()	
 	else:

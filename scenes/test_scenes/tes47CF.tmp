@@ -1,33 +1,20 @@
-[gd_scene load_steps=53 format=4 uid="uid://de3o831n25f2l"]
+[gd_scene load_steps=50 format=4 uid="uid://de3o831n25f2l"]
 
 [ext_resource type="TileSet" uid="uid://jyl0pt03odje" path="res://resources/tilesets/main_tileset.tres" id="1_f72q3"]
 [ext_resource type="Script" path="res://scenes/input/input_manager.gd" id="1_qkav0"]
-[ext_resource type="PackedScene" uid="uid://c5hnkcoj7dq84" path="res://systems/inventory_system/scripts/scenes/player_inventory.tscn" id="2_sl7we"]
-[ext_resource type="Script" path="res://systems/inventory_system/scripts/resource_definitions/RInventoryItem.gd" id="4_x64uq"]
-[ext_resource type="Resource" uid="uid://c8qo30hr4rp43" path="res://resources/item_data/furniture/1x1_table.tres" id="5_spqxq"]
-[ext_resource type="PackedScene" uid="uid://bkg7mvx22iqt3" path="res://scenes/ui/ui_player_inventory/ui_player_inventory.tscn" id="7_yhwru"]
+[ext_resource type="PackedScene" uid="uid://bkrvwr8ppww3l" path="res://systems/inventory_system/inventory_system.tscn" id="3_bq3bc"]
+[ext_resource type="Script" path="res://systems/inventory_system/scripts/RInventoryItem.gd" id="4_x64uq"]
+[ext_resource type="Script" path="res://systems/inventory_system/scripts/classes/Inventory.gd" id="7_xv13e"]
+[ext_resource type="PackedScene" uid="uid://bkg7mvx22iqt3" path="res://scenes/ui/inventory/inventory.tscn" id="7_yhwru"]
 [ext_resource type="Resource" uid="uid://dkpdd832rs62y" path="res://resources/item_data/items/health_potion.tres" id="9_xgro7"]
-[ext_resource type="Resource" uid="uid://ctyuc3ycewbnj" path="res://resources/item_data/items/remover_tool.tres" id="12_xmisv"]
 [ext_resource type="Texture2D" uid="uid://dh2cnltobawlx" path="res://assets/characters/player.png" id="17_4bagj"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="17_utvwo"]
 [ext_resource type="PackedScene" uid="uid://sp58wos84hs4" path="res://systems/placement_system/scenes/placement_system.tscn" id="19_tdy0a"]
 
-[sub_resource type="Resource" id="Resource_to2d8"]
-script = ExtResource("4_x64uq")
-item = ExtResource("5_spqxq")
-count = 3
-stackable = true
-
-[sub_resource type="Resource" id="Resource_t2mv0"]
+[sub_resource type="Resource" id="Resource_jaffj"]
 script = ExtResource("4_x64uq")
 item = ExtResource("9_xgro7")
-count = 3
-stackable = true
-
-[sub_resource type="Resource" id="Resource_xf3qb"]
-script = ExtResource("4_x64uq")
-item = ExtResource("12_xmisv")
-count = 1
+count = 10
 stackable = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dmiqr"]
@@ -325,14 +312,13 @@ position = Vector2(60, 49)
 anchor_mode = 0
 zoom = Vector2(2, 2)
 
-[node name="PlacementSystem" parent="." node_paths=PackedStringArray("placeable_layer") instance=ExtResource("19_tdy0a")]
-placeable_layer = NodePath("../TileMap/ShoppeFloor")
-
 [node name="InputManager" type="Node" parent="."]
 script = ExtResource("1_qkav0")
 
-[node name="PlayerInventory" parent="." instance=ExtResource("2_sl7we")]
-inventory_items = Array[ExtResource("4_x64uq")]([SubResource("Resource_to2d8"), SubResource("Resource_t2mv0"), SubResource("Resource_xf3qb")])
+[node name="PlacementSystem" parent="." node_paths=PackedStringArray("placeable_layer") instance=ExtResource("19_tdy0a")]
+placeable_layer = NodePath("../TileMap/ShoppeFloor")
+
+[node name="InventorySystem" parent="." groups=["inventory_system"] instance=ExtResource("3_bq3bc")]
 
 [node name="TileMap" type="Node2D" parent="."]
 
@@ -355,23 +341,9 @@ tile_set = ExtResource("1_f72q3")
 
 [node name="ShoppeFurniture" type="Node2D" parent="." groups=["ShoppeFurniture"]]
 
-[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
-position = Vector2(493, 351)
-motion_mode = 1
-script = ExtResource("17_utvwo")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
-sprite_frames = SubResource("SpriteFrames_hnh8a")
-animation = &"idle_down"
-autoplay = "idle_down"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(1, 12)
-shape = SubResource("CircleShape2D_ga6gs")
-
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="UIPlayerInventory" parent="UI" instance=ExtResource("7_yhwru")]
+[node name="Inventory" parent="UI" node_paths=PackedStringArray("inventory_manager") instance=ExtResource("7_yhwru")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -385,13 +357,30 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 6
 size_flags_vertical = 8
+inventory_manager = NodePath("../../InventorySystem")
 
-[connection signal="item_placed" from="PlacementSystem" to="PlayerInventory" method="_on_placement_system_item_placed"]
-[connection signal="action_bar_pressed" from="InputManager" to="UI/UIPlayerInventory" method="_on_input_manager_action_bar_pressed"]
+[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
+position = Vector2(493, 351)
+motion_mode = 1
+script = ExtResource("17_utvwo")
+
+[node name="Inventory" type="Node" parent="Player"]
+script = ExtResource("7_xv13e")
+inventory_items = Array[ExtResource("4_x64uq")]([SubResource("Resource_jaffj")])
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_hnh8a")
+animation = &"idle_down"
+autoplay = "idle_down"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(1, 12)
+shape = SubResource("CircleShape2D_ga6gs")
+
+[connection signal="action_bar_pressed" from="InputManager" to="UI/Inventory" method="_on_input_manager_action_bar_pressed"]
 [connection signal="action_pressed" from="InputManager" to="PlacementSystem" method="_on_input_manager_action_pressed"]
 [connection signal="rotate_pressed" from="InputManager" to="PlacementSystem" method="_on_input_manager_rotate_pressed"]
-[connection signal="inventory_updated" from="PlayerInventory" to="UI/UIPlayerInventory" method="_on_player_inventory_inventory_updated"]
-[connection signal="item_depleted" from="PlayerInventory" to="PlacementSystem" method="_on_player_inventory_item_depleted"]
-[connection signal="item_depleted" from="PlayerInventory" to="UI/UIPlayerInventory" method="_on_player_inventory_item_depleted"]
-[connection signal="item_selected" from="PlayerInventory" to="PlacementSystem" method="_on_player_inventory_item_selected"]
-[connection signal="item_selected" from="UI/UIPlayerInventory" to="PlayerInventory" method="_on_ui_player_inventory_item_selected"]
+[connection signal="furniture_placed" from="PlacementSystem" to="InventorySystem" method="_on_placement_system_furniture_placed"]
+[connection signal="merchandise_placed" from="PlacementSystem" to="InventorySystem" method="_on_placement_system_merchandise_placed"]
+[connection signal="inventory_updated" from="InventorySystem" to="UI/Inventory" method="_on_inventory_system_inventory_updated"]
+[connection signal="item_selected" from="UI/Inventory" to="InventorySystem" method="_on_inventory_item_selected"]

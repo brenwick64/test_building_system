@@ -1,7 +1,6 @@
 extends Node
 
-signal furniture_placed(furniture_data: RItemData)
-signal merchandise_placed(merchandise_data: RItemData)
+signal item_placed(item: RItemData)
 
 # required variables
 @export var placeable_layer: TileMapLayer
@@ -21,11 +20,11 @@ func _call_child_handlers(handler_name: String, args: Array = []):
 			child.callv(handler_name, args)
 			
 ## -- internal signal handlers --
-func _on_furniture_placed(furniture_data: RItemData) -> void:
-	furniture_placed.emit(furniture_data)
+func _on_furniture_placed(item_data: RItemData) -> void:
+	item_placed.emit(item_data)
 
-func _on_merchandise_placed(merchandise_data: RItemData) -> void:
-	merchandise_placed.emit(merchandise_data)
+func _on_merchandise_placed(item_data: RItemData) -> void:
+	item_placed.emit(item_data)
 
 ## -- external signal handlers --
 func _on_input_manager_action_pressed(event: InputEvent) -> void:
@@ -34,8 +33,8 @@ func _on_input_manager_action_pressed(event: InputEvent) -> void:
 func _on_input_manager_rotate_pressed() -> void:
 	_call_child_handlers("handle_rotate_pressed")
 
-func _on_inventory_system_equipped_item_updated(current_item: RItemData) -> void:
-	_call_child_handlers("handle_equipped_item_updated", [current_item])
+func _on_player_inventory_item_selected(item: RItemData) -> void:
+	_call_child_handlers("handle_equipped_item_updated", [item])
 
-func _on_inventory_system_item_depleted(item: RItemData) -> void:
+func _on_player_inventory_item_depleted(item: RItemData) -> void:
 	_call_child_handlers("handle_item_depleted", [item])

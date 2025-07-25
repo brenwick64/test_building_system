@@ -3,7 +3,6 @@ extends Panel
 signal item_selected(item: RItemData)
 
 @export var item_slot_list: HBoxContainer
-@export var inventory_manager: InventoryManager
 
 ## --overrides --
 func _ready() -> void:
@@ -47,18 +46,18 @@ func _on_item_selected(item: RItemData) -> void:
 	item_selected.emit(item)
 	
 ## -- external signals  --
-func _on_inventory_system_inventory_updated(inventory_items: Array[RInventoryItem]) -> void:
+func _on_player_inventory_inventory_updated(inventory_items: Array[RInventoryItem]) -> void:
 	var item_slots: Array[Node] = item_slot_list.get_children()
 	for inv_item: RInventoryItem in inventory_items:
 		var is_new_item: bool = item_slots.filter(func(slot): return _matches_item_name(slot, inv_item.item.item_name)).size() == 0
 		if is_new_item: _add_new_item_slot(inv_item)
 		else: _update_existing_item_slot(inv_item)
-
-func _on_inventory_system_item_depleted(item: RItemData) -> void:
+	
+func _on_player_inventory_item_depleted(item: RItemData) -> void:
 	var item_slots: Array[Node] = item_slot_list.get_children()
 	for slot: PanelContainer in item_slots:
 		if not slot.inventory_item: continue
-		if slot.inventory_item.item.item_name == item.item_name:
+		if slot.inventory_item.item.item_id == item.item_id:
 			slot.clear_item()
 
 func _on_input_manager_action_bar_pressed(number: int) -> void:

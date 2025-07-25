@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bwy2iee1efgw7" path="res://scenes/ui/item_slot/item_slot.tscn" id="1_g7teh"]
 [ext_resource type="Theme" uid="uid://d27j5q3aqw7ad" path="res://scenes/ui/main_theme.tres" id="1_me5s4"]
-[ext_resource type="Script" path="res://scenes/ui/inventory/inventory.gd" id="2_8a6w1"]
+[ext_resource type="Script" path="res://scenes/ui/ui_player_inventory/ui_player_inventory.gd" id="2_8a6w1"]
 
-[node name="Inventory" type="Panel" node_paths=PackedStringArray("item_slot_list")]
+[node name="UIPlayerInventory" type="Panel" node_paths=PackedStringArray("item_slot_list")]
 custom_minimum_size = Vector2(1040, 100)
 offset_right = 1040.0
 offset_bottom = 100.0
