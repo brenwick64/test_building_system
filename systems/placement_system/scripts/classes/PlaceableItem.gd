@@ -27,11 +27,12 @@ func remove() -> void:
 
 # -- helper functions --
 func _spawn_pickup() -> void:
+	var end_pos: Vector2
 	var item_data: RItemData = ItemsDB.get_item_data(item_id)
 	if not item_data:
 		push_error("error: cant spawn item. no item found in DB for id: " + name)
 		return
+	end_pos = global_position + Vector2(25, 25)
 	var start_pos: Vector2 = global_position
-	var end_pos: Vector2 = global_position + Vector2(25, 25)
 	var pickup_ins: Node2D = item_data.pickup.new_pickup_scene(start_pos, end_pos)
 	get_tree().root.add_child(pickup_ins)

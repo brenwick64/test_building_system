@@ -7,51 +7,62 @@ signal item_selected(item: RItemData)
 @export var circle_panel: Panel
 @export var item_count: Label
 
-@export var index: int
+@export var hotkey: String
 @export var inventory_item: RInventoryItem
+
+var is_disabled: bool = false
 
 ## -- methods --
 func on_btn_pressed() -> void:
 	if not inventory_item: return
+	if is_disabled: return
 	item_btn.grab_focus()
 	item_selected.emit(inventory_item.item)
 	item_btn.focus_mode = Control.FOCUS_ALL
 
+func item_depleted() -> void:
+	_disable_slot()
+
 func clear_item() -> void:
-	inventory_item = null
-	refresh_ui()
+	item_btn.focus_mode = Control.FOCUS_NONE
+	item_btn.disabled = true
 
 func refresh_ui() -> void:
-	# remove item icon
-	for child: Node in item_btn.get_children():
-		child.queue_free()
-	index_label.text = str(index)
-	if inventory_item:
-		var icon: TextureRect = inventory_item.item.icon.new_icon_scene()
-		item_btn.add_child(icon)
-		item_count.text = str(inventory_item.count)
-		_show_btn_ui()	
-	else:
-		_hide_btn_ui()
+	# remove everything
+	_hide_slot_ui()
+	# show hotkey labels
+	index_label.text = str(hotkey)
+	if not inventory_item: return
+	# handle depleted items
+	if inventory_item.count > 0: _enable_slot()
+	# show numbers if stackable
+	if inventory_item.stackable: _show_item_count()
 
 ## -- overrides --
 func _ready() -> void:
-	circle_panel.visible = false
-	if inventory_item:
+	if inventory_item:	
 		var item_icon: TextureRect = inventory_item.item.icon.new_icon_scene()
 		item_btn.add_child(item_icon)
 	refresh_ui()
 
 ## -- helper functions --
-func _hide_btn_ui() -> void:
+func _hide_slot_ui() -> void:
 	circle_panel.visible = false
-	item_btn.visible = false
 
-func _show_btn_ui() -> void:
-	if not inventory_item: return
-	if inventory_item.stackable:
-		circle_panel.visible = true
-	item_btn.visible = true
+func _show_item_count() -> void:
+	circle_panel.visible = true
+	item_count.text = str(inventory_item.count)
+
+func _disable_slot() -> void:
+	is_disabled = true
+	circle_panel.visible = false
+	item_btn.focus_mode = Control.FOCUS_NONE
+	item_btn.disabled = true
+
+func _enable_slot() -> void:
+	is_disabled = false
+	item_btn.focus_mode = Control.FOCUS_ALL
+	item_btn.disabled = false
 
 func _on_item_btn_pressed() -> void:
 	on_btn_pressed()

@@ -58,9 +58,9 @@ func _on_player_inventory_item_depleted(item: RItemData) -> void:
 	for slot: PanelContainer in item_slots:
 		if not slot.inventory_item: continue
 		if slot.inventory_item.item.item_id == item.item_id:
-			slot.clear_item()
+			slot.item_depleted()
 
-func _on_input_manager_action_bar_pressed(number: int) -> void:
+func _on_input_manager_action_bar_pressed(key: String) -> void:
 	for item_slot: Node in item_slot_list.get_children():
-		if item_slot.index == number:
+		if item_slot.hotkey == key:
 			item_slot.on_btn_pressed()

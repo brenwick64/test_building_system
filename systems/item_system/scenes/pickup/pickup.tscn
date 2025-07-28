@@ -15,6 +15,7 @@ arc_move_on_spawn = NodePath("Behaviors/ArcMoveOnSpawn")
 pickup = NodePath("../..")
 
 [node name="PickupDelay" type="Timer" parent="."]
+wait_time = 0.001
 
 [node name="PickupArea" type="Area2D" parent="."]
-collision_mask = 0
+collision_mask = 4

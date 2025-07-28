@@ -27,5 +27,7 @@ func _on_pickup_delay_timeout():
 
 # step 3 - send item info to inventory manager
 func _on_pickup_area_area_entered(area):
-	print(area)
+	var parent: Node2D = area.get_parent()
+	if parent is Player:
+		parent.inventory.add_item(item_id, 1)
 	queue_free()

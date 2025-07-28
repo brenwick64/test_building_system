@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://de3o831n25f2l"]
+[gd_scene load_steps=55 format=4 uid="uid://de3o831n25f2l"]
 
 [ext_resource type="TileSet" uid="uid://jyl0pt03odje" path="res://resources/tilesets/main_tileset.tres" id="1_f72q3"]
 [ext_resource type="Script" path="res://scenes/input/input_manager.gd" id="1_qkav0"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://c8qo30hr4rp43" path="res://resources/item_data/furniture/1x1_table.tres" id="5_spqxq"]
 [ext_resource type="PackedScene" uid="uid://bkg7mvx22iqt3" path="res://scenes/ui/ui_player_inventory/ui_player_inventory.tscn" id="7_yhwru"]
 [ext_resource type="Resource" uid="uid://dkpdd832rs62y" path="res://resources/item_data/items/health_potion.tres" id="9_xgro7"]
+[ext_resource type="PackedScene" uid="uid://bvgt6wpavb31c" path="res://scenes/items/merchandise/dagger/dagger_pickup.tscn" id="12_eysn8"]
 [ext_resource type="Resource" uid="uid://ctyuc3ycewbnj" path="res://resources/item_data/items/remover_tool.tres" id="12_xmisv"]
 [ext_resource type="Texture2D" uid="uid://dh2cnltobawlx" path="res://assets/characters/player.png" id="17_4bagj"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="17_utvwo"]
@@ -28,7 +29,7 @@ stackable = true
 script = ExtResource("4_x64uq")
 item = ExtResource("12_xmisv")
 count = 1
-stackable = true
+stackable = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dmiqr"]
 atlas = ExtResource("17_4bagj")
@@ -318,6 +319,10 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ga6gs"]
 radius = 6.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_46n4c"]
+radius = 6.0
+height = 18.0
+
 [node name="TestScene" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -355,19 +360,28 @@ tile_set = ExtResource("1_f72q3")
 
 [node name="ShoppeFurniture" type="Node2D" parent="." groups=["ShoppeFurniture"]]
 
-[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
+[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("inventory") groups=["player"]]
 position = Vector2(493, 351)
 motion_mode = 1
 script = ExtResource("17_utvwo")
+inventory = NodePath("../PlayerInventory")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 sprite_frames = SubResource("SpriteFrames_hnh8a")
 animation = &"idle_down"
 autoplay = "idle_down"
+frame_progress = 0.579077
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(1, 12)
 shape = SubResource("CircleShape2D_ga6gs")
+
+[node name="Hitbox" type="Area2D" parent="Player"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Hitbox"]
+position = Vector2(1, 9)
+shape = SubResource("CapsuleShape2D_46n4c")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -385,6 +399,9 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 6
 size_flags_vertical = 8
+
+[node name="test" parent="." instance=ExtResource("12_eysn8")]
+position = Vector2(597, 419)
 
 [connection signal="item_placed" from="PlacementSystem" to="PlayerInventory" method="_on_placement_system_item_placed"]
 [connection signal="action_bar_pressed" from="InputManager" to="UI/UIPlayerInventory" method="_on_input_manager_action_bar_pressed"]

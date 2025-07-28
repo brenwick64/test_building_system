@@ -1,5 +1,7 @@
+class_name Player
 extends CharacterBody2D
 
+@export var inventory: PlayerInventory
 @export var move_speed: float = 120.0
 @export var acceleration: float = 1000.0 
 

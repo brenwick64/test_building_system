@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwy2iee1efgw7"]
+
+[ext_resource type="Theme" uid="uid://d27j5q3aqw7ad" path="res://scenes/ui/main_theme.tres" id="1_edtpi"]
+[ext_resource type="Script" path="res://scenes/ui/item_slot/item_slot.gd" id="1_w8c6c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uldiu"]
+
+[node name="ItemSlot" type="PanelContainer" node_paths=PackedStringArray("item_btn", "index_label", "circle_panel", "item_count")]
+custom_minimum_size = Vector2(100, 100)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_uldiu")
+script = ExtResource("1_w8c6c")
+item_btn = NodePath("MarginContainer/Panel/ItemBtn")
+index_label = NodePath("MarginContainer/Panel/IndexLabel")
+circle_panel = NodePath("CirclePanel")
+item_count = NodePath("CirclePanel/ItemCount")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ItemBtn" type="Button" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_edtpi")
+
+[node name="IndexLabel" type="Label" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -23.0
+offset_top = -25.0
+offset_right = -5.0
+offset_bottom = -2.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "1"
+horizontal_alignment = 2
+
+[node name="CirclePanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = ExtResource("1_edtpi")
+theme_type_variation = &"CirclePanel"
+
+[node name="ItemCount" type="Label" parent="CirclePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/Panel/ItemBtn" to="." method="_on_item_btn_pressed"]
