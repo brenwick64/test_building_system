@@ -5,14 +5,12 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uldiu"]
 
-[node name="ItemSlot" type="PanelContainer" node_paths=PackedStringArray("item_btn", "hotkey_label", "circle_panel", "item_count")]
+[node name="ItemSlot" type="PanelContainer"]
 custom_minimum_size = Vector2(100, 100)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_uldiu")
 script = ExtResource("1_w8c6c")
-item_btn = NodePath("MarginContainer/Panel/ItemBtn")
-hotkey_label = NodePath("MarginContainer/Panel/HotkeyLabel")
-circle_panel = NodePath("CirclePanel")
-item_count = NodePath("CirclePanel/ItemCount")
+hotkey = null
+item_id = null
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

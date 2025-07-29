@@ -2,12 +2,16 @@ class_name RItemIcon
 extends Resource
 
 var item_id: String
+var grayscale_shader: Shader = preload("res://shaders/grayscale.gdshader")
 
 @export var texture: AtlasTexture
 @export var icon_scale_multiplier: float = 1.0
 
 func new_icon_scene() -> TextureRect:
 	var texture_rect: TextureRect = TextureRect.new()
+	var shader_material: ShaderMaterial = ShaderMaterial.new()
+	shader_material.shader = grayscale_shader
+	texture_rect.material = shader_material
 	texture_rect.texture = texture
 	texture_rect.set_anchors_preset(Control.LayoutPreset.PRESET_CENTER)
 	# manual centering

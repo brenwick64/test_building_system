@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c5hnkcoj7dq84" path="res://systems/inventory_system/scripts/scenes/player_inventory.tscn" id="2_sl7we"]
 [ext_resource type="Script" path="res://systems/inventory_system/scripts/resource_definitions/RInventoryItem.gd" id="4_x64uq"]
 [ext_resource type="Resource" uid="uid://c8qo30hr4rp43" path="res://resources/item_data/furniture/1x1_table.tres" id="5_spqxq"]
-[ext_resource type="PackedScene" uid="uid://bkg7mvx22iqt3" path="res://scenes/ui/ui_player_inventory/ui_player_inventory.tscn" id="7_yhwru"]
+[ext_resource type="PackedScene" uid="uid://bkg7mvx22iqt3" path="res://scenes/ui/ui_player_action_bar/ui_player_action_bar.tscn" id="7_yhwru"]
 [ext_resource type="Resource" uid="uid://dkpdd832rs62y" path="res://resources/item_data/items/health_potion.tres" id="9_xgro7"]
 [ext_resource type="PackedScene" uid="uid://bvgt6wpavb31c" path="res://scenes/items/merchandise/dagger/dagger_pickup.tscn" id="12_eysn8"]
 [ext_resource type="Resource" uid="uid://ctyuc3ycewbnj" path="res://resources/item_data/items/remover_tool.tres" id="12_xmisv"]
@@ -385,7 +385,7 @@ shape = SubResource("CapsuleShape2D_46n4c")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="UIPlayerInventory" parent="UI" instance=ExtResource("7_yhwru")]
+[node name="UIPlayerActionBar" parent="UI" node_paths=PackedStringArray("inventory") instance=ExtResource("7_yhwru")]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -399,16 +399,17 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 6
 size_flags_vertical = 8
+inventory = NodePath("../../PlayerInventory")
 
 [node name="test" parent="." instance=ExtResource("12_eysn8")]
 position = Vector2(597, 419)
 
 [connection signal="item_placed" from="PlacementSystem" to="PlayerInventory" method="_on_placement_system_item_placed"]
-[connection signal="action_bar_pressed" from="InputManager" to="UI/UIPlayerInventory" method="_on_input_manager_action_bar_pressed"]
+[connection signal="action_bar_pressed" from="InputManager" to="UI/UIPlayerActionBar" method="_on_input_manager_action_bar_pressed"]
 [connection signal="action_pressed" from="InputManager" to="PlacementSystem" method="_on_input_manager_action_pressed"]
 [connection signal="rotate_pressed" from="InputManager" to="PlacementSystem" method="_on_input_manager_rotate_pressed"]
-[connection signal="inventory_updated" from="PlayerInventory" to="UI/UIPlayerInventory" method="_on_player_inventory_inventory_updated"]
+[connection signal="inventory_updated" from="PlayerInventory" to="UI/UIPlayerActionBar" method="_on_player_inventory_inventory_updated"]
 [connection signal="item_depleted" from="PlayerInventory" to="PlacementSystem" method="_on_player_inventory_item_depleted"]
-[connection signal="item_depleted" from="PlayerInventory" to="UI/UIPlayerInventory" method="_on_player_inventory_item_depleted"]
+[connection signal="item_depleted" from="PlayerInventory" to="UI/UIPlayerActionBar" method="_on_player_inventory_item_depleted"]
 [connection signal="item_selected" from="PlayerInventory" to="PlacementSystem" method="_on_player_inventory_item_selected"]
-[connection signal="item_selected" from="UI/UIPlayerInventory" to="PlayerInventory" method="_on_ui_player_inventory_item_selected"]
+[connection signal="item_selected" from="UI/UIPlayerActionBar" to="PlayerInventory" method="_on_ui_player_inventory_item_selected"]

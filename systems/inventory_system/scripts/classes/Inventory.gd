@@ -10,6 +10,25 @@ signal item_depleted(item_id: String)
 func _ready() -> void:
 	inventory_updated.emit(inventory_items)
 
+## -- methods --
+func get_item(item_id: String) -> RInventoryItem:
+	for inv_item: RInventoryItem in inventory_items:
+		if inv_item.item.item_id == item_id:
+			return inv_item
+	return null
+
+func add_item(item_id: String, amount: int) -> void:
+	var is_new_item: bool = inventory_items.filter(func(i: RInventoryItem): return i.item.item_id == item_id).size() == 0
+	if is_new_item: _add_new_inventory_item(item_id, amount)
+	else: _increment_existing_item(item_id, amount)
+	inventory_updated.emit(inventory_items)
+
+func remove_item(item_id: String, amount: int) -> void:
+	for inv_item: RInventoryItem in inventory_items:
+		if inv_item.item.item_id == item_id:
+			inv_item.count -= 1
+	_prune_depleted_items()
+
 ## -- helper functions --
 func _prune_depleted_items() -> void:
 	for inv_item: RInventoryItem in inventory_items:
@@ -32,16 +51,3 @@ func _increment_existing_item(item_id: String, amount: int) -> void:
 	for inv_item: RInventoryItem in inventory_items:
 		if inv_item.item.item_id == item_id:
 			inv_item.count += amount
-
-## -- methods --
-func add_item(item_id: String, amount: int) -> void:
-	var is_new_item: bool = inventory_items.filter(func(i: RInventoryItem): return i.item.item_id == item_id).size() == 0
-	if is_new_item: _add_new_inventory_item(item_id, amount)
-	else: _increment_existing_item(item_id, amount)
-	inventory_updated.emit(inventory_items)
-
-func remove_item(item_id: String, amount: int) -> void:
-	for inv_item: RInventoryItem in inventory_items:
-		if inv_item.item.item_id == item_id:
-			inv_item.count -= 1
-	_prune_depleted_items()
