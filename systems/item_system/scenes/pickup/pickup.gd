@@ -5,7 +5,8 @@ extends Node2D
 @export var pickup_delay: Timer
 @export var arc_move_on_spawn: Node2D
 
-var item_id: String
+@export var item_id: String
+
 var start_pos: Vector2
 var end_pos: Vector2
 

@@ -1,4 +1,2 @@
-- have items that run out stay in inventory as empty
 - have pickup behaviors follow checkbox config at pickup level
-- remove collisions from furniture previews, but also check for obstructions
-- add shader for ui when item is depleted to gray out item
+- refacor item slot code to handle events (runaway DRY causing ambiguous code)

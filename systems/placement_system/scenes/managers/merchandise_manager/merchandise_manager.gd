@@ -39,6 +39,14 @@ func _clear_preview() -> void:
 		merchandise_preview.queue_free()
 		merchandise_preview = null
 
+func _is_within_range() -> bool:
+	var player: Player = get_tree().get_first_node_in_group("player")
+	if not player: return false
+	var preview_pos: Vector2 = tile_manager.get_gp_from_tile_coords(hovered_tile_coords)
+	if player.global_position.distance_to(preview_pos) < PlayerStats.build_distance:
+		return true
+	return false
+	
 func _validate_preview() -> void:
 	pass
 
@@ -62,8 +70,9 @@ func _on_tile_manager_new_tile_hovered(tile_coords: Vector2i) -> void:
 	var free_item_slot: Node2D = _get_free_item_slot(hovered_tile_coords)
 	if not free_item_slot: return
 	_clear_preview()
-	_spawn_preview(free_item_slot)
-	_validate_preview()
+	if _is_within_range():
+		_spawn_preview(free_item_slot)
+		_validate_preview()
  
 func _on_tile_manager_layer_mouse_out() -> void:
 	hovered_tile_coords = Vector2i.ZERO

@@ -21,7 +21,7 @@ func _focus_next_item_slot() -> void:
 func _get_next_empty_slot() -> PanelContainer:
 	var item_slots: Array[Node] = item_slot_list.get_children() 
 	for slot: PanelContainer in item_slots:
-		if slot.item_id and not slot.is_disabled:
+		if not slot.item_id:
 			return slot
 	return null
 
@@ -34,7 +34,7 @@ func _on_item_selected(item_id: String) -> void:
 	item_selected.emit(item_id)
 	
 ### -- external signals  --
-func _on_player_inventory_inventory_updated(inventory_items: Array[RInventoryItem]) -> void:
+func _on_player_inventory_inventory_updated(_inventory_items: Array[RInventoryItem]) -> void:
 	var item_slots: Array[Node] = item_slot_list.get_children()
 	for slot: PanelContainer in item_slots:
 		slot.refresh_ui()
@@ -45,6 +45,19 @@ func _on_player_inventory_item_depleted(item: RItemData) -> void:
 		if not slot.item_id: continue
 		if slot.item_id == item.item_id:
 			slot.handle_item_depleted()
+
+func _on_player_inventory_new_item_added(item_id: String) -> void:
+	# check if empty slot exists for the item id
+	for item_slot: Node in item_slot_list.get_children():
+		if item_slot.item_id == item_id:
+			return
+	# check if empty item slot exists
+	var empty_slot: PanelContainer = _get_next_empty_slot()
+	if not empty_slot: return
+	# add new item to action bar
+	empty_slot.item_id = item_id
+	empty_slot.add_icon()
+	empty_slot.refresh_ui()
 
 func _on_input_manager_action_bar_pressed(key: String) -> void:
 	for item_slot: Node in item_slot_list.get_children():

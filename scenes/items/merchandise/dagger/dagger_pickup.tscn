@@ -9,9 +9,6 @@ size = Vector2(18, 7)
 [node name="Pickup" instance=ExtResource("1_c5eci")]
 texture = ExtResource("2_ygef5")
 
-[node name="ArcMoveOnSpawn" parent="Behaviors" index="0" node_paths=PackedStringArray("pickup")]
-pickup = NodePath("../..")
-
 [node name="PickupDelay" parent="." index="1"]
 wait_time = 0.25
 one_shot = true

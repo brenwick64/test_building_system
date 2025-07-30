@@ -17,6 +17,8 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 [autoload]
 
 ItemsDb="*res://systems/item_system/scripts/globals/ItemsDB.gd"
+UiEffects="*res://scripts/globals/UIEffects.gd"
+PlayerStats="*res://scripts/globals/PlayerStats.gd"
 
 [editor_plugins]
 
@@ -28,6 +30,7 @@ folder_colors={
 "res://assets/": "orange",
 "res://resources/": "green",
 "res://scenes/": "purple",
+"res://scripts/": "yellow",
 "res://shaders/": "teal"
 }
 

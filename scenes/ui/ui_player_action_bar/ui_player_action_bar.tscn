@@ -29,22 +29,25 @@ parent_action_bar = NodePath("../..")
 [node name="ItemSlot2" parent="HBoxContainer" node_paths=PackedStringArray("parent_action_bar") instance=ExtResource("1_g7teh")]
 layout_mode = 2
 hotkey = "2"
-item_id = "i-001"
+item_id = "f-002"
 parent_action_bar = NodePath("../..")
 
 [node name="ItemSlot3" parent="HBoxContainer" node_paths=PackedStringArray("parent_action_bar") instance=ExtResource("1_g7teh")]
 layout_mode = 2
 hotkey = "3"
+item_id = "f-003"
 parent_action_bar = NodePath("../..")
 
 [node name="ItemSlot4" parent="HBoxContainer" node_paths=PackedStringArray("parent_action_bar") instance=ExtResource("1_g7teh")]
 layout_mode = 2
 hotkey = "4"
+item_id = "f-004"
 parent_action_bar = NodePath("../..")
 
 [node name="ItemSlot5" parent="HBoxContainer" node_paths=PackedStringArray("parent_action_bar") instance=ExtResource("1_g7teh")]
 layout_mode = 2
 hotkey = "5"
+item_id = "i-001"
 parent_action_bar = NodePath("../..")
 
 [node name="ItemSlot6" parent="HBoxContainer" node_paths=PackedStringArray("parent_action_bar") instance=ExtResource("1_g7teh")]
@@ -64,11 +67,11 @@ parent_action_bar = NodePath("../..")
 
 [node name="ItemSlot9" parent="HBoxContainer" node_paths=PackedStringArray("parent_action_bar") instance=ExtResource("1_g7teh")]
 layout_mode = 2
-hotkey = "E"
+hotkey = "9"
 parent_action_bar = NodePath("../..")
 
 [node name="ItemSlot10" parent="HBoxContainer" node_paths=PackedStringArray("parent_action_bar") instance=ExtResource("1_g7teh")]
 layout_mode = 2
-hotkey = "R"
+hotkey = "0"
 item_id = "t-001"
 parent_action_bar = NodePath("../..")

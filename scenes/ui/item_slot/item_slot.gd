@@ -13,12 +13,12 @@ signal item_selected(item_id: String)
 
 var is_disabled: bool = false
 
-## -- methods --
+## -- methods --	
 func clear_item() -> void:
 	item_btn.focus_mode = Control.FOCUS_NONE
 	item_btn.disabled = true
 	
-func _add_icon() -> void:
+func add_icon() -> void:
 	_show_hotkey()
 	if not item_id: return
 	var item_data: RItemData = ItemsDB.get_item_data(item_id)
@@ -33,7 +33,6 @@ func refresh_ui() -> void:
 		_hide_all()
 		return
 	var inventory_item: RInventoryItem = parent_action_bar.inventory.get_item(item_id)
-
 	if inventory_item: 
 		if inventory_item.stackable: _show_item_count(inventory_item)
 		_enable_slot()
@@ -42,7 +41,7 @@ func refresh_ui() -> void:
 
 ## -- overrides --
 func _ready() -> void:
-	_add_icon()
+	add_icon()
 	refresh_ui()
 
 ## -- helper functions --
@@ -54,8 +53,14 @@ func _show_hotkey() -> void:
 	hotkey_label.text = str(hotkey)
 
 func _show_item_count(inventory_item: RInventoryItem) -> void:
+	var old_item_count: int = int(item_count.text)
+	var is_count_increased: bool = old_item_count < inventory_item.count
+	
 	circle_panel.visible = true
 	item_count.text = str(inventory_item.count)
+
+	if is_count_increased:
+		UIEffects.bounce_control(circle_panel)
 
 func _disable_slot() -> void:
 	is_disabled = true
@@ -70,6 +75,7 @@ func _enable_slot() -> void:
 	is_disabled = false
 	item_btn.focus_mode = Control.FOCUS_ALL
 	item_btn.disabled = false
+	item_btn.visible = true
 	if item_btn.get_children():
 		var item_btn_label: TextureRect = item_btn.get_children()[0]
 		item_btn_label.material.set_shader_parameter("use_grayscale", false)

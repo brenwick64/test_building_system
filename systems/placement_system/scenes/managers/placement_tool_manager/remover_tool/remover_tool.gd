@@ -13,12 +13,21 @@ func _clear_hovered_node() -> void:
 func _highlight_hovered_node() -> void:
 	hovered_node.focus()
 
+func _is_within_range(furniture: PlaceableFurniture) -> bool:
+	var player: Player = get_tree().get_first_node_in_group("player")
+	if not player: return false
+	if player.global_position.distance_to(furniture.global_position) < PlayerStats.build_distance:
+		return true
+	return false
+
 ## -- handler methods --
 func handle_new_tile_hovered(tile_coords: Vector2i, furniture_manager: FurnitureManager) -> void:
 	hovered_tile = tile_coords
 	_clear_hovered_node()
+	
 	var furniture: PlaceableFurniture = furniture_manager.get_furniture_at_coords(tile_coords)
 	if not furniture: return
+	if not _is_within_range(furniture): return
 	var occupied_item_slot: FurnitureItemSlot = furniture.get_occupied_slot_at_coords(tile_coords)
 	if occupied_item_slot:
 		hovered_node = occupied_item_slot.placed_item
