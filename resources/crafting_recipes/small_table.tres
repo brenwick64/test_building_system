@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="RRecipe" load_steps=6 format=3 uid="uid://chjnv1lca50ol"]
+
+[ext_resource type="Script" path="res://systems/inventory_system/scripts/resource_definitions/RInventoryItem.gd" id="1_6x5ku"]
+[ext_resource type="Script" path="res://systems/crafting_system/scripts/resource_definitions/RRecipe.gd" id="2_48h0r"]
+[ext_resource type="Resource" uid="uid://cjg7gyrocbt1h" path="res://resources/item_data/materials/wood.tres" id="2_r4n0t"]
+[ext_resource type="Resource" uid="uid://c8qo30hr4rp43" path="res://resources/item_data/furniture/1x1_table.tres" id="3_po2eq"]
+
+[sub_resource type="Resource" id="Resource_tc7sn"]
+script = ExtResource("1_6x5ku")
+item = ExtResource("2_r4n0t")
+count = 10
+stackable = true
+
+[resource]
+script = ExtResource("2_48h0r")
+recipe_name = &"Small Table"
+base_craft_time_seconds = 5
+input_items = Array[ExtResource("1_6x5ku")]([SubResource("Resource_tc7sn")])
+output_item = ExtResource("3_po2eq")

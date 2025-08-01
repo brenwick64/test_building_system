@@ -1,13 +1,9 @@
-[gd_scene load_steps=67 format=4 uid="uid://de3o831n25f2l"]
+[gd_scene load_steps=63 format=4 uid="uid://de3o831n25f2l"]
 
 [ext_resource type="TileSet" uid="uid://jyl0pt03odje" path="res://resources/tilesets/main_tileset.tres" id="1_f72q3"]
-[ext_resource type="Script" path="res://scenes/debug/pickup_spawner/pickup_spawner.gd" id="1_nbrfu"]
 [ext_resource type="Script" path="res://scenes/tile_manager/tile_manager.gd" id="1_paqh8"]
 [ext_resource type="Script" path="res://scenes/input/input_manager.gd" id="1_qkav0"]
-[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="2_pxaiu"]
 [ext_resource type="PackedScene" uid="uid://c5hnkcoj7dq84" path="res://systems/inventory_system/scripts/scenes/player_inventory.tscn" id="2_sl7we"]
-[ext_resource type="Resource" uid="uid://cjg7gyrocbt1h" path="res://resources/item_data/materials/wood.tres" id="3_86h2l"]
-[ext_resource type="Resource" uid="uid://chlespnosrikd" path="res://resources/item_data/materials/stone.tres" id="4_3a7ax"]
 [ext_resource type="Script" path="res://systems/inventory_system/scripts/resource_definitions/RInventoryItem.gd" id="4_x64uq"]
 [ext_resource type="Resource" uid="uid://c8qo30hr4rp43" path="res://resources/item_data/furniture/1x1_table.tres" id="5_spqxq"]
 [ext_resource type="Resource" uid="uid://ctd0aljxu3ooc" path="res://resources/item_data/furniture/2x1_table.tres" id="7_p26rb"]
@@ -16,7 +12,8 @@
 [ext_resource type="Resource" uid="uid://b01cl5cc1g0sp" path="res://resources/item_data/furniture/3x1_table.tres" id="9_8yntn"]
 [ext_resource type="Resource" uid="uid://dkpdd832rs62y" path="res://resources/item_data/items/health_potion.tres" id="9_xgro7"]
 [ext_resource type="Resource" uid="uid://ctyuc3ycewbnj" path="res://resources/item_data/items/remover_tool.tres" id="12_xmisv"]
-[ext_resource type="Resource" uid="uid://b8h5q6ggevdyi" path="res://resources/item_data/furniture/crafting_table.tres" id="16_kkxdv"]
+[ext_resource type="Theme" uid="uid://d27j5q3aqw7ad" path="res://scenes/ui/main_theme.tres" id="14_gfa74"]
+[ext_resource type="Script" path="res://scenes/ui/equipped_item_circle/equipped_item_circle.gd" id="15_whyq0"]
 [ext_resource type="Texture2D" uid="uid://dh2cnltobawlx" path="res://assets/characters/player.png" id="17_4bagj"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="17_utvwo"]
 [ext_resource type="PackedScene" uid="uid://sp58wos84hs4" path="res://systems/placement_system/scenes/placement_system.tscn" id="19_tdy0a"]
@@ -56,12 +53,6 @@ script = ExtResource("4_x64uq")
 item = ExtResource("9_xgro7")
 count = 10
 stackable = true
-
-[sub_resource type="Resource" id="Resource_si6h5"]
-script = ExtResource("4_x64uq")
-item = ExtResource("16_kkxdv")
-count = 1
-stackable = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dmiqr"]
 atlas = ExtResource("17_4bagj")
@@ -357,14 +348,6 @@ height = 18.0
 
 [node name="TestScene" type="Node2D"]
 
-[node name="Debug" type="Node" parent="."]
-
-[node name="PickupSpawner" type="Node2D" parent="Debug"]
-position = Vector2(410, 396)
-script = ExtResource("1_nbrfu")
-disabled = true
-items = Array[ExtResource("2_pxaiu")]([ExtResource("3_86h2l"), ExtResource("4_3a7ax")])
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(60, 49)
 anchor_mode = 0
@@ -380,7 +363,7 @@ placeable_layer = NodePath("../TileMap/ShoppeFloor")
 script = ExtResource("1_qkav0")
 
 [node name="PlayerInventory" parent="." instance=ExtResource("2_sl7we")]
-inventory_items = Array[ExtResource("4_x64uq")]([SubResource("Resource_to2d8"), SubResource("Resource_xf3qb"), SubResource("Resource_wn6ap"), SubResource("Resource_sxo45"), SubResource("Resource_2poh8"), SubResource("Resource_lp816"), SubResource("Resource_si6h5")])
+inventory_items = Array[ExtResource("4_x64uq")]([SubResource("Resource_to2d8"), SubResource("Resource_xf3qb"), SubResource("Resource_wn6ap"), SubResource("Resource_sxo45"), SubResource("Resource_2poh8"), SubResource("Resource_lp816")])
 
 [node name="TileMap" type="Node2D" parent="."]
 
@@ -408,6 +391,15 @@ position = Vector2(493, 351)
 motion_mode = 1
 script = ExtResource("17_utvwo")
 inventory = NodePath("../PlayerInventory")
+
+[node name="EquippedItemCircle" type="Panel" parent="Player"]
+offset_left = -10.0
+offset_top = -29.0
+offset_right = 10.0
+offset_bottom = -6.0
+theme = ExtResource("14_gfa74")
+theme_type_variation = &"CirclePanel"
+script = ExtResource("15_whyq0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 sprite_frames = SubResource("SpriteFrames_hnh8a")
@@ -444,10 +436,6 @@ size_flags_horizontal = 6
 size_flags_vertical = 8
 inventory = NodePath("../../PlayerInventory")
 
-[node name="UICraftingMenu" type="Panel" parent="UI"]
-offset_right = 40.0
-offset_bottom = 40.0
-
 [connection signal="item_placed" from="PlacementSystem" to="PlayerInventory" method="_on_placement_system_item_placed"]
 [connection signal="action_bar_pressed" from="InputManager" to="UI/UIPlayerActionBar" method="_on_input_manager_action_bar_pressed"]
 [connection signal="action_pressed" from="InputManager" to="PlacementSystem" method="_on_input_manager_action_pressed"]
@@ -456,5 +444,6 @@ offset_bottom = 40.0
 [connection signal="item_depleted" from="PlayerInventory" to="PlacementSystem" method="_on_player_inventory_item_depleted"]
 [connection signal="item_depleted" from="PlayerInventory" to="UI/UIPlayerActionBar" method="_on_player_inventory_item_depleted"]
 [connection signal="item_selected" from="PlayerInventory" to="PlacementSystem" method="_on_player_inventory_item_selected"]
+[connection signal="item_selected" from="PlayerInventory" to="Player/EquippedItemCircle" method="_on_player_inventory_item_selected"]
 [connection signal="new_item_added" from="PlayerInventory" to="UI/UIPlayerActionBar" method="_on_player_inventory_new_item_added"]
 [connection signal="item_selected" from="UI/UIPlayerActionBar" to="PlayerInventory" method="_on_ui_player_inventory_item_selected"]

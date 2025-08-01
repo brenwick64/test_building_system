@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=4 uid="uid://de3o831n25f2l"]
+[gd_scene load_steps=65 format=4 uid="uid://de3o831n25f2l"]
 
 [ext_resource type="TileSet" uid="uid://jyl0pt03odje" path="res://resources/tilesets/main_tileset.tres" id="1_f72q3"]
 [ext_resource type="Script" path="res://scenes/debug/pickup_spawner/pickup_spawner.gd" id="1_nbrfu"]
@@ -16,7 +16,6 @@
 [ext_resource type="Resource" uid="uid://b01cl5cc1g0sp" path="res://resources/item_data/furniture/3x1_table.tres" id="9_8yntn"]
 [ext_resource type="Resource" uid="uid://dkpdd832rs62y" path="res://resources/item_data/items/health_potion.tres" id="9_xgro7"]
 [ext_resource type="Resource" uid="uid://ctyuc3ycewbnj" path="res://resources/item_data/items/remover_tool.tres" id="12_xmisv"]
-[ext_resource type="Resource" uid="uid://b8h5q6ggevdyi" path="res://resources/item_data/furniture/crafting_table.tres" id="16_kkxdv"]
 [ext_resource type="Texture2D" uid="uid://dh2cnltobawlx" path="res://assets/characters/player.png" id="17_4bagj"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="17_utvwo"]
 [ext_resource type="PackedScene" uid="uid://sp58wos84hs4" path="res://systems/placement_system/scenes/placement_system.tscn" id="19_tdy0a"]
@@ -56,12 +55,6 @@ script = ExtResource("4_x64uq")
 item = ExtResource("9_xgro7")
 count = 10
 stackable = true
-
-[sub_resource type="Resource" id="Resource_si6h5"]
-script = ExtResource("4_x64uq")
-item = ExtResource("16_kkxdv")
-count = 1
-stackable = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dmiqr"]
 atlas = ExtResource("17_4bagj")
@@ -362,7 +355,6 @@ height = 18.0
 [node name="PickupSpawner" type="Node2D" parent="Debug"]
 position = Vector2(410, 396)
 script = ExtResource("1_nbrfu")
-disabled = true
 items = Array[ExtResource("2_pxaiu")]([ExtResource("3_86h2l"), ExtResource("4_3a7ax")])
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -380,7 +372,7 @@ placeable_layer = NodePath("../TileMap/ShoppeFloor")
 script = ExtResource("1_qkav0")
 
 [node name="PlayerInventory" parent="." instance=ExtResource("2_sl7we")]
-inventory_items = Array[ExtResource("4_x64uq")]([SubResource("Resource_to2d8"), SubResource("Resource_xf3qb"), SubResource("Resource_wn6ap"), SubResource("Resource_sxo45"), SubResource("Resource_2poh8"), SubResource("Resource_lp816"), SubResource("Resource_si6h5")])
+inventory_items = Array[ExtResource("4_x64uq")]([SubResource("Resource_to2d8"), SubResource("Resource_xf3qb"), SubResource("Resource_wn6ap"), SubResource("Resource_sxo45"), SubResource("Resource_2poh8"), SubResource("Resource_lp816")])
 
 [node name="TileMap" type="Node2D" parent="."]
 
@@ -443,10 +435,6 @@ grow_vertical = 0
 size_flags_horizontal = 6
 size_flags_vertical = 8
 inventory = NodePath("../../PlayerInventory")
-
-[node name="UICraftingMenu" type="Panel" parent="UI"]
-offset_right = 40.0
-offset_bottom = 40.0
 
 [connection signal="item_placed" from="PlacementSystem" to="PlayerInventory" method="_on_placement_system_item_placed"]
 [connection signal="action_bar_pressed" from="InputManager" to="UI/UIPlayerActionBar" method="_on_input_manager_action_bar_pressed"]

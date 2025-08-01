@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RItemData" load_steps=12 format=3 uid="uid://ctd0aljxu3ooc"]
+[gd_resource type="Resource" script_class="RItemData" load_steps=13 format=3 uid="uid://ctd0aljxu3ooc"]
 
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="1_goku3"]
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemIcon.gd" id="1_q6fmp"]
@@ -27,10 +27,16 @@ scene_horizontal = ExtResource("3_g3jm7")
 scene_vertical = ExtResource("4_5vdl2")
 placeable_scale_multiplier = 1.0
 
+[sub_resource type="Resource" id="Resource_nhd5y"]
+script = ExtResource("1_q6fmp")
+texture = ExtResource("2_uet7y")
+icon_scale_multiplier = 0.5
+
 [resource]
 script = ExtResource("1_goku3")
 item_id = "f-002"
 item_name = "2x1_table"
 placeable = SubResource("Resource_hiqxk")
 icon = SubResource("Resource_g127f")
+tiny_icon = SubResource("Resource_nhd5y")
 pickup = SubResource("Resource_x1ylk")

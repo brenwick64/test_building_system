@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="RItemData" load_steps=8 format=3 uid="uid://cjg7gyrocbt1h"]
+
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemIcon.gd" id="1_dflq4"]
+[ext_resource type="Texture2D" uid="uid://djhg67y7el2na" path="res://scenes/items/materials/wood/wood_texture.tres" id="2_b5h02"]
+[ext_resource type="PackedScene" uid="uid://dcf6dcx1xe2yg" path="res://scenes/items/materials/wood/wood_pickup.tscn" id="3_5x65x"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RPickup.gd" id="4_o5nfh"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="5_puind"]
+
+[sub_resource type="Resource" id="Resource_e1n65"]
+script = ExtResource("1_dflq4")
+texture = ExtResource("2_b5h02")
+icon_scale_multiplier = 2.0
+
+[sub_resource type="Resource" id="Resource_rwnvx"]
+script = ExtResource("4_o5nfh")
+pickup_scene = ExtResource("3_5x65x")
+pickup_scale_multiplier = 0.75
+
+[resource]
+script = ExtResource("5_puind")
+item_id = "m-001"
+item_name = "wood"
+icon = SubResource("Resource_e1n65")
+pickup = SubResource("Resource_rwnvx")

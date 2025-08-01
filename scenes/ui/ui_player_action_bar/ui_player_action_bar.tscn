@@ -53,6 +53,7 @@ parent_action_bar = NodePath("../..")
 [node name="ItemSlot6" parent="HBoxContainer" node_paths=PackedStringArray("parent_action_bar") instance=ExtResource("1_g7teh")]
 layout_mode = 2
 hotkey = "6"
+item_id = "crafting_table"
 parent_action_bar = NodePath("../..")
 
 [node name="ItemSlot7" parent="HBoxContainer" node_paths=PackedStringArray("parent_action_bar") instance=ExtResource("1_g7teh")]

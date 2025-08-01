@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="RItemData" load_steps=8 format=3 uid="uid://chlespnosrikd"]
+
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="1_amyds"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemIcon.gd" id="1_l8uye"]
+[ext_resource type="Texture2D" uid="uid://2nmglyhpismx" path="res://scenes/items/materials/stone/stone_texture.tres" id="2_wh0bo"]
+[ext_resource type="PackedScene" uid="uid://cuvq7nchercqn" path="res://scenes/items/materials/stone/stone_pickup.tscn" id="3_gg0n2"]
+[ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RPickup.gd" id="4_vk200"]
+
+[sub_resource type="Resource" id="Resource_hrme3"]
+script = ExtResource("1_l8uye")
+texture = ExtResource("2_wh0bo")
+icon_scale_multiplier = 2.0
+
+[sub_resource type="Resource" id="Resource_iw4ro"]
+script = ExtResource("4_vk200")
+pickup_scene = ExtResource("3_gg0n2")
+pickup_scale_multiplier = 1.0
+
+[resource]
+script = ExtResource("1_amyds")
+item_id = "m-002"
+item_name = "stone"
+icon = SubResource("Resource_hrme3")
+pickup = SubResource("Resource_iw4ro")

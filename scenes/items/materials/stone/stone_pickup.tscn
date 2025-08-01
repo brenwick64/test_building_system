@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuvq7nchercqn"]
+
+[ext_resource type="PackedScene" uid="uid://dyvuqi716mqx8" path="res://systems/item_system/scenes/pickup/pickup.tscn" id="1_h08im"]
+[ext_resource type="Texture2D" uid="uid://2nmglyhpismx" path="res://scenes/items/materials/stone/stone_texture.tres" id="2_tioh1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_liwn8"]
+size = Vector2(6.5, 7.5)
+
+[node name="Pickup" instance=ExtResource("1_h08im")]
+texture = ExtResource("2_tioh1")
+
+[node name="PickupDelay" parent="." index="1"]
+wait_time = 0.25
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" index="0"]
+position = Vector2(-0.25, 0)
+shape = SubResource("RectangleShape2D_liwn8")

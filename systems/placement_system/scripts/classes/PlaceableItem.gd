@@ -5,11 +5,13 @@ extends Node2D
 
 @export var sprite_2d: Sprite2D
 
+var is_preview: bool = false
 var item_id: String
 
 ## -- methods --
 func set_preview() -> void:
 	sprite_2d.modulate = Color(1, 1, 1, 0.5)
+	is_preview = true
 
 func focus() -> void:
 	var shader_material: ShaderMaterial = sprite_2d.material
