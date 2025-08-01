@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RItemData" load_steps=13 format=3 uid="uid://b01cl5cc1g0sp"]
+[gd_resource type="Resource" script_class="RItemData" load_steps=12 format=3 uid="uid://b01cl5cc1g0sp"]
 
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemIcon.gd" id="1_e6jrk"]
 [ext_resource type="Texture2D" uid="uid://ce71xoki3jp8k" path="res://scenes/items/furniture/3x1_table/3x1_table_texture_vertical.tres" id="2_7d3cy"]
@@ -27,16 +27,10 @@ scene_horizontal = ExtResource("3_v0ke6")
 scene_vertical = ExtResource("5_apale")
 placeable_scale_multiplier = 1.0
 
-[sub_resource type="Resource" id="Resource_n6brx"]
-script = ExtResource("1_e6jrk")
-texture = ExtResource("2_7d3cy")
-icon_scale_multiplier = 0.45
-
 [resource]
 script = ExtResource("7_257ek")
 item_id = "f-004"
 item_name = "3x1_table"
 placeable = SubResource("Resource_scgpf")
 icon = SubResource("Resource_goo4i")
-tiny_icon = SubResource("Resource_n6brx")
 pickup = SubResource("Resource_a4m8h")

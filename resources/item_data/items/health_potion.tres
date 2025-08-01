@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RItemData" load_steps=12 format=3 uid="uid://dkpdd832rs62y"]
+[gd_resource type="Resource" script_class="RItemData" load_steps=11 format=3 uid="uid://dkpdd832rs62y"]
 
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemIcon.gd" id="1_cjjl4"]
 [ext_resource type="Texture2D" uid="uid://cbituoysuw48g" path="res://scenes/items/merchandise/health_potion/health_potion_texture.tres" id="2_qxn1f"]
@@ -26,16 +26,10 @@ item_dimensions = Vector2i(1, 1)
 placeable_scene = ExtResource("3_nl57l")
 placeable_scale_multiplier = 0.65
 
-[sub_resource type="Resource" id="Resource_3lo6k"]
-script = ExtResource("1_cjjl4")
-texture = ExtResource("2_qxn1f")
-icon_scale_multiplier = 1.0
-
 [resource]
 script = ExtResource("5_2w6js")
 item_id = "i-001"
 item_name = "health_potion"
 placeable = SubResource("Resource_o3htc")
 icon = SubResource("Resource_d2rpn")
-tiny_icon = SubResource("Resource_3lo6k")
 pickup = SubResource("Resource_1pojf")
