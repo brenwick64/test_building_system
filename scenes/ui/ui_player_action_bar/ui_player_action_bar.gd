@@ -63,3 +63,9 @@ func _on_input_manager_action_bar_pressed(key: String) -> void:
 	for item_slot: Node in item_slot_list.get_children():
 		if item_slot.hotkey == key:
 			item_slot.handle_btn_pressed()
+
+func _on_player_inventory_item_selected(item: RItemData) -> void:
+	# check if no item is selected
+	if item: return
+	for item_slot: Node in item_slot_list.get_children():
+		item_slot.unfocus()

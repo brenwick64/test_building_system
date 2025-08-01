@@ -98,6 +98,11 @@ func handle_rotate_pressed() -> void:
 	_validate_preview()
  
 func handle_equipped_item_updated(current_item: RItemData) -> void:
+	# case - no item is equipped
+	if not current_item: 
+		_clear_preview()
+		equipped_merchandise = null
+		return
 	if current_item.placeable is RPlaceableMerchandise:
 		equipped_merchandise = current_item
 		var free_item_slot: Node2D = _get_free_item_slot(hovered_tile_coords)

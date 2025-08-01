@@ -1,2 +1,4 @@
+- its time to separate out preview and actual placeables into their own scenes
+
 - have pickup behaviors follow checkbox config at pickup level
 - refacor item slot code to handle events (runaway DRY causing ambiguous code)

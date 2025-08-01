@@ -132,6 +132,11 @@ func handle_rotate_pressed() -> void:
 	_validate_preview()
 
 func handle_equipped_item_updated(current_item: RItemData) -> void:
+	# case - no item is equipped
+	if not current_item:
+		equipped_furniture_data = null
+		_clear_preview() 
+		return
 	if current_item.placeable and current_item.placeable is RPlaceableFurniture:
 		equipped_furniture_data = current_item
 		_clear_preview()

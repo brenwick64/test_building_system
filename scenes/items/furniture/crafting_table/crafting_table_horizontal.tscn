@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://bqtp324ulh2pb" path="res://scenes/items/furniture/crafting_table/crafting_table_texture_horizontal.tres" id="2_58q30"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vsva7"]
-size = Vector2(24, 14)
+size = Vector2(28, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gnfd1"]
-size = Vector2(25, 14)
+size = Vector2(29.5, 14)
 
 [node name="CraftingTableHorizontal" type="StaticBody2D" node_paths=PackedStringArray("item_slots", "collision_shape_2D", "placement_area", "sprite_2d")]
 script = ExtResource("1_usp3e")
@@ -25,6 +25,7 @@ texture = ExtResource("2_58q30")
 position = Vector2(-8, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_vsva7")
 
 [node name="ItemSlots" type="Node2D" parent="."]
@@ -34,6 +35,6 @@ collision_layer = 2147483648
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0.5, 0)
+position = Vector2(0.25, 0)
 shape = SubResource("RectangleShape2D_gnfd1")
 debug_color = Color(0.796078, 0.164706, 0.945098, 0.2)

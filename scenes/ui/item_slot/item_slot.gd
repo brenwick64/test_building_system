@@ -13,7 +13,10 @@ signal item_selected(item_id: String)
 
 var is_disabled: bool = false
 
-## -- methods --	
+## -- methods --
+func unfocus() -> void:
+	item_btn.release_focus()
+	
 func clear_item() -> void:
 	item_btn.focus_mode = Control.FOCUS_NONE
 	item_btn.disabled = true

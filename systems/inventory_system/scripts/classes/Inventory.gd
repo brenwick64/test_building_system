@@ -3,7 +3,7 @@ extends Node
 
 signal inventory_updated(inventory_items: Array[RInventoryItem])
 signal new_item_added(item_id: String) 
-signal item_depleted(item_id: String)
+signal item_depleted(item: RItemData)
 
 # TODO: Add loading of saved data
 @export var inventory_items: Array[RInventoryItem]
@@ -34,10 +34,13 @@ func remove_item(item_id: String, _amount: int) -> void:
 	_prune_depleted_items()
 
 ## -- helper functions --
+func _signal_item_depleted(inv_item: RInventoryItem) -> void:
+	item_depleted.emit(inv_item.item)
+
 func _prune_depleted_items() -> void:
 	for inv_item: RInventoryItem in inventory_items:
 		if inv_item.count <= 0:
-			item_depleted.emit(inv_item.item)
+			_signal_item_depleted(inv_item)
 	inventory_items = inventory_items.filter(func(inv_item: RInventoryItem): return inv_item.count > 0)
 	inventory_updated.emit(inventory_items)
 
