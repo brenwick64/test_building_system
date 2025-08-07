@@ -30,13 +30,13 @@ func _on_placement_area_mouse_entered():
 	if is_preview: return
 	if not _are_hands_empty(): return
 	focus()
-	print("crafting entered")
+	print("crafting station entered")
 
 func _on_placement_area_mouse_exited():
 	if is_preview: return
 	if not _are_hands_empty(): return
 	unfocus()
-	print("crafting exited")
+	print("crafting station exited")
 
 func _on_placement_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if is_preview: return

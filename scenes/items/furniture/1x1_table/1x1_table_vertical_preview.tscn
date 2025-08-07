@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://byu4y613h7vf8"]
+
+[ext_resource type="Script" path="res://systems/placement_system/scripts/classes/PlaceableFurniturePreview.gd" id="1_xus6d"]
+[ext_resource type="Texture2D" uid="uid://cccnpfo5we477" path="res://scenes/items/furniture/1x1_table/1x1_table_texture.tres" id="2_bx1g8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xt30e"]
+size = Vector2(14, 14)
+
+[node name="1x1TableVerticalPreview" type="Node2D" node_paths=PackedStringArray("placement_area", "sprite_2d")]
+script = ExtResource("1_xus6d")
+is_horizontal = true
+placement_area = NodePath("PlacementArea")
+sprite_2d = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_bx1g8")
+
+[node name="Pivot" type="Marker2D" parent="."]
+
+[node name="PlacementArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlacementArea"]
+shape = SubResource("RectangleShape2D_xt30e")
+debug_color = Color(0.796078, 0.164706, 0.945098, 0.2)

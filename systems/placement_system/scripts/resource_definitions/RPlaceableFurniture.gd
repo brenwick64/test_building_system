@@ -6,6 +6,8 @@ extends RPlaceableItem
 @export var is_symmetrical: bool
 
 @export var tile_matrix: Array[Vector2i]
+@export var preview_horizontal: PackedScene
+@export var preview_vertical: PackedScene
 @export var scene_horizontal: PackedScene
 @export var scene_vertical: PackedScene
 
@@ -13,6 +15,16 @@ const ROTATION_VALUES: Array[int] = [0, 90]
 var current_degrees: int = ROTATION_VALUES[0]
 
 ## -- constructors
+func new_horizontal_preview() -> PlaceableFurniturePreview:
+	var h_preview_ins: Node2D = preview_horizontal.instantiate()
+	h_preview_ins.item_id = item_id
+	return h_preview_ins
+
+func new_vertical_preview() -> PlaceableFurniturePreview:
+	var v_preview_ins: Node2D = preview_horizontal.instantiate()
+	v_preview_ins.item_id = item_id
+	return v_preview_ins
+
 func new_horizontal_scene() -> PlaceableFurniture:
 	var horizontal_ins: Node2D = scene_horizontal.instantiate()
 	horizontal_ins.item_id = item_id
@@ -28,6 +40,13 @@ func rotate_clockwise() -> void:
 	var index: int = ROTATION_VALUES.find(current_degrees)
 	index = (index + 1) % ROTATION_VALUES.size()
 	current_degrees = ROTATION_VALUES[index]
+	
+func get_furniture_preview() -> Node2D:
+	match current_degrees:
+		0: return new_horizontal_preview()
+		90: return new_vertical_preview()
+	push_error("error: current rotation degrees for " + resource_name + "is invalid: " + str(current_degrees))
+	return new_horizontal_preview()
 	
 func get_furniture() -> Node2D:
 	match current_degrees:

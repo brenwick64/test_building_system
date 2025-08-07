@@ -9,7 +9,7 @@ signal furniture_placed(furniture_data: RItemData)
 
 var equipped_furniture_data: RItemData
 var hovered_tile_coords: Vector2i
-var furniture_preview: PlaceableFurniture
+var furniture_preview: PlaceableFurniturePreview
 var placed_furniture: Array[PlaceableFurniture]
 
 func _ready() -> void:
@@ -67,9 +67,8 @@ func _clear_preview() -> void:
 func _spawn_preview() -> void:
 	if not hovered_tile_coords: return
 	var placeable: RPlaceableFurniture = equipped_furniture_data.placeable
-	var preview_ins: PlaceableFurniture = placeable.get_furniture()
+	var preview_ins: PlaceableFurniturePreview = placeable.get_furniture_preview()
 	var pivot: Marker2D = preview_ins.get_node("Pivot")
-	preview_ins.set_preview()
 	preview_ins.global_position = tile_manager.get_gp_from_tile_coords(hovered_tile_coords) as Vector2 - pivot.global_position
 	get_tree().root.add_child(preview_ins)
 	furniture_preview = preview_ins
