@@ -21,7 +21,7 @@ func new_horizontal_preview() -> PlaceableFurniturePreview:
 	return h_preview_ins
 
 func new_vertical_preview() -> PlaceableFurniturePreview:
-	var v_preview_ins: Node2D = preview_horizontal.instantiate()
+	var v_preview_ins: Node2D = preview_vertical.instantiate()
 	v_preview_ins.item_id = item_id
 	return v_preview_ins
 

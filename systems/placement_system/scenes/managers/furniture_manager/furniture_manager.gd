@@ -68,7 +68,7 @@ func _spawn_preview() -> void:
 	if not hovered_tile_coords: return
 	var placeable: RPlaceableFurniture = equipped_furniture_data.placeable
 	var preview_ins: PlaceableFurniturePreview = placeable.get_furniture_preview()
-	var pivot: Marker2D = preview_ins.get_node("Pivot")
+	var pivot: Marker2D = preview_ins.base_scene.pivot
 	preview_ins.global_position = tile_manager.get_gp_from_tile_coords(hovered_tile_coords) as Vector2 - pivot.global_position
 	get_tree().root.add_child(preview_ins)
 	furniture_preview = preview_ins
@@ -78,22 +78,21 @@ func _validate_preview() -> void:
 	if _is_used_tile() or _is_incorrect_layer():
 		furniture_preview.set_invalid_placement()
 
-func _spawn_furnitrue() -> void:
+func _spawn_furniture() -> void:
 	var shoppe_furniture: Node2D = get_tree().get_first_node_in_group("ShoppeFurniture")
 	if not shoppe_furniture:
 		push_warning("warning: cannot add furniture since no ShoppeFurniture scene was detected")
 		return
 	var furniture_ins: Node2D = equipped_furniture_data.placeable.get_furniture()
 	# add global position
-	var pivot: Marker2D = furniture_ins.get_node("Pivot")
+	var pivot: Marker2D = furniture_ins.base_scene.pivot
 	var tile_global_pos: Vector2 = tile_manager.get_gp_from_tile_coords(hovered_tile_coords)
 	furniture_ins.furniture_data = equipped_furniture_data
 	furniture_ins.global_position = shoppe_furniture.to_local(tile_global_pos) as Vector2 - pivot.global_position
 	# add shader
-	var sprite: Sprite2D = furniture_ins.get_node("Sprite2D")
 	var material: ShaderMaterial = ShaderMaterial.new()
 	material.set_shader(outline_shader)
-	sprite.material = material
+	furniture_ins.base_scene.sprite.material = material
 	# configure variables and add to scene
 	furniture_ins.set_occupied_tiles(equipped_furniture_data.placeable	.get_tile_matrix(), hovered_tile_coords)
 	shoppe_furniture.add_child(furniture_ins)
@@ -118,7 +117,7 @@ func handle_action_pressed(_event: InputEvent) -> void:
 	if not furniture_preview: return
 	if not furniture_preview.is_valid_placement: return
 	_clear_preview()
-	_spawn_furnitrue()
+	_spawn_furniture()
 	furniture_placed.emit(equipped_furniture_data)
 
 func handle_rotate_pressed() -> void:

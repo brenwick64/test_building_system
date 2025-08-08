@@ -7,9 +7,9 @@ var is_ready: bool = false
 
 func _ready() -> void:
 	super._ready()
-	placement_area.mouse_entered.connect(_on_placement_area_mouse_entered)
-	placement_area.mouse_exited.connect(_on_placement_area_mouse_exited)
-	placement_area.input_event.connect(_on_placement_area_input_event)
+	#placement_area.mouse_entered.connect(_on_placement_area_mouse_entered)
+	#placement_area.mouse_exited.connect(_on_placement_area_mouse_exited)
+	#placement_area.input_event.connect(_on_placement_area_input_event)
 	# TODO:
 	var timer: Timer = Timer.new()
 	timer.wait_time = 0.5

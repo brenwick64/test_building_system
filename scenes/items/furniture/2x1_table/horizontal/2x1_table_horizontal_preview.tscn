@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cg5tixp4b7wfv"]
+
+[ext_resource type="Script" path="res://systems/placement_system/scripts/classes/PlaceableFurniturePreview.gd" id="1_sdcuh"]
+[ext_resource type="PackedScene" uid="uid://bt41xkocug07r" path="res://scenes/items/furniture/2x1_table/horizontal/2x1_table_horizontal_base.tscn" id="2_ac86s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gnfd1"]
+size = Vector2(29.5, 14)
+
+[node name="2x1TableHorizontalPreview" type="Node2D" node_paths=PackedStringArray("base_scene", "placement_area")]
+script = ExtResource("1_sdcuh")
+is_horizontal = true
+base_scene = NodePath("2x1TableHorizontalBase")
+placement_area = NodePath("PlacementArea")
+
+[node name="2x1TableHorizontalBase" parent="." instance=ExtResource("2_ac86s")]
+
+[node name="PlacementArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlacementArea"]
+shape = SubResource("RectangleShape2D_gnfd1")
+debug_color = Color(0.796078, 0.164706, 0.945098, 0.2)

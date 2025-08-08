@@ -1,28 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://dr5cvccxg54a4"]
+[gd_scene load_steps=5 format=3 uid="uid://dr5cvccxg54a4"]
 
 [ext_resource type="Script" path="res://systems/placement_system/scripts/classes/PlaceableFurniture.gd" id="1_0vha6"]
-[ext_resource type="Texture2D" uid="uid://ce71xoki3jp8k" path="res://scenes/items/furniture/3x1_table/3x1_table_texture_vertical.tres" id="2_of8yf"]
+[ext_resource type="PackedScene" uid="uid://dxhm8absu8ba5" path="res://scenes/items/furniture/3x1_table/vertical/3x1_table_vertical_base.tscn" id="2_jceou"]
 [ext_resource type="Script" path="res://systems/placement_system/scripts/classes/FurnitureItemSlot.gd" id="3_a6rr6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vsva7"]
 size = Vector2(12, 43)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aa3q4"]
-size = Vector2(14, 46)
-
-[node name="3x1TableVertical" type="StaticBody2D" node_paths=PackedStringArray("item_slots", "collision_shape_2D", "placement_area", "sprite_2d")]
+[node name="3x1TableVertical" type="StaticBody2D" node_paths=PackedStringArray("base_scene", "collision_shape_2D", "item_slots")]
 script = ExtResource("1_0vha6")
-item_slots = NodePath("ItemSlots")
 item_slot_matrix = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, -1), Vector2i(0, -2)])
+base_scene = NodePath("3x1TableVerticalBase")
 collision_shape_2D = NodePath("CollisionShape2D")
-placement_area = NodePath("Area2D")
-sprite_2d = NodePath("Sprite2D")
+item_slots = NodePath("ItemSlots")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_of8yf")
-
-[node name="Pivot" type="Marker2D" parent="."]
-position = Vector2(0, 16)
+[node name="3x1TableVerticalBase" parent="." instance=ExtResource("2_jceou")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
@@ -64,11 +56,3 @@ slot_dimensions = Vector2i(1, 2)
 script = ExtResource("3_a6rr6")
 item_matrix = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, -1), Vector2i(0, -2)])
 slot_dimensions = Vector2i(1, 3)
-
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_aa3q4")
-debug_color = Color(0.796078, 0.164706, 0.945098, 0.2)

@@ -1,28 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://da7gwnheih8ti"]
+[gd_scene load_steps=5 format=3 uid="uid://da7gwnheih8ti"]
 
 [ext_resource type="Script" path="res://systems/placement_system/scripts/classes/PlaceableFurniture.gd" id="1_fs74d"]
-[ext_resource type="Texture2D" uid="uid://c40jetqgpgtxl" path="res://scenes/items/furniture/2x2_table/2x2_table_texture.tres" id="2_drhuy"]
+[ext_resource type="PackedScene" uid="uid://v60nlys36bf1" path="res://scenes/items/furniture/2x2_table/vertical/2x2_vertical_base.tscn" id="2_hls6r"]
 [ext_resource type="Script" path="res://systems/placement_system/scripts/classes/FurnitureItemSlot.gd" id="3_cd38c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vsva7"]
 size = Vector2(28, 26)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ul4od"]
-size = Vector2(30, 30)
-
-[node name="2x2Vertical" type="StaticBody2D" node_paths=PackedStringArray("item_slots", "collision_shape_2D", "placement_area", "sprite_2d")]
+[node name="2x2Vertical" type="StaticBody2D" node_paths=PackedStringArray("base_scene", "collision_shape_2D", "item_slots")]
 script = ExtResource("1_fs74d")
-item_slots = NodePath("ItemSlots")
 item_slot_matrix = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, -1), Vector2i(1, -1)])
+base_scene = NodePath("2x2VerticalBase")
 collision_shape_2D = NodePath("CollisionShape2D")
-placement_area = NodePath("Area2D")
-sprite_2d = NodePath("Sprite2D")
+item_slots = NodePath("ItemSlots")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_drhuy")
-
-[node name="Pivot" type="Marker2D" parent="."]
-position = Vector2(-8, 8)
+[node name="2x2VerticalBase" parent="." instance=ExtResource("2_hls6r")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
@@ -65,11 +57,3 @@ position = Vector2(7, -1)
 script = ExtResource("3_cd38c")
 item_matrix = Array[Vector2i]([Vector2i(1, 0), Vector2i(1, -1)])
 slot_dimensions = Vector2i(1, 2)
-
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_ul4od")
-debug_color = Color(0.796078, 0.164706, 0.945098, 0.2)

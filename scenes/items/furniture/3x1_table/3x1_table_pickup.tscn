@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cqdlcu26fvbmh"]
 
 [ext_resource type="PackedScene" uid="uid://dyvuqi716mqx8" path="res://systems/item_system/scenes/pickup/pickup.tscn" id="1_r2tej"]
-[ext_resource type="Texture2D" uid="uid://ce71xoki3jp8k" path="res://scenes/items/furniture/3x1_table/3x1_table_texture_vertical.tres" id="2_ryrgd"]
+[ext_resource type="Texture2D" uid="uid://ce71xoki3jp8k" path="res://scenes/items/furniture/3x1_table/vertical/3x1_table_texture_vertical.tres" id="2_ryrgd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkrum"]
 size = Vector2(12, 43)

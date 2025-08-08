@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://j2ycc2l8oh13"]
+
+[ext_resource type="Script" path="res://systems/placement_system/scripts/classes/PlaceableFurniture.gd" id="1_xdwlo"]
+[ext_resource type="Script" path="res://systems/placement_system/scripts/classes/FurnitureItemSlot.gd" id="3_4fl8h"]
+[ext_resource type="PackedScene" uid="uid://clxufnuw5q16w" path="res://scenes/items/furniture/1x1_table/horizontal/1x1_table_horizontal_base.tscn" id="4_ysgva"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a2665"]
+size = Vector2(12, 12)
+
+[node name="1x1TableHorizontal" type="StaticBody2D" node_paths=PackedStringArray("base_scene", "collision_shape_2D", "item_slots")]
+script = ExtResource("1_xdwlo")
+is_horizontal = true
+item_slot_matrix = Array[Vector2i]([Vector2i(0, 0)])
+base_scene = NodePath("1x1TableHorizontalBase")
+collision_shape_2D = NodePath("CollisionShape2D")
+item_slots = NodePath("ItemSlots")
+
+[node name="1x1TableHorizontalBase" parent="." instance=ExtResource("4_ysgva")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_a2665")
+
+[node name="ItemSlots" type="Node2D" parent="."]
+
+[node name="1x1Slot1" type="Node2D" parent="ItemSlots"]
+position = Vector2(0, -1)
+script = ExtResource("3_4fl8h")
+item_matrix = Array[Vector2i]([Vector2i(0, 0)])
+slot_dimensions = Vector2i(1, 1)

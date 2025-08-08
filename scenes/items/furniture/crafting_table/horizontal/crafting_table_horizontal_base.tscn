@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://2hnnyiwmrky4"]
+
+[ext_resource type="Script" path="res://systems/placement_system/scripts/classes/PlaceableBase.gd" id="1_a6jcc"]
+[ext_resource type="Texture2D" uid="uid://bqtp324ulh2pb" path="res://scenes/items/furniture/crafting_table/horizontal/crafting_table_texture_horizontal.tres" id="2_gd6yl"]
+
+[node name="CraftingTableHorizontalBase" type="Node2D" node_paths=PackedStringArray("sprite", "pivot")]
+script = ExtResource("1_a6jcc")
+sprite = NodePath("Sprite2D")
+pivot = NodePath("Pivot")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_gd6yl")
+
+[node name="Pivot" type="Marker2D" parent="."]
+position = Vector2(-8, 0)

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckpc5ov4dbx8v"]
+
+[ext_resource type="Script" path="res://systems/placement_system/scripts/classes/PlaceableBase.gd" id="1_cycwb"]
+[ext_resource type="Texture2D" uid="uid://c40jetqgpgtxl" path="res://scenes/items/furniture/2x2_table/2x2_table_texture.tres" id="2_a17lk"]
+
+[node name="2x2HorizontalBase" type="Node2D" node_paths=PackedStringArray("sprite", "pivot")]
+script = ExtResource("1_cycwb")
+sprite = NodePath("Sprite2D")
+pivot = NodePath("Pivot")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_a17lk")
+
+[node name="Pivot" type="Marker2D" parent="."]
+position = Vector2(-8, 8)

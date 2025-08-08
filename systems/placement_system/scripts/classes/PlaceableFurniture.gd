@@ -1,34 +1,21 @@
 class_name PlaceableFurniture
 extends PlaceableItem
 
+# config
 @export var is_horizontal: bool
-@export var item_slots: Node2D
 @export var item_slot_matrix: Array[Vector2i]
+# node dependencies
+@export var base_scene: PlaceableBase
 @export var collision_shape_2D: CollisionShape2D
-@export var placement_area: Area2D
+@export var item_slots: Node2D
 
 var furniture_data: RItemData
-var is_valid_placement: bool = true
 var occupied_tiles: Array[Vector2i]
 
-func _ready() -> void:
-	placement_area.area_entered.connect(_on_placement_area_entered)
-	placement_area.area_exited.connect(_on_placement_area_exited)
-
-## -- overrides --
-func set_preview() -> void:
-	super.set_preview()
-	collision_shape_2D.disabled = true
+# need this declared to override in child classes
+func _ready() -> void: pass
 
 ## -- methods --
-func set_invalid_placement() -> void:
-	sprite_2d.modulate = Color(0.941176, 0.501961, 0.501961, 0.5)
-	is_valid_placement = false
-	
-func set_valid_placement() -> void:
-	sprite_2d.modulate = Color(1.0, 1.0, 1.0, 0.5)
-	is_valid_placement = true
-
 func set_occupied_tiles(tile_matrix:Array[Vector2i], primary_tile_coords: Vector2i) -> void:
 	for coords: Vector2i in tile_matrix:
 		occupied_tiles.append(coords + primary_tile_coords)
@@ -83,16 +70,3 @@ func _get_matched_slot(item: RPlaceableMerchandise, hovered_slots: Array[Node2D]
 		if item.item_dimensions == slot.slot_dimensions:
 			return slot
 	return null
-
-func _rotate_item(item: RPlaceableMerchandise) -> void:
-	if item.is_rotated:
-		item.rotate_counter_clockwise()
-	else:
-		item.rotate_clockwise()
-
-## -- signals --
-func _on_placement_area_entered(_area: Area2D) -> void:
-	set_invalid_placement()
-
-func _on_placement_area_exited(_area: Area2D) -> void:
-	set_valid_placement()

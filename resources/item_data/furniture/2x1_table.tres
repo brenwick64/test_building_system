@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="RItemData" load_steps=12 format=3 uid="uid://ctd0aljxu3ooc"]
+[gd_resource type="Resource" script_class="RItemData" load_steps=14 format=3 uid="uid://ctd0aljxu3ooc"]
 
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="1_goku3"]
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemIcon.gd" id="1_q6fmp"]
-[ext_resource type="Texture2D" uid="uid://d3flab2gp3qyh" path="res://scenes/items/furniture/2x1_table/2x1_table_texture_vertical.tres" id="2_uet7y"]
-[ext_resource type="PackedScene" uid="uid://c470pv7h18snk" path="res://scenes/items/furniture/2x1_table/2x1_table_horizontal.tscn" id="3_g3jm7"]
+[ext_resource type="Texture2D" uid="uid://d3flab2gp3qyh" path="res://scenes/items/furniture/2x1_table/vertical/2x1_table_texture_vertical.tres" id="2_uet7y"]
 [ext_resource type="PackedScene" uid="uid://7t02h8skcv2m" path="res://scenes/items/furniture/2x1_table/2x1_table_pickup.tscn" id="3_tftp7"]
-[ext_resource type="PackedScene" uid="uid://dvudffpcdjxan" path="res://scenes/items/furniture/2x1_table/2x1_table_vertical.tscn" id="4_5vdl2"]
+[ext_resource type="PackedScene" uid="uid://dvudffpcdjxan" path="res://scenes/items/furniture/2x1_table/vertical/2x1_table_vertical_scene.tscn" id="4_5vdl2"]
 [ext_resource type="Script" path="res://systems/placement_system/scripts/resource_definitions/RPlaceableFurniture.gd" id="5_fkb6q"]
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RPickup.gd" id="5_jcbew"]
+[ext_resource type="PackedScene" uid="uid://cg5tixp4b7wfv" path="res://scenes/items/furniture/2x1_table/horizontal/2x1_table_horizontal_preview.tscn" id="5_s4xvj"]
+[ext_resource type="PackedScene" uid="uid://c470pv7h18snk" path="res://scenes/items/furniture/2x1_table/horizontal/2x1_table_horizontal_scene.tscn" id="6_3wqtn"]
+[ext_resource type="PackedScene" uid="uid://bw6bewl7vstcg" path="res://scenes/items/furniture/2x1_table/vertical/2x1_table_vertical_preview.tscn" id="6_38m42"]
 
 [sub_resource type="Resource" id="Resource_g127f"]
 script = ExtResource("1_q6fmp")
@@ -23,7 +25,9 @@ pickup_scale_multiplier = 0.75
 script = ExtResource("5_fkb6q")
 is_symmetrical = false
 tile_matrix = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0)])
-scene_horizontal = ExtResource("3_g3jm7")
+preview_horizontal = ExtResource("5_s4xvj")
+preview_vertical = ExtResource("6_38m42")
+scene_horizontal = ExtResource("6_3wqtn")
 scene_vertical = ExtResource("4_5vdl2")
 placeable_scale_multiplier = 1.0
 
