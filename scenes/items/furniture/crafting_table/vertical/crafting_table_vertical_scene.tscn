@@ -1,18 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvlel2svlnnfv"]
+[gd_scene load_steps=5 format=3 uid="uid://bvlel2svlnnfv"]
 
-[ext_resource type="Script" path="res://systems/placement_system/scripts/classes/PlaceableFurniture.gd" id="1_k52dt"]
+[ext_resource type="Script" path="res://systems/crafting_system/scripts/classes/CraftingStation.gd" id="1_wpd8e"]
 [ext_resource type="PackedScene" uid="uid://bgvurw1lxeh8x" path="res://scenes/items/furniture/crafting_table/vertical/crafting_table_vertical_base.tscn" id="2_qrbjj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vsva7"]
 size = Vector2(12, 26)
 
-[node name="2x1TableVertical" type="StaticBody2D" node_paths=PackedStringArray("base_scene", "collision_shape_2D", "item_slots", "sprite_2d")]
-script = ExtResource("1_k52dt")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1ibh"]
+size = Vector2(16, 32)
+
+[node name="CraftingTableVertical" type="StaticBody2D" node_paths=PackedStringArray("crafting_area", "base_scene", "collision_shape_2D", "item_slots")]
+script = ExtResource("1_wpd8e")
+crafting_area = NodePath("CraftingArea")
 item_slot_matrix = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, -1)])
 base_scene = NodePath("2x1TableVerticalBase")
 collision_shape_2D = NodePath("CollisionShape2D")
 item_slots = NodePath("ItemSlots")
-sprite_2d = NodePath("")
 
 [node name="2x1TableVerticalBase" parent="." instance=ExtResource("2_qrbjj")]
 
@@ -21,3 +24,8 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_vsva7")
 
 [node name="ItemSlots" type="Node2D" parent="."]
+
+[node name="CraftingArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CraftingArea"]
+shape = SubResource("RectangleShape2D_t1ibh")

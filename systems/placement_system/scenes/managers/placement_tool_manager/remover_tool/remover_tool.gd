@@ -2,16 +2,16 @@ class_name ToolHandler
 extends Node
 
 var hovered_tile: Vector2i
-var hovered_node: PlaceableItem
+var hovered_node: PlaceableBase
 
 ## -- helper functions --
 func _clear_hovered_node() -> void:
 	if not hovered_node: return
-	hovered_node.unfocus()
+	hovered_node.hide_outline()
 	hovered_node = null
 
 func _highlight_hovered_node() -> void:
-	hovered_node.focus()
+	hovered_node.show_outline()
 
 func _is_within_range(furniture: PlaceableFurniture) -> bool:
 	var player: Player = get_tree().get_first_node_in_group("player")

@@ -33,8 +33,8 @@ func _on_input_manager_action_pressed(event: InputEvent) -> void:
 func _on_input_manager_rotate_pressed() -> void:
 	_call_child_handlers("handle_rotate_pressed")
 
-func _on_player_inventory_item_selected(item: RItemData) -> void:
+func _on_player_inventory_manager_item_selected(item: RItemData) -> void:
 	_call_child_handlers("handle_equipped_item_updated", [item])
 
-func _on_player_inventory_item_depleted(item: RItemData) -> void:
+func _on_player_inventory_manager_item_depleted(item: RItemData) -> void:
 	_call_child_handlers("handle_item_depleted", [item])

@@ -1,5 +1,5 @@
 class_name PlaceableFurniture
-extends PlaceableItem
+extends PlaceableBase
 
 # config
 @export var is_horizontal: bool

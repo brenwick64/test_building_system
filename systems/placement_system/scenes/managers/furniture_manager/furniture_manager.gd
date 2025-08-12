@@ -3,8 +3,6 @@ extends Node
 
 signal furniture_placed(furniture_data: RItemData)
 
-@onready var outline_shader: Shader = preload("res://shaders/outline_shader.gdshader")
-
 @export var tile_manager: TileManager
 
 var equipped_furniture_data: RItemData
@@ -89,10 +87,6 @@ func _spawn_furniture() -> void:
 	var tile_global_pos: Vector2 = tile_manager.get_gp_from_tile_coords(hovered_tile_coords)
 	furniture_ins.furniture_data = equipped_furniture_data
 	furniture_ins.global_position = shoppe_furniture.to_local(tile_global_pos) as Vector2 - pivot.global_position
-	# add shader
-	var material: ShaderMaterial = ShaderMaterial.new()
-	material.set_shader(outline_shader)
-	furniture_ins.base_scene.sprite.material = material
 	# configure variables and add to scene
 	furniture_ins.set_occupied_tiles(equipped_furniture_data.placeable	.get_tile_matrix(), hovered_tile_coords)
 	shoppe_furniture.add_child(furniture_ins)

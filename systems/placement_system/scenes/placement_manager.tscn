@@ -1,13 +1,13 @@
 [gd_scene load_steps=7 format=3 uid="uid://sp58wos84hs4"]
 
-[ext_resource type="Script" path="res://systems/placement_system/scenes/placement_system.gd" id="1_4amw7"]
+[ext_resource type="Script" path="res://systems/placement_system/scenes/placement_manager.gd" id="1_4amw7"]
 [ext_resource type="PackedScene" uid="uid://dcsf7pc32gvwd" path="res://systems/placement_system/scenes/managers/placement_tile_manager/placement_tile_manager.tscn" id="1_dsuoc"]
 [ext_resource type="PackedScene" uid="uid://cuup0kq3dvqmb" path="res://systems/placement_system/scenes/managers/furniture_manager/furniture_manager.tscn" id="2_vjr03"]
 [ext_resource type="PackedScene" uid="uid://b4t86v4a7e6oo" path="res://systems/placement_system/scenes/managers/merchandise_manager/merchandise_manager.tscn" id="3_d7fct"]
 [ext_resource type="PackedScene" uid="uid://mlayytwtssik" path="res://systems/placement_system/scenes/managers/placement_tool_manager/placement_tool_manager.tscn" id="4_orgnd"]
 [ext_resource type="PackedScene" uid="uid://ihoylr88qtrb" path="res://systems/placement_system/scenes/managers/placement_tool_manager/remover_tool/remover_tool.tscn" id="6_jya0w"]
 
-[node name="PlacementSystem" type="Node"]
+[node name="PlacementManager" type="Node"]
 script = ExtResource("1_4amw7")
 
 [node name="PlacementTileManager" parent="." instance=ExtResource("1_dsuoc")]

@@ -468,7 +468,6 @@ text = "Crafting Menu"
 [connection signal="action_bar_pressed" from="Managers/InputManager" to="UI/UIPlayerActionBar" method="_on_input_manager_action_bar_pressed"]
 [connection signal="action_pressed" from="Managers/InputManager" to="Managers/PlacementManager" method="_on_input_manager_action_pressed"]
 [connection signal="rotate_pressed" from="Managers/InputManager" to="Managers/PlacementManager" method="_on_input_manager_rotate_pressed"]
-[connection signal="item_placed" from="Managers/PlacementManager" to="Managers/PlayerInventoryManager" method="_on_placement_manager_item_placed"]
 [connection signal="inventory_updated" from="Managers/PlayerInventoryManager" to="UI/UIPlayerActionBar" method="_on_player_inventory_inventory_updated"]
 [connection signal="item_depleted" from="Managers/PlayerInventoryManager" to="Managers/PlacementManager" method="_on_player_inventory_manager_item_depleted"]
 [connection signal="item_depleted" from="Managers/PlayerInventoryManager" to="UI/UIPlayerActionBar" method="_on_player_inventory_item_depleted"]

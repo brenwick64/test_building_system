@@ -14,7 +14,7 @@ func _signal_item_depleted(inv_item: RInventoryItem) -> void:
 
 ## -- signals --
 	
-func _on_placement_system_item_placed(item: RItemData) -> void:
+func _on_placement_manager_item_placed(item: RItemData) -> void:
 	remove_item(item.item_id, 1)
 
 func _on_ui_player_inventory_item_selected(item_id: String) -> void:

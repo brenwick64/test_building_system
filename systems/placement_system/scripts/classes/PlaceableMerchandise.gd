@@ -1,4 +1,4 @@
 class_name PlaceableMerchandise
-extends PlaceableItem
+extends PlaceableBase
 
 var is_valid_placement: bool = true

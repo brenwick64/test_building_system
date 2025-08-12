@@ -13,12 +13,12 @@ func set_preview() -> void:
 	sprite_2d.modulate = Color(1, 1, 1, 0.5)
 	is_preview = true
 
-func focus() -> void:
+func show_outline() -> void:
 	var shader_material: ShaderMaterial = sprite_2d.material
 	shader_material.set_shader_parameter("width", 0.55)  
 	shader_material.set_shader_parameter("pattern", 1)
 	
-func unfocus() -> void:
+func hide_outline() -> void:
 	var shader_material: ShaderMaterial = sprite_2d.material
 	shader_material.set_shader_parameter("width", 0)
 	shader_material.set_shader_parameter("pattern", 1)
