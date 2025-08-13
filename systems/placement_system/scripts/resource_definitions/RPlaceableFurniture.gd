@@ -1,6 +1,8 @@
 class_name RPlaceableFurniture
 extends RPlaceableItem
 
+var furniture_shader: Shader = preload("res://shaders/outline_shader.gdshader")
+
 #FIXME: This variable is required if a furniture has the same width and height
 # and you wish to rotate it
 @export var is_symmetrical: bool
@@ -16,24 +18,24 @@ var current_degrees: int = ROTATION_VALUES[0]
 
 ## -- constructors
 func new_horizontal_preview() -> PlaceableFurniturePreview:
-	var h_preview_ins: Node2D = preview_horizontal.instantiate()
+	var h_preview_ins: PlaceableFurniturePreview = preview_horizontal.instantiate()
 	h_preview_ins.item_id = item_id
 	return h_preview_ins
 
 func new_vertical_preview() -> PlaceableFurniturePreview:
-	var v_preview_ins: Node2D = preview_vertical.instantiate()
+	var v_preview_ins: PlaceableFurniturePreview = preview_vertical.instantiate()
 	v_preview_ins.item_id = item_id
 	return v_preview_ins
 
 func new_horizontal_scene() -> PlaceableFurniture:
-	var horizontal_ins: Node2D = scene_horizontal.instantiate()
+	var horizontal_ins: PlaceableFurniture = scene_horizontal.instantiate()
 	horizontal_ins.item_id = item_id
-	return horizontal_ins
+	return _attach_shader_material(horizontal_ins)
 	
 func new_vertical_scene() -> PlaceableFurniture:
-	var vertical_ins: Node2D = scene_vertical.instantiate()
+	var vertical_ins: PlaceableFurniture = scene_vertical.instantiate()
 	vertical_ins.item_id = item_id
-	return vertical_ins
+	return _attach_shader_material(vertical_ins)
 
 ## -- methods --
 func rotate_clockwise() -> void:
@@ -63,6 +65,12 @@ func get_tile_matrix() -> Array[Vector2i]:
 	return _get_rotated_tile_matrix(0)
 	
 ## -- helper functions --
+func _attach_shader_material(furniture_instance: PlaceableFurniture) -> PlaceableFurniture:
+	var shader_material: ShaderMaterial = ShaderMaterial.new()
+	shader_material.shader = furniture_shader
+	furniture_instance.base_scene.sprite.material = shader_material
+	return furniture_instance
+
 #TODO: optimize / find actual formula
 func _get_rotated_tile_matrix(degrees: int) -> Array[Vector2i]:
 	var iterations: int = floor(degrees / 90)

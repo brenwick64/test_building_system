@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RItemData" load_steps=11 format=3 uid="uid://nbbs8pdg1x8b"]
+[gd_resource type="Resource" script_class="RItemData" load_steps=12 format=3 uid="uid://nbbs8pdg1x8b"]
 
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemIcon.gd" id="1_lqdxm"]
 [ext_resource type="Texture2D" uid="uid://y1848nk3s1lf" path="res://scenes/items/merchandise/dagger/dagger_texture.tres" id="2_o8ojd"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RPickup.gd" id="4_0wvac"]
 [ext_resource type="Script" path="res://systems/placement_system/scripts/resource_definitions/RPlaceableMerchandise.gd" id="4_namb2"]
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="5_e6aa4"]
+[ext_resource type="PackedScene" uid="uid://cxktj3kj06p8m" path="res://scenes/items/merchandise/dagger/dagger_preview.tscn" id="6_4wh50"]
 
 [sub_resource type="Resource" id="Resource_bn4q2"]
 script = ExtResource("1_lqdxm")
@@ -24,6 +25,7 @@ is_rotatable = true
 item_slot_matrix = Array[Vector2i]([Vector2i(0, 0)])
 item_dimensions = Vector2i(1, 1)
 placeable_scene = ExtResource("3_2gmrk")
+preview_scene = ExtResource("6_4wh50")
 placeable_scale_multiplier = 0.55
 
 [resource]

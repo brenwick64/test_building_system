@@ -8,16 +8,6 @@ extends Node2D
 
 var item_id: String
 
-func show_outline() -> void:
-	var shader_material: ShaderMaterial = sprite.material
-	shader_material.set_shader_parameter("width", 0.55)  
-	shader_material.set_shader_parameter("pattern", 1)
-	
-func hide_outline() -> void:
-	var shader_material: ShaderMaterial = sprite.material
-	shader_material.set_shader_parameter("width", 0)
-	shader_material.set_shader_parameter("pattern", 1)
-
 func remove() -> void:
 	_spawn_pickup()
 	queue_free()

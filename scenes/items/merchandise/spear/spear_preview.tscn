@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwpvpy6q7bviq"]
+
+[ext_resource type="Script" path="res://systems/placement_system/scripts/classes/PlaceableMerchandisePreview.gd" id="1_rfvuw"]
+[ext_resource type="Texture2D" uid="uid://bsqm0lbhsyqks" path="res://scenes/items/merchandise/spear/spear_texture.tres" id="2_646qx"]
+
+[node name="SpearPreview" type="Node2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_rfvuw")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_646qx")

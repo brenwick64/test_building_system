@@ -1,10 +1,11 @@
 class_name PlaceableFurniturePreview
-extends PlaceableItem
+extends Node2D
 
 # node dependencies
 @export var base_scene: PlaceableBase
 @export var placement_area: Area2D
 
+var item_id: String
 var furniture_data: RItemData
 var is_valid_placement: bool = true
 

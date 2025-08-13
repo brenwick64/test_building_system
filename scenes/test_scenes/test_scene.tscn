@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=4 uid="uid://de3o831n25f2l"]
+[gd_scene load_steps=74 format=4 uid="uid://de3o831n25f2l"]
 
 [ext_resource type="TileSet" uid="uid://jyl0pt03odje" path="res://resources/tilesets/main_tileset.tres" id="1_f72q3"]
 [ext_resource type="Script" path="res://scenes/debug/pickup_spawner/pickup_spawner.gd" id="1_nbrfu"]
@@ -17,6 +17,9 @@
 [ext_resource type="Resource" uid="uid://b01cl5cc1g0sp" path="res://resources/item_data/furniture/3x1_table.tres" id="9_8yntn"]
 [ext_resource type="Resource" uid="uid://dkpdd832rs62y" path="res://resources/item_data/items/health_potion.tres" id="9_xgro7"]
 [ext_resource type="Resource" uid="uid://ctyuc3ycewbnj" path="res://resources/item_data/items/remover_tool.tres" id="12_xmisv"]
+[ext_resource type="Resource" uid="uid://denl8yukvok77" path="res://resources/item_data/items/spear.tres" id="14_nokyo"]
+[ext_resource type="Resource" uid="uid://y35mf4vnwjbm" path="res://resources/item_data/items/sword.tres" id="15_ktyxu"]
+[ext_resource type="Resource" uid="uid://u7yianekymrl" path="res://resources/item_data/items/shield.tres" id="16_24xl4"]
 [ext_resource type="Resource" uid="uid://b8h5q6ggevdyi" path="res://resources/item_data/furniture/crafting_table.tres" id="16_kkxdv"]
 [ext_resource type="Texture2D" uid="uid://dh2cnltobawlx" path="res://assets/characters/player.png" id="17_4bagj"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="17_utvwo"]
@@ -63,6 +66,24 @@ script = ExtResource("4_x64uq")
 item = ExtResource("16_kkxdv")
 count = 1
 stackable = false
+
+[sub_resource type="Resource" id="Resource_hmifu"]
+script = ExtResource("4_x64uq")
+item = ExtResource("14_nokyo")
+count = 5
+stackable = true
+
+[sub_resource type="Resource" id="Resource_fs0sn"]
+script = ExtResource("4_x64uq")
+item = ExtResource("15_ktyxu")
+count = 5
+stackable = true
+
+[sub_resource type="Resource" id="Resource_tx2ye"]
+script = ExtResource("4_x64uq")
+item = ExtResource("16_24xl4")
+count = 2
+stackable = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dmiqr"]
 atlas = ExtResource("17_4bagj")
@@ -374,7 +395,7 @@ crafting_ui = NodePath("../../UI/UICraftingMenu")
 placeable_layer = NodePath("../../TileMap/ShoppeFloor")
 
 [node name="PlayerInventoryManager" parent="Managers" groups=["player_inventory"] instance=ExtResource("2_sl7we")]
-inventory_items = Array[ExtResource("4_x64uq")]([SubResource("Resource_to2d8"), SubResource("Resource_xf3qb"), SubResource("Resource_wn6ap"), SubResource("Resource_sxo45"), SubResource("Resource_2poh8"), SubResource("Resource_lp816"), SubResource("Resource_si6h5")])
+inventory_items = Array[ExtResource("4_x64uq")]([SubResource("Resource_to2d8"), SubResource("Resource_xf3qb"), SubResource("Resource_wn6ap"), SubResource("Resource_sxo45"), SubResource("Resource_2poh8"), SubResource("Resource_lp816"), SubResource("Resource_si6h5"), SubResource("Resource_hmifu"), SubResource("Resource_fs0sn"), SubResource("Resource_tx2ye")])
 
 [node name="Debug" type="Node" parent="."]
 

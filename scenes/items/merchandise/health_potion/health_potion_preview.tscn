@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqc7edycg4prh"]
+
+[ext_resource type="Script" path="res://systems/placement_system/scripts/classes/PlaceableMerchandisePreview.gd" id="1_rfwdq"]
+[ext_resource type="Texture2D" uid="uid://cbituoysuw48g" path="res://scenes/items/merchandise/health_potion/health_potion_texture.tres" id="2_deyeu"]
+
+[node name="HealthPotionPreview" type="Node2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_rfwdq")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_deyeu")

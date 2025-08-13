@@ -30,24 +30,16 @@ func _are_hands_empty() -> bool:
 	if player_inventory.selected_item: return false
 	return true
 
-func show_hover() -> void:
-	var shader_material: ShaderMaterial= ShaderMaterial.new()
-	shader_material.set_shader_parameter("glow_enabled", true)
-
-func hide_hover() -> void:
-	var shader_material: ShaderMaterial = base_scene.sprite.material
-	shader_material.set_shader_parameter("glow_enabled", false)
-
 ## -- signals --
 func _on_crafting_area_mouse_entered():
 	if not placement_cooldown_flag: return
 	if not _are_hands_empty(): return
-	show_hover()
+	show_outline()
 
 func _on_crafting_area_mouse_exited():
 	if not placement_cooldown_flag: return
 	if not _are_hands_empty(): return
-	hide_hover()
+	hide_outline()
 
 func _on_crafting_area_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if not _are_hands_empty(): return

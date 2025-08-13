@@ -38,6 +38,16 @@ func get_occupied_slot_at_coords(tile_coords: Vector2i) -> Node2D:
 			return slot
 	return null
 
+func show_outline() -> void:
+	var shader_material: ShaderMaterial = base_scene.sprite.material
+	shader_material.set_shader_parameter("width", 0.55)  
+	shader_material.set_shader_parameter("pattern", 1)
+	
+func hide_outline() -> void:
+	var shader_material: ShaderMaterial = base_scene.sprite.material
+	shader_material.set_shader_parameter("width", 0)
+	shader_material.set_shader_parameter("pattern", 1)
+
 ## -- helper functions --
 func _get_unoccupied_matrix() -> Array[Vector2i]:
 	var occupied: Array[Vector2i] = []

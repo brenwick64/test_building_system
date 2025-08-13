@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://bs1wfwx6hbhh2" path="res://scenes/items/merchandise/sword/sword_texture.tres" id="1_111ns"]
 [ext_resource type="Script" path="res://systems/placement_system/scripts/classes/PlaceableMerchandise.gd" id="1_ua4b3"]
 
-[node name="SwordPlaceable" type="Node2D" node_paths=PackedStringArray("sprite_2d")]
+[node name="SwordPlaceable" type="Node2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_ua4b3")
-sprite_2d = NodePath("Sprite2D")
+sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_111ns")

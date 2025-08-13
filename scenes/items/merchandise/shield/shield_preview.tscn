@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0bheic2wv63h"]
+
+[ext_resource type="Script" path="res://systems/placement_system/scripts/classes/PlaceableMerchandisePreview.gd" id="1_4qods"]
+[ext_resource type="Texture2D" uid="uid://b76tvqqne6gn8" path="res://scenes/items/merchandise/shield/shield_texture.tres" id="2_wsal7"]
+
+[node name="ShieldPreview" type="Node2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_4qods")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_wsal7")

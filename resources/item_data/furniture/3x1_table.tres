@@ -29,7 +29,6 @@ preview_horizontal = ExtResource("5_4iaju")
 preview_vertical = ExtResource("6_f1vjh")
 scene_horizontal = ExtResource("3_v0ke6")
 scene_vertical = ExtResource("5_apale")
-placeable_scale_multiplier = 1.0
 
 [resource]
 script = ExtResource("7_257ek")
