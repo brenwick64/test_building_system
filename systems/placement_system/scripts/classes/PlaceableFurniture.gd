@@ -58,6 +58,7 @@ func _get_unoccupied_matrix() -> Array[Vector2i]:
 	return free_coords
 
 func _get_hovered_slots(tile_coords: Vector2i) -> Array[Node2D]:
+	if not item_slots: return []
 	var hovered_slots: Array[Node2D] = []
 	var normalized_coords: Vector2i = tile_coords - occupied_tiles[0] # pivot tile
 	for slot in item_slots.get_children():

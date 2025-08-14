@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://systems/placement_system/scripts/classes/PlaceableBase.gd" id="1_jvtki"]
 [ext_resource type="Texture2D" uid="uid://sliujw3nttte" path="res://scenes/items/furniture/crafting_table/vertical/crafting_table_texture_vertical.tres" id="2_wg6ey"]
 
-[node name="2x1TableVerticalBase" type="Node2D" node_paths=PackedStringArray("sprite", "pivot")]
+[node name="CraftingTableVerticalBase" type="Node2D" node_paths=PackedStringArray("sprite", "pivot")]
 script = ExtResource("1_jvtki")
 sprite = NodePath("Sprite2D")
 pivot = NodePath("Pivot")

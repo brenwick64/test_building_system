@@ -23,8 +23,9 @@ func get_furniture_at_coords(tile_coords: Vector2i) -> PlaceableFurniture:
 
 func remove_furniture(furniture: PlaceableFurniture) -> void:
 	# remove any remaining items
-	for item_slot: Node in furniture.item_slots.get_children():
-		item_slot.remove()
+	if furniture.item_slots:
+		for item_slot: Node in furniture.item_slots.get_children():
+			item_slot.remove()
 	# remove furniture
 	placed_furniture = placed_furniture.filter(func(f): return f != furniture)
 	furniture.remove()
@@ -68,13 +69,16 @@ func _spawn_preview() -> void:
 	var preview_ins: PlaceableFurniturePreview = placeable.get_furniture_preview()
 	var pivot: Marker2D = preview_ins.base_scene.pivot
 	preview_ins.global_position = tile_manager.get_gp_from_tile_coords(hovered_tile_coords) as Vector2 - pivot.global_position
+	preview_ins.is_obstructed_updated.connect(_on_furniture_preview_obstructed_updated)
 	get_tree().root.add_child(preview_ins)
 	furniture_preview = preview_ins
 
 func _validate_preview() -> void:
 	if not furniture_preview: return
-	if _is_used_tile() or _is_incorrect_layer():
+	if _is_used_tile() or _is_incorrect_layer() or furniture_preview.is_obstructed:
 		furniture_preview.set_invalid_placement()
+	else:
+		furniture_preview.set_valid_placement()
 
 func _spawn_furniture() -> void:
 	var shoppe_furniture: Node2D = get_tree().get_first_node_in_group("ShoppeFurniture")
@@ -104,6 +108,9 @@ func _on_tile_manager_new_tile_hovered(tile_coords: Vector2i) -> void:
 func _on_tile_manager_layer_mouse_out() -> void:
 	hovered_tile_coords = Vector2i.ZERO
 	_clear_preview()
+
+func _on_furniture_preview_obstructed_updated() -> void:
+	_validate_preview()
 
 ## -- handlers --
 func handle_action_pressed(_event: InputEvent) -> void:

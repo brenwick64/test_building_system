@@ -6,12 +6,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6vo1i"]
 size = Vector2(14, 30)
 
-[node name="2x1TableVerticalPreview" type="Node2D" node_paths=PackedStringArray("base_scene", "placement_area")]
+[node name="CraftingTableVerticalPreview" type="Node2D" node_paths=PackedStringArray("base_scene", "placement_area")]
 script = ExtResource("1_kamcg")
-base_scene = NodePath("2x1TableVerticalBase")
+base_scene = NodePath("CraftingTableVerticalBase")
 placement_area = NodePath("Area2D")
 
-[node name="2x1TableVerticalBase" parent="." instance=ExtResource("2_bhjwu")]
+[node name="CraftingTableVerticalBase" parent="." instance=ExtResource("2_bhjwu")]
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0

@@ -1,16 +1,15 @@
-[gd_resource type="Resource" script_class="RItemData" load_steps=18 format=3 uid="uid://b8h5q6ggevdyi"]
+[gd_resource type="Resource" script_class="RItemData" load_steps=14 format=3 uid="uid://b8h5q6ggevdyi"]
 
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemIcon.gd" id="1_0t4uf"]
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="1_rts6a"]
 [ext_resource type="Texture2D" uid="uid://bqtp324ulh2pb" path="res://scenes/items/furniture/crafting_table/horizontal/crafting_table_texture_horizontal.tres" id="2_f7qa0"]
 [ext_resource type="PackedScene" uid="uid://bypiqwgptaqpw" path="res://scenes/items/furniture/crafting_table/crafting_table_pickup.tscn" id="3_hv25u"]
 [ext_resource type="PackedScene" uid="uid://ddwgeryqsof2f" path="res://scenes/items/furniture/crafting_table/horizontal/crafting_table_horizontal_scene.tscn" id="3_wyc1s"]
-[ext_resource type="Script" path="res://systems/crafting_system/scripts/classes/CraftingStation.gd" id="4_kwpqv"]
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RPickup.gd" id="4_raq68"]
 [ext_resource type="Script" path="res://systems/placement_system/scripts/resource_definitions/RPlaceableFurniture.gd" id="4_sa6gv"]
-[ext_resource type="Texture2D" uid="uid://sliujw3nttte" path="res://scenes/items/furniture/crafting_table/vertical/crafting_table_texture_vertical.tres" id="5_8h0hq"]
 [ext_resource type="PackedScene" uid="uid://c2cmy86aggvvf" path="res://scenes/items/furniture/crafting_table/horizontal/crafting_table_horizontal_preview.tscn" id="5_xpeu1"]
 [ext_resource type="PackedScene" uid="uid://bn547u5407h0f" path="res://scenes/items/furniture/crafting_table/vertical/crafting_table_vertical_preview.tscn" id="6_mt1yn"]
+[ext_resource type="PackedScene" uid="uid://bvlel2svlnnfv" path="res://scenes/items/furniture/crafting_table/vertical/crafting_table_vertical_scene.tscn" id="8_rp2sk"]
 
 [sub_resource type="Resource" id="Resource_7j63e"]
 script = ExtResource("1_0t4uf")
@@ -22,25 +21,6 @@ script = ExtResource("4_raq68")
 pickup_scene = ExtResource("3_hv25u")
 pickup_scale_multiplier = 0.5
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vsva7"]
-size = Vector2(12, 26)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gnfd1"]
-size = Vector2(14, 30)
-
-[sub_resource type="PackedScene" id="PackedScene_j7s4f"]
-_bundled = {
-"conn_count": 0,
-"conns": PackedInt32Array(),
-"editable_instances": [],
-"names": PackedStringArray("CraftingTableVertical", "script", "item_slots", "collision_shape_2D", "placement_area", "sprite_2d", "StaticBody2D", "Sprite2D", "texture", "Pivot", "position", "Marker2D", "CollisionShape2D", "shape", "ItemSlots", "Node2D", "Area2D", "collision_layer", "collision_mask", "debug_color"),
-"node_count": 7,
-"node_paths": [],
-"nodes": PackedInt32Array(-1, -1, 6, 0, -1, 5, 1, 0, 1073741826, 1, 1073741827, 2, 1073741828, 3, 1073741829, 4, 0, 0, 0, 7, 7, -1, 1, 8, 5, 0, 0, 0, 11, 9, -1, 1, 10, 6, 0, 0, 0, 12, 12, -1, 2, 10, 7, 13, 8, 0, 0, 0, 15, 14, -1, 0, 0, 0, 0, 16, 16, -1, 2, 17, 9, 18, 10, 0, 5, 0, 12, 12, -1, 2, 13, 11, 19, 12, 0),
-"variants": [ExtResource("4_kwpqv"), NodePath("ItemSlots"), NodePath("CollisionShape2D"), NodePath("Area2D"), NodePath("Sprite2D"), ExtResource("5_8h0hq"), Vector2(-8, 0), Vector2(0, -0.5), SubResource("RectangleShape2D_vsva7"), 2147483648, 4, SubResource("RectangleShape2D_gnfd1"), Color(0.796078, 0.164706, 0.945098, 0.2)],
-"version": 3
-}
-
 [sub_resource type="Resource" id="Resource_iybg8"]
 script = ExtResource("4_sa6gv")
 is_symmetrical = false
@@ -48,7 +28,7 @@ tile_matrix = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0)])
 preview_horizontal = ExtResource("5_xpeu1")
 preview_vertical = ExtResource("6_mt1yn")
 scene_horizontal = ExtResource("3_wyc1s")
-scene_vertical = SubResource("PackedScene_j7s4f")
+scene_vertical = ExtResource("8_rp2sk")
 
 [resource]
 script = ExtResource("1_rts6a")

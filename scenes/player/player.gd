@@ -1,6 +1,11 @@
 class_name Player
 extends CharacterBody2D
 
+signal player_moved
+
+@export var interactor: Interactor
+@export var interaction_label: Panel
+
 @export var inventory: PlayerInventory
 @export var move_speed: float = 120.0
 @export var acceleration: float = 1000.0 
@@ -8,9 +13,6 @@ extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 var last_direction: String = "down"
-
-func _ready() -> void:
-	pass
 
 ## -- helper functions --
 func _get_movement_vector() -> Vector2:
@@ -48,4 +50,16 @@ func _physics_process(delta: float) -> void:
 	
 	var target_velocity: Vector2 = input_direction * move_speed
 	velocity = velocity.move_toward(target_velocity, acceleration * delta)
+	if velocity != Vector2.ZERO:
+		player_moved.emit()
 	move_and_slide()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact"):
+		interactor.interact()
+
+func _on_interactor_interactables_updated(interactables: Array[Interactable]) -> void:
+	if interactables.size() > 0:
+		interaction_label.visible = true
+	else:
+		interaction_label.visible = false

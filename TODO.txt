@@ -1,5 +1,5 @@
-- decouple furniture and item classes
-- this should fix the remover crashes
+- refactor placement system with composition over inheritence
+- create "Interactor" to decouple logic from player, and add interactable array there
 
 - have pickup behaviors follow checkbox config at pickup level
 - refacor item slot code to handle events (runaway DRY causing ambiguous code)

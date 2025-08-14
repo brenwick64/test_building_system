@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=4 uid="uid://de3o831n25f2l"]
+[gd_scene load_steps=77 format=4 uid="uid://de3o831n25f2l"]
 
 [ext_resource type="TileSet" uid="uid://jyl0pt03odje" path="res://resources/tilesets/main_tileset.tres" id="1_f72q3"]
 [ext_resource type="Script" path="res://scenes/debug/pickup_spawner/pickup_spawner.gd" id="1_nbrfu"]
@@ -24,6 +24,8 @@
 [ext_resource type="Texture2D" uid="uid://dh2cnltobawlx" path="res://assets/characters/player.png" id="17_4bagj"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="17_utvwo"]
 [ext_resource type="PackedScene" uid="uid://sp58wos84hs4" path="res://systems/placement_system/scenes/placement_manager.tscn" id="19_tdy0a"]
+[ext_resource type="Theme" uid="uid://d27j5q3aqw7ad" path="res://scenes/ui/main_theme.tres" id="24_a85yc"]
+[ext_resource type="PackedScene" uid="uid://c7ghv2uoto2nd" path="res://scenes/components/interactor.tscn" id="24_pau2d"]
 
 [sub_resource type="Resource" id="Resource_to2d8"]
 script = ExtResource("4_x64uq")
@@ -64,8 +66,8 @@ stackable = true
 [sub_resource type="Resource" id="Resource_si6h5"]
 script = ExtResource("4_x64uq")
 item = ExtResource("16_kkxdv")
-count = 1
-stackable = false
+count = 3
+stackable = true
 
 [sub_resource type="Resource" id="Resource_hmifu"]
 script = ExtResource("4_x64uq")
@@ -84,6 +86,10 @@ script = ExtResource("4_x64uq")
 item = ExtResource("16_24xl4")
 count = 2
 stackable = true
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r5pgw"]
+radius = 7.0
+height = 24.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dmiqr"]
 atlas = ExtResource("17_4bagj")
@@ -431,11 +437,20 @@ zoom = Vector2(2, 2)
 
 [node name="ShoppeFurniture" type="Node2D" parent="." groups=["ShoppeFurniture"]]
 
-[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("inventory") groups=["player"]]
-position = Vector2(493, 351)
+[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("interactor", "interaction_label", "inventory") groups=["player"]]
+position = Vector2(499, 277)
 motion_mode = 1
 script = ExtResource("17_utvwo")
+interactor = NodePath("Interactor")
+interaction_label = NodePath("InteractionLabel")
 inventory = NodePath("../Managers/PlayerInventoryManager")
+
+[node name="Interactor" parent="Player" instance=ExtResource("24_pau2d")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Interactor"]
+position = Vector2(1, 9)
+shape = SubResource("CapsuleShape2D_r5pgw")
+debug_color = Color(0.779355, 0.354019, 0.66611, 0.42)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 sprite_frames = SubResource("SpriteFrames_hnh8a")
@@ -453,6 +468,25 @@ collision_layer = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Hitbox"]
 position = Vector2(1, 9)
 shape = SubResource("CapsuleShape2D_46n4c")
+
+[node name="InteractionLabel" type="Panel" parent="Player"]
+visible = false
+modulate = Color(1, 1, 1, 0.603922)
+offset_left = 1.0
+offset_top = -25.0
+offset_right = 19.0
+offset_bottom = -7.0
+theme = ExtResource("24_a85yc")
+theme_type_variation = &"CirclePanel"
+
+[node name="Label" type="Label" parent="Player/InteractionLabel"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 2.0
+offset_right = 12.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 10
+text = "E"
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -496,4 +530,6 @@ text = "Crafting Menu"
 [connection signal="item_selected" from="Managers/PlayerInventoryManager" to="Managers/PlacementManager" method="_on_player_inventory_manager_item_selected"]
 [connection signal="item_selected" from="Managers/PlayerInventoryManager" to="UI/UIPlayerActionBar" method="_on_player_inventory_item_selected"]
 [connection signal="new_item_added" from="Managers/PlayerInventoryManager" to="UI/UIPlayerActionBar" method="_on_player_inventory_new_item_added"]
+[connection signal="player_moved" from="Player" to="Player/Interactor" method="_on_player_player_moved"]
+[connection signal="interactables_updated" from="Player/Interactor" to="Player" method="_on_interactor_interactables_updated"]
 [connection signal="item_selected" from="UI/UIPlayerActionBar" to="Managers/PlayerInventoryManager" method="_on_ui_player_inventory_item_selected"]

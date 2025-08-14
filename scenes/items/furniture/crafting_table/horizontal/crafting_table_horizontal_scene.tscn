@@ -1,33 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddwgeryqsof2f"]
+[gd_scene load_steps=6 format=3 uid="uid://ddwgeryqsof2f"]
 
 [ext_resource type="Script" path="res://systems/crafting_system/scripts/classes/CraftingStation.gd" id="1_usp3e"]
 [ext_resource type="PackedScene" uid="uid://2hnnyiwmrky4" path="res://scenes/items/furniture/crafting_table/horizontal/crafting_table_horizontal_base.tscn" id="2_2gtrt"]
+[ext_resource type="PackedScene" uid="uid://bjkkgqs6xjbg3" path="res://scenes/components/interactable.tscn" id="3_0giuo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ftnhh"]
+size = Vector2(49, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vsva7"]
 size = Vector2(28, 10)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcw4e"]
-size = Vector2(32, 17)
-
-[node name="CraftingTableHorizontal" type="StaticBody2D" node_paths=PackedStringArray("crafting_area", "base_scene", "collision_shape_2D", "item_slots")]
+[node name="CraftingTableHorizontal" type="StaticBody2D" node_paths=PackedStringArray("interactable", "base_scene", "collision_shape_2D")]
 script = ExtResource("1_usp3e")
-crafting_area = NodePath("CraftingArea")
+interactable = NodePath("Interactable")
 is_horizontal = true
 item_slot_matrix = Array[Vector2i]([Vector2i(0, 0), Vector2i(1, 0)])
 base_scene = NodePath("CraftingTableHorizontalBase")
-collision_shape_2D = NodePath("CollisionShape2D")
-item_slots = NodePath("ItemSlots")
+collision_shape_2D = NodePath("Interactable/CollisionShape2D")
 
 [node name="CraftingTableHorizontalBase" parent="." instance=ExtResource("2_2gtrt")]
+
+[node name="Interactable" parent="." instance=ExtResource("3_0giuo")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_ftnhh")
+debug_color = Color(0.771714, 0.325083, 0.765829, 0.42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_vsva7")
-
-[node name="ItemSlots" type="Node2D" parent="."]
-
-[node name="CraftingArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CraftingArea"]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_tcw4e")
