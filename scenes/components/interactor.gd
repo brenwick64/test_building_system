@@ -25,17 +25,21 @@ func _on_area_exited(area: Area2D) -> void:
 	interactables_updated.emit(nearby_interactables)
 
 ## -- helper functions --
+func _get_player_distance_to_area(area: Area2D) -> float:
+	var player_gp: Vector2 = get_parent().global_position
+	var shape_node: CollisionShape2D = area.get_node("CollisionShape2D")
+	return player_gp.distance_to(shape_node.global_position)
+
 func _get_closest_interactable() -> Interactable:
 	if nearby_interactables.size() == 0: return null
 	var closest: Interactable = nearby_interactables[0]
 	for interactable: Interactable in nearby_interactables:
-		var closest_distance: float = closest.global_position.distance_to(get_parent().global_position)
-		var new_distance: float = interactable.global_position.distance_to(get_parent().global_position)
+		var closest_distance: float = _get_player_distance_to_area(closest)
+		var new_distance: float = _get_player_distance_to_area(interactable)
 		if new_distance < closest_distance:
-			closest_distance = new_distance
+			closest = interactable
 	return closest
 
-#TODO: This isnt working
 func _on_player_player_moved() -> void:
 	var closest_interactable: Interactable = _get_closest_interactable()
 	if not closest_interactable: return

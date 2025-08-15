@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=4 uid="uid://de3o831n25f2l"]
+[gd_scene load_steps=80 format=4 uid="uid://de3o831n25f2l"]
 
 [ext_resource type="TileSet" uid="uid://jyl0pt03odje" path="res://resources/tilesets/main_tileset.tres" id="1_f72q3"]
 [ext_resource type="Script" path="res://scenes/debug/pickup_spawner/pickup_spawner.gd" id="1_nbrfu"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://sp58wos84hs4" path="res://systems/placement_system/scenes/placement_manager.tscn" id="19_tdy0a"]
 [ext_resource type="Theme" uid="uid://d27j5q3aqw7ad" path="res://scenes/ui/main_theme.tres" id="24_a85yc"]
 [ext_resource type="PackedScene" uid="uid://c7ghv2uoto2nd" path="res://scenes/components/interactor.tscn" id="24_pau2d"]
+[ext_resource type="Texture2D" uid="uid://c3phoqwn8bw2u" path="res://assets/ui/basic_ui.png" id="27_l01uu"]
 
 [sub_resource type="Resource" id="Resource_to2d8"]
 script = ExtResource("4_x64uq")
@@ -383,6 +384,12 @@ radius = 6.0
 radius = 6.0
 height = 18.0
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5g3nb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oywc4"]
+atlas = ExtResource("27_l01uu")
+region = Rect2(775, 37, 18, 20)
+
 [node name="TestScene" type="Node2D"]
 
 [node name="Managers" type="Node" parent="."]
@@ -507,18 +514,123 @@ size_flags_vertical = 8
 inventory = NodePath("../../Managers/PlayerInventoryManager")
 
 [node name="UICraftingMenu" type="Panel" parent="UI"]
-visible = false
-custom_minimum_size = Vector2(300, 400)
+custom_minimum_size = Vector2(400, 500)
 offset_left = 197.0
 offset_top = 272.0
 offset_right = 237.0
 offset_bottom = 312.0
+theme = ExtResource("24_a85yc")
+theme_type_variation = &"MainPanel"
 
-[node name="Label" type="Label" parent="UI/UICraftingMenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/UICraftingMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="UI/UICraftingMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Crafting"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/UICraftingMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxLeft" type="HBoxContainer" parent="UI/UICraftingMenu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/UICraftingMenu/VBoxContainer/HBoxContainer/HBoxLeft"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5g3nb")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/UICraftingMenu/VBoxContainer/HBoxContainer/HBoxLeft/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="UI/UICraftingMenu/VBoxContainer/HBoxContainer/HBoxLeft/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("24_a85yc")
+theme_type_variation = &"SubPanel"
+
+[node name="CirclePanel" type="Panel" parent="UI/UICraftingMenu/VBoxContainer/HBoxContainer/HBoxLeft/PanelContainer"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = ExtResource("24_a85yc")
+theme_type_variation = &"CirclePanel"
+
+[node name="Label" type="Label" parent="UI/UICraftingMenu/VBoxContainer/HBoxContainer/HBoxLeft/PanelContainer/CirclePanel"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Crafting Menu"
+offset_left = 9.0
+offset_top = 2.0
+offset_right = 21.0
+offset_bottom = 25.0
+text = "9"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/UICraftingMenu/VBoxContainer/HBoxContainer/HBoxLeft"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/UICraftingMenu/VBoxContainer/HBoxContainer/HBoxLeft/MarginContainer"]
+layout_mode = 2
+text = "+"
+
+[node name="HBoxRight" type="HBoxContainer" parent="UI/UICraftingMenu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/UICraftingMenu/VBoxContainer/HBoxContainer/HBoxRight"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/UICraftingMenu/VBoxContainer/HBoxContainer/HBoxRight/MarginContainer2"]
+layout_mode = 2
+text = "="
+
+[node name="PanelContainer2" type="PanelContainer" parent="UI/UICraftingMenu/VBoxContainer/HBoxContainer/HBoxRight"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5g3nb")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/UICraftingMenu/VBoxContainer/HBoxContainer/HBoxRight/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="UI/UICraftingMenu/VBoxContainer/HBoxContainer/HBoxRight/PanelContainer2/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("24_a85yc")
+theme_type_variation = &"SubPanel"
+
+[node name="CirclePanel" type="Panel" parent="UI/UICraftingMenu/VBoxContainer/HBoxContainer/HBoxRight/PanelContainer2"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme = ExtResource("24_a85yc")
+theme_type_variation = &"CirclePanel"
+
+[node name="Label" type="Label" parent="UI/UICraftingMenu/VBoxContainer/HBoxContainer/HBoxRight/PanelContainer2/CirclePanel"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 2.0
+offset_right = 21.0
+offset_bottom = 25.0
+text = "9"
+
+[node name="TextureButton" type="TextureButton" parent="UI/UICraftingMenu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_oywc4")
 
 [connection signal="action_bar_pressed" from="Managers/InputManager" to="UI/UIPlayerActionBar" method="_on_input_manager_action_bar_pressed"]
 [connection signal="action_pressed" from="Managers/InputManager" to="Managers/PlacementManager" method="_on_input_manager_action_pressed"]
