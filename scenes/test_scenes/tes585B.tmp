@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=4 uid="uid://de3o831n25f2l"]
+[gd_scene load_steps=83 format=4 uid="uid://de3o831n25f2l"]
 
 [ext_resource type="TileSet" uid="uid://jyl0pt03odje" path="res://resources/tilesets/main_tileset.tres" id="1_f72q3"]
 [ext_resource type="Script" path="res://scenes/debug/pickup_spawner/pickup_spawner.gd" id="1_nbrfu"]
@@ -27,6 +27,11 @@
 [ext_resource type="Theme" uid="uid://d27j5q3aqw7ad" path="res://scenes/ui/main_theme.tres" id="24_a85yc"]
 [ext_resource type="PackedScene" uid="uid://c7ghv2uoto2nd" path="res://scenes/components/interactor.tscn" id="24_pau2d"]
 [ext_resource type="Script" path="res://scenes/ui/ui_crafting_menu/ui_crafting_menu.gd" id="27_bl7is"]
+[ext_resource type="PackedScene" uid="uid://c52cr4b5sre7d" path="res://scenes/ui/ui_crafting_menu/recipe_input_item.tscn" id="27_ymo1a"]
+[ext_resource type="PackedScene" uid="uid://bjx6adj38bsj" path="res://scenes/ui/ui_crafting_menu/char_container.tscn" id="28_su5ik"]
+[ext_resource type="PackedScene" uid="uid://d4eltr5g3rr7y" path="res://scenes/ui/ui_crafting_menu/recipe_output_item.tscn" id="29_jl5oq"]
+[ext_resource type="Texture2D" uid="uid://2nmglyhpismx" path="res://scenes/items/materials/stone/stone_texture.tres" id="30_muku0"]
+[ext_resource type="Texture2D" uid="uid://djhg67y7el2na" path="res://scenes/items/materials/wood/wood_texture.tres" id="30_smh4a"]
 
 [sub_resource type="Resource" id="Resource_to2d8"]
 script = ExtResource("4_x64uq")
@@ -396,7 +401,7 @@ script = ExtResource("1_paqh8")
 
 [node name="CraftingManager" type="Node" parent="Managers" node_paths=PackedStringArray("crafting_ui") groups=["crafting_manager"]]
 script = ExtResource("6_3jux3")
-crafting_ui = NodePath("")
+crafting_ui = NodePath("../../UI/UICraftingMenu")
 
 [node name="PlacementManager" parent="Managers" node_paths=PackedStringArray("placeable_layer") instance=ExtResource("19_tdy0a")]
 placeable_layer = NodePath("../../TileMap/ShoppeFloor")
@@ -511,33 +516,61 @@ inventory = NodePath("../../Managers/PlayerInventoryManager")
 custom_minimum_size = Vector2(400, 500)
 offset_left = 197.0
 offset_top = 272.0
-offset_right = 597.0
-offset_bottom = 772.0
+offset_right = 237.0
+offset_bottom = 312.0
 theme = ExtResource("24_a85yc")
 theme_type_variation = &"MainPanel"
 script = ExtResource("27_bl7is")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/UICraftingMenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/UICraftingMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/UICraftingMenu/MarginContainer"]
-layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="MenuTitle" type="Label" parent="UI/UICraftingMenu/MarginContainer/VBoxContainer"]
+[node name="MenuTitle" type="Label" parent="UI/UICraftingMenu/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 text = "Crafting"
 horizontal_alignment = 1
+
+[node name="CraftingRecipe" type="HBoxContainer" parent="UI/UICraftingMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxLeft" type="HBoxContainer" parent="UI/UICraftingMenu/VBoxContainer/CraftingRecipe"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RecipeInputItem" parent="UI/UICraftingMenu/VBoxContainer/CraftingRecipe/HBoxLeft" instance=ExtResource("27_ymo1a")]
+layout_mode = 2
+texture = ExtResource("30_smh4a")
+amount = 2
+
+[node name="CharContainer" parent="UI/UICraftingMenu/VBoxContainer/CraftingRecipe/HBoxLeft" instance=ExtResource("28_su5ik")]
+layout_mode = 2
+
+[node name="RecipeInputItem2" parent="UI/UICraftingMenu/VBoxContainer/CraftingRecipe/HBoxLeft" instance=ExtResource("27_ymo1a")]
+layout_mode = 2
+texture = ExtResource("30_muku0")
+amount = 2
+
+[node name="HBoxRight" type="HBoxContainer" parent="UI/UICraftingMenu/VBoxContainer/CraftingRecipe"]
+layout_mode = 2
+alignment = 2
+
+[node name="CharContainer" type="MarginContainer" parent="UI/UICraftingMenu/VBoxContainer/CraftingRecipe/HBoxRight"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/UICraftingMenu/VBoxContainer/CraftingRecipe/HBoxRight/CharContainer"]
+layout_mode = 2
+text = "="
+
+[node name="RecipeOutputItem" parent="UI/UICraftingMenu/VBoxContainer/CraftingRecipe/HBoxRight" instance=ExtResource("29_jl5oq")]
+layout_mode = 2
+texture = ExtResource("30_smh4a")
 
 [connection signal="action_bar_pressed" from="Managers/InputManager" to="UI/UIPlayerActionBar" method="_on_input_manager_action_bar_pressed"]
 [connection signal="action_pressed" from="Managers/InputManager" to="Managers/PlacementManager" method="_on_input_manager_action_pressed"]

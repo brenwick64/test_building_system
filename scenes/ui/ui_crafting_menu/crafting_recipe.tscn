@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://2owsay61femv"]
+
+[ext_resource type="Script" path="res://scenes/ui/ui_crafting_menu/crafting_recipe.gd" id="1_mjyt5"]
+
+[node name="CraftingRecipe" type="HBoxContainer"]
+script = ExtResource("1_mjyt5")
+
+[node name="HBoxLeft" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxRight" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 2
+
+[node name="CharContainer" type="MarginContainer" parent="HBoxRight"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxRight/CharContainer"]
+layout_mode = 2
+text = "="
