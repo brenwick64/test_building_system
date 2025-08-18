@@ -1,11 +1,18 @@
 extends MarginContainer
 
+signal pressed
+
 @export var texture_min_size: int = 50
 @export var texture: Texture
 
 @onready var button: Button = $Button
 @onready var center_container: CenterContainer = $Button/CenterContainer
 
+func _ready() -> void:
+	var texture_rect: TextureRect = _create_texture_rect(texture, texture_min_size)
+	center_container.add_child(texture_rect)
+
+## -- helper functions --
 func _calculate_texture_size(texture: Texture) -> Vector2:
 	var tex_size: Vector2 = texture.get_size()
 	var max_size: float = max(tex_size.x, tex_size.y)
@@ -23,6 +30,6 @@ func _create_texture_rect(texture: Texture2D, min_size: int) -> TextureRect:
 	texture_rect.texture = texture
 	return texture_rect
 
-func _ready() -> void:
-	var texture_rect: TextureRect = _create_texture_rect(texture, texture_min_size)
-	center_container.add_child(texture_rect)
+## -- signals --
+func _on_button_pressed() -> void:
+	pressed.emit()

@@ -27,10 +27,10 @@ func add_item(item_id: String, amount: int) -> void:
 		_increment_existing_item(item_id, amount)
 	inventory_updated.emit(inventory_items)
 
-func remove_item(item_id: String, _amount: int) -> void:
+func remove_item(item_id: String, amount: int) -> void:
 	for inv_item: RInventoryItem in inventory_items:
 		if inv_item.item.item_id == item_id:
-			inv_item.count -= 1
+			inv_item.count = max(0, inv_item.count - amount)
 	_prune_depleted_items()
 
 ## -- helper functions --

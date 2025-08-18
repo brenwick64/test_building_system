@@ -1,14 +1,21 @@
 extends HBoxContainer
 
+signal craft_pressed(recipe: RRecipe)
+
 @export var recipe: RRecipe
 
-@onready var char_container_scene: PackedScene = preload("res://scenes/ui/ui_crafting_menu/char_container.tscn")
-@onready var recipe_input_scene: PackedScene = preload("res://scenes/ui/ui_crafting_menu/recipe_input_item.tscn")
-@onready var recipe_output_scene: PackedScene = preload("res://scenes/ui/ui_crafting_menu/recipe_output_item.tscn")
-
+@onready var char_container_scene: PackedScene = preload("res://scenes/ui/ui_crafting_menu/char_container/char_container.tscn")
+@onready var recipe_input_scene: PackedScene = preload("res://scenes/ui/ui_crafting_menu/recipe_input_item/recipe_input_item.tscn")
+@onready var recipe_output_scene: PackedScene = preload("res://scenes/ui/ui_crafting_menu/recipe_output_item/recipe_output_item.tscn")
+	
 @onready var h_box_left: HBoxContainer = $HBoxLeft
 @onready var h_box_right: HBoxContainer = $HBoxRight
 
+func _ready() -> void:
+	_render_input_items(recipe.input_items)
+	_render_output_items(recipe.output_items)
+
+## -- helper functions --
 func _get_char_container(character: String) -> Control:
 	var char_container: Control = char_container_scene.instantiate()
 	char_container.character = character
@@ -28,9 +35,10 @@ func _render_input_items(input_items: Array[RInventoryItem]) -> void:
 func _render_output_items(output_items: Array[RInventoryItem]) -> void:
 	for output_item: RInventoryItem in output_items:
 		var recipe_output: Control = recipe_output_scene.instantiate()
+		recipe_output.pressed.connect(_on_output_btn_pressed)
 		recipe_output.texture = output_item.item.icon.texture
 		h_box_right.add_child(recipe_output)
 
-func _ready() -> void:
-	_render_input_items(recipe.input_items)
-	_render_output_items(recipe.output_items)
+## -- signals --
+func _on_output_btn_pressed() -> void:
+	craft_pressed.emit(recipe)

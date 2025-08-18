@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d4eltr5g3rr7y"]
 
-[ext_resource type="Script" path="res://scenes/ui/ui_crafting_menu/recipe_output_item.gd" id="1_q3l44"]
+[ext_resource type="Script" path="res://scenes/ui/ui_crafting_menu/recipe_output_item/recipe_output_item.gd" id="1_q3l44"]
 [ext_resource type="Theme" uid="uid://d27j5q3aqw7ad" path="res://scenes/ui/main_theme.tres" id="1_qp14j"]
 
 [node name="RecipeOutputItem" type="MarginContainer"]
@@ -23,3 +23,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

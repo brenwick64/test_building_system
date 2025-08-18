@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bjx6adj38bsj"]
 
-[ext_resource type="Script" path="res://scenes/ui/ui_crafting_menu/char_container.gd" id="1_l1jgw"]
+[ext_resource type="Script" path="res://scenes/ui/ui_crafting_menu/char_container/char_container.gd" id="1_l1jgw"]
 
 [node name="CharContainer" type="MarginContainer"]
 script = ExtResource("1_l1jgw")

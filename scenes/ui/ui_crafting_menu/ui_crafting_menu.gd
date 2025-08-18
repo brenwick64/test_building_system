@@ -1,10 +1,13 @@
 extends Panel
 
+@export var crafting_manager: CraftingManager
+
 @onready var recipes_rg: ResourceGroup = preload("res://resource_groups/recipes.tres")
-@onready var recipe_ui_scene: PackedScene = preload("res://scenes/ui/ui_crafting_menu/crafting_recipe.tscn")
+@onready var recipe_ui_scene: PackedScene = preload("res://scenes/ui/ui_crafting_menu/crafting_recipe/crafting_recipe.tscn")
 
 @onready var v_box_container: VBoxContainer = $MarginContainer/VBoxContainer
 
+var current_crafting_station: CraftingStation
 var recipes_arr: Array[RRecipe]
 
 func _compare_input_item_count(a: RRecipe, b:RRecipe) -> int:
@@ -21,4 +24,11 @@ func _ready() -> void:
 	for recipe: RRecipe in recipes_arr:
 		var recipe_ui: Control = recipe_ui_scene.instantiate()
 		recipe_ui.recipe = recipe
+		recipe_ui.craft_pressed.connect(_on_craft_pressed)
 		v_box_container.add_child(recipe_ui)
+
+func _on_craft_pressed(recipe: RRecipe) -> void:
+	if not current_crafting_station:
+		push_error("ui_crafting_menu error: attempting to craft without current crafting station")
+		return
+	crafting_manager.handle_craft(recipe, current_crafting_station)

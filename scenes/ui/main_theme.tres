@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=18 format=3 uid="uid://d27j5q3aqw7ad"]
+[gd_resource type="Theme" load_steps=21 format=3 uid="uid://d27j5q3aqw7ad"]
 
 [ext_resource type="Texture2D" uid="uid://c3phoqwn8bw2u" path="res://assets/ui/basic_ui.png" id="1_j8t0r"]
 
@@ -14,15 +14,15 @@ texture_margin_right = 4.0
 texture_margin_bottom = 4.0
 region_rect = Rect2(0, 0, 26, 26)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5bdkk"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l8tk5"]
 load_path = "res://.godot/imported/basic_ui.png-b9d44a61938a3a1ec7e4378866bcebea.ctex"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r8kgh"]
-atlas = SubResource("CompressedTexture2D_5bdkk")
+[sub_resource type="AtlasTexture" id="AtlasTexture_csfav"]
+atlas = SubResource("CompressedTexture2D_l8tk5")
 region = Rect2(59, 59, 26, 26)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1n16v"]
-texture = SubResource("AtlasTexture_r8kgh")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i1cto"]
+texture = SubResource("AtlasTexture_csfav")
 texture_margin_left = 4.0
 texture_margin_top = 4.0
 texture_margin_right = 4.0
@@ -48,6 +48,20 @@ region = Rect2(59, 155, 26, 26)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kctbr"]
 texture = SubResource("AtlasTexture_xmh7f")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3c4gq"]
+load_path = "res://.godot/imported/basic_ui.png-b9d44a61938a3a1ec7e4378866bcebea.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bch71"]
+atlas = SubResource("CompressedTexture2D_3c4gq")
+region = Rect2(59, 59, 26, 26)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k2wul"]
+texture = SubResource("AtlasTexture_bch71")
 texture_margin_left = 4.0
 texture_margin_top = 4.0
 texture_margin_right = 4.0
@@ -84,9 +98,10 @@ texture_margin_bottom = 4.0
 
 [resource]
 Button/styles/disabled = SubResource("StyleBoxTexture_gsfx0")
-Button/styles/focus = SubResource("StyleBoxTexture_1n16v")
+Button/styles/focus = SubResource("StyleBoxTexture_i1cto")
 Button/styles/hover = SubResource("StyleBoxTexture_gg3dy")
 Button/styles/normal = SubResource("StyleBoxTexture_kctbr")
+Button/styles/pressed = SubResource("StyleBoxTexture_k2wul")
 CirclePanel/base_type = &"Panel"
 CirclePanel/styles/panel = SubResource("StyleBoxTexture_mcrn6")
 MainPanel/base_type = &"Panel"

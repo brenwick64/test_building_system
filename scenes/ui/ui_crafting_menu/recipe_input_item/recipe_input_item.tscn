@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c52cr4b5sre7d"]
 
 [ext_resource type="Theme" uid="uid://d27j5q3aqw7ad" path="res://scenes/ui/main_theme.tres" id="1_817un"]
-[ext_resource type="Script" path="res://scenes/ui/ui_crafting_menu/recipe_input_item.gd" id="1_arqh5"]
+[ext_resource type="Script" path="res://scenes/ui/ui_crafting_menu/recipe_input_item/recipe_input_item.gd" id="1_arqh5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5g3nb"]
 
