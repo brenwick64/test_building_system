@@ -1,18 +1,34 @@
+class_name UIRecipeOutputItem
 extends MarginContainer
 
 signal pressed
 
 @export var texture_min_size: int = 50
 @export var texture: Texture
+@export var item_id: int
 
 @onready var button: Button = $Button
 @onready var center_container: CenterContainer = $Button/CenterContainer
+
+## -- methods --
+func check_input_items(input_items: Array[UIRecipeInputItem]) -> void:
+	for input_item: UIRecipeInputItem in input_items:
+		if not input_item.player_has_items:
+			_disable_ui()
+			return
+	_enable_ui()
 
 func _ready() -> void:
 	var texture_rect: TextureRect = _create_texture_rect(texture, texture_min_size)
 	center_container.add_child(texture_rect)
 
 ## -- helper functions --
+func _enable_ui() -> void:
+	button.disabled = false
+
+func _disable_ui() -> void:
+	button.disabled = true
+
 func _calculate_texture_size(texture: Texture) -> Vector2:
 	var tex_size: Vector2 = texture.get_size()
 	var max_size: float = max(tex_size.x, tex_size.y)

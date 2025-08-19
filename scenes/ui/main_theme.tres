@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=21 format=3 uid="uid://d27j5q3aqw7ad"]
+[gd_resource type="Theme" load_steps=27 format=3 uid="uid://d27j5q3aqw7ad"]
 
 [ext_resource type="Texture2D" uid="uid://c3phoqwn8bw2u" path="res://assets/ui/basic_ui.png" id="1_j8t0r"]
 
@@ -74,6 +74,16 @@ region = Rect2(519, 72, 18, 17)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mcrn6"]
 texture = SubResource("AtlasTexture_xtmhu")
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fo4b2"]
+load_path = "res://.godot/imported/basic_ui.png-b9d44a61938a3a1ec7e4378866bcebea.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xek2w"]
+atlas = SubResource("CompressedTexture2D_fo4b2")
+region = Rect2(519, 40, 18, 17)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_irj7f"]
+texture = SubResource("AtlasTexture_xek2w")
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ayugw"]
 atlas = ExtResource("1_j8t0r")
 region = Rect2(107, 59, 26, 26)
@@ -96,6 +106,20 @@ texture_margin_top = 4.0
 texture_margin_right = 4.0
 texture_margin_bottom = 4.0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_d6pcw"]
+load_path = "res://.godot/imported/basic_ui.png-b9d44a61938a3a1ec7e4378866bcebea.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eh186"]
+atlas = SubResource("CompressedTexture2D_d6pcw")
+region = Rect2(107, 11, 26, 26)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_matsf"]
+texture = SubResource("AtlasTexture_eh186")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
 [resource]
 Button/styles/disabled = SubResource("StyleBoxTexture_gsfx0")
 Button/styles/focus = SubResource("StyleBoxTexture_i1cto")
@@ -104,7 +128,11 @@ Button/styles/normal = SubResource("StyleBoxTexture_kctbr")
 Button/styles/pressed = SubResource("StyleBoxTexture_k2wul")
 CirclePanel/base_type = &"Panel"
 CirclePanel/styles/panel = SubResource("StyleBoxTexture_mcrn6")
+CirclePanelDisabled/base_type = &"Panel"
+CirclePanelDisabled/styles/panel = SubResource("StyleBoxTexture_irj7f")
 MainPanel/base_type = &"Panel"
 MainPanel/styles/panel = SubResource("StyleBoxTexture_byajr")
 SubPanel/base_type = &"Panel"
 SubPanel/styles/panel = SubResource("StyleBoxTexture_cq1wk")
+SubPanelDisabled/base_type = &"Panel"
+SubPanelDisabled/styles/panel = SubResource("StyleBoxTexture_matsf")

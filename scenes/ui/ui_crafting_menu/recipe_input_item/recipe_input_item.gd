@@ -1,11 +1,42 @@
+class_name UIRecipeInputItem
 extends PanelContainer
 
 @export var texture_min_size: int = 50
 @export var texture: Texture
 @export var amount: int
+@export var item_id: String
 
+@onready var panel: Panel = $MarginContainer/Panel
+@onready var circle_panel: Panel = $CirclePanel
 @onready var label: Label = $CirclePanel/Label
 @onready var center_container: CenterContainer = $MarginContainer/Panel/CenterContainer
+
+var player_has_items: bool = true
+
+## -- methods --
+func check_inventory(inventory_items: Array[RInventoryItem]) -> void:
+	var has_enough: bool = inventory_items.any(
+		func(inv_item: RInventoryItem) -> bool:
+			return inv_item.item.item_id == item_id and inv_item.count >= amount)
+	if has_enough: _enable_ui()
+	else: _disable_ui()
+
+## -- overrides --
+func _ready() -> void:
+	label.text = str(amount)
+	var texture_rect: TextureRect = _create_texture_rect(texture, texture_min_size)
+	center_container.add_child(texture_rect)
+
+## -- helper functions --
+func _enable_ui() -> void:
+	player_has_items = true
+	panel.theme_type_variation = "SubPanel"
+	circle_panel.theme_type_variation = "CirclePanel"
+
+func _disable_ui() -> void:
+	player_has_items = false
+	panel.theme_type_variation = "SubPanelDisabled"
+	circle_panel.theme_type_variation = "CirclePanelDisabled"
 
 func _calculate_texture_size(texture: Texture) -> Vector2:
 	var tex_size: Vector2 = texture.get_size()
@@ -23,8 +54,3 @@ func _create_texture_rect(texture: Texture2D, min_size: int) -> TextureRect:
 	texture_rect.custom_minimum_size = _calculate_texture_size(texture)
 	texture_rect.texture = texture
 	return texture_rect
-
-func _ready() -> void:
-	label.text = str(amount)
-	var texture_rect: TextureRect = _create_texture_rect(texture, texture_min_size)
-	center_container.add_child(texture_rect)

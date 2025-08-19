@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=4 uid="uid://de3o831n25f2l"]
+[gd_scene load_steps=73 format=4 uid="uid://de3o831n25f2l"]
 
 [ext_resource type="TileSet" uid="uid://jyl0pt03odje" path="res://resources/tilesets/main_tileset.tres" id="1_f72q3"]
 [ext_resource type="Script" path="res://scenes/debug/pickup_spawner/pickup_spawner.gd" id="1_nbrfu"]
@@ -17,15 +17,12 @@
 [ext_resource type="Resource" uid="uid://b01cl5cc1g0sp" path="res://resources/item_data/furniture/3x1_table.tres" id="9_8yntn"]
 [ext_resource type="Resource" uid="uid://dkpdd832rs62y" path="res://resources/item_data/items/health_potion.tres" id="9_xgro7"]
 [ext_resource type="Resource" uid="uid://ctyuc3ycewbnj" path="res://resources/item_data/items/remover_tool.tres" id="12_xmisv"]
-[ext_resource type="Resource" uid="uid://denl8yukvok77" path="res://resources/item_data/items/spear.tres" id="14_nokyo"]
-[ext_resource type="Resource" uid="uid://y35mf4vnwjbm" path="res://resources/item_data/items/sword.tres" id="15_ktyxu"]
 [ext_resource type="Resource" uid="uid://b8h5q6ggevdyi" path="res://resources/item_data/furniture/crafting_table.tres" id="16_kkxdv"]
 [ext_resource type="Texture2D" uid="uid://dh2cnltobawlx" path="res://assets/characters/player.png" id="17_4bagj"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="17_utvwo"]
 [ext_resource type="PackedScene" uid="uid://sp58wos84hs4" path="res://systems/placement_system/scenes/placement_manager.tscn" id="19_tdy0a"]
 [ext_resource type="Theme" uid="uid://d27j5q3aqw7ad" path="res://scenes/ui/main_theme.tres" id="24_a85yc"]
 [ext_resource type="PackedScene" uid="uid://c7ghv2uoto2nd" path="res://scenes/components/interactor.tscn" id="24_pau2d"]
-[ext_resource type="PackedScene" uid="uid://dfm822fhokyl8" path="res://scenes/ui/ui_crafting_menu/ui_crafting_menu.tscn" id="27_wd8cu"]
 
 [sub_resource type="Resource" id="Resource_to2d8"]
 script = ExtResource("4_x64uq")
@@ -69,22 +66,16 @@ item = ExtResource("16_kkxdv")
 count = 3
 stackable = true
 
-[sub_resource type="Resource" id="Resource_hmifu"]
-script = ExtResource("4_x64uq")
-item = ExtResource("14_nokyo")
-count = 5
-stackable = true
-
 [sub_resource type="Resource" id="Resource_fs0sn"]
 script = ExtResource("4_x64uq")
-item = ExtResource("15_ktyxu")
-count = 5
+item = ExtResource("4_3a7ax")
+count = 10
 stackable = true
 
 [sub_resource type="Resource" id="Resource_tx2ye"]
 script = ExtResource("4_x64uq")
 item = ExtResource("3_86h2l")
-count = 7
+count = 10
 stackable = true
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r5pgw"]
@@ -393,16 +384,16 @@ script = ExtResource("1_qkav0")
 [node name="TileManager" type="Node" parent="Managers"]
 script = ExtResource("1_paqh8")
 
-[node name="CraftingManager" type="Node" parent="Managers" node_paths=PackedStringArray("inventory_manager", "crafting_ui") groups=["crafting_manager"]]
+[node name="CraftingManager" type="Node" parent="Managers" node_paths=PackedStringArray("inventory_manager", "ui") groups=["crafting_manager"]]
 script = ExtResource("6_3jux3")
 inventory_manager = NodePath("../PlayerInventoryManager")
-crafting_ui = NodePath("../../UI/UICraftingMenu")
+ui = NodePath("../../UI")
 
 [node name="PlacementManager" parent="Managers" node_paths=PackedStringArray("placeable_layer") instance=ExtResource("19_tdy0a")]
 placeable_layer = NodePath("../../TileMap/ShoppeFloor")
 
 [node name="PlayerInventoryManager" parent="Managers" groups=["player_inventory"] instance=ExtResource("2_sl7we")]
-inventory_items = Array[ExtResource("4_x64uq")]([SubResource("Resource_to2d8"), SubResource("Resource_xf3qb"), SubResource("Resource_wn6ap"), SubResource("Resource_sxo45"), SubResource("Resource_2poh8"), SubResource("Resource_lp816"), SubResource("Resource_si6h5"), SubResource("Resource_hmifu"), SubResource("Resource_fs0sn"), SubResource("Resource_tx2ye")])
+inventory_items = Array[ExtResource("4_x64uq")]([SubResource("Resource_to2d8"), SubResource("Resource_xf3qb"), SubResource("Resource_wn6ap"), SubResource("Resource_sxo45"), SubResource("Resource_2poh8"), SubResource("Resource_lp816"), SubResource("Resource_si6h5"), SubResource("Resource_fs0sn"), SubResource("Resource_tx2ye")])
 
 [node name="Debug" type="Node" parent="."]
 
@@ -506,10 +497,6 @@ grow_vertical = 0
 size_flags_horizontal = 6
 size_flags_vertical = 8
 inventory = NodePath("../../Managers/PlayerInventoryManager")
-
-[node name="UICraftingMenu" parent="UI" node_paths=PackedStringArray("crafting_manager") instance=ExtResource("27_wd8cu")]
-visible = false
-crafting_manager = NodePath("../../Managers/CraftingManager")
 
 [connection signal="action_bar_pressed" from="Managers/InputManager" to="UI/UIPlayerActionBar" method="_on_input_manager_action_bar_pressed"]
 [connection signal="action_pressed" from="Managers/InputManager" to="Managers/PlacementManager" method="_on_input_manager_action_pressed"]

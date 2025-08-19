@@ -1,3 +1,4 @@
+class_name UICraftingRecipe
 extends HBoxContainer
 
 signal craft_pressed(recipe: RRecipe)
@@ -10,6 +11,17 @@ signal craft_pressed(recipe: RRecipe)
 	
 @onready var h_box_left: HBoxContainer = $HBoxLeft
 @onready var h_box_right: HBoxContainer = $HBoxRight
+
+## -- methods --
+func check_inventory(inventory_items: Array[RInventoryItem]) -> void:
+	var ui_recipe_inputs: Array[UIRecipeInputItem] = []
+	for child: Node in h_box_left.get_children():
+		if child is not UIRecipeInputItem: continue
+		child.check_inventory(inventory_items)
+		ui_recipe_inputs.append(child)
+	for child: Node in h_box_right.get_children():
+		if child is not UIRecipeOutputItem: continue
+		child.check_input_items(ui_recipe_inputs)
 
 func _ready() -> void:
 	_render_input_items(recipe.input_items)
@@ -30,6 +42,7 @@ func _render_input_items(input_items: Array[RInventoryItem]) -> void:
 		var recipe_input: Control = recipe_input_scene.instantiate()
 		recipe_input.texture = input_item.item.icon.texture
 		recipe_input.amount = input_item.count
+		recipe_input.item_id = input_item.item.item_id
 		h_box_left.add_child(recipe_input)
 
 func _render_output_items(output_items: Array[RInventoryItem]) -> void:
@@ -37,6 +50,7 @@ func _render_output_items(output_items: Array[RInventoryItem]) -> void:
 		var recipe_output: Control = recipe_output_scene.instantiate()
 		recipe_output.pressed.connect(_on_output_btn_pressed)
 		recipe_output.texture = output_item.item.icon.texture
+		recipe_output.item_id = output_item.item.item_id
 		h_box_right.add_child(recipe_output)
 
 ## -- signals --

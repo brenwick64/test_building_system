@@ -1,6 +1,7 @@
 class_name CraftingStation
 extends PlaceableFurniture
 
+@export var ui_scene: PackedScene
 @export var progress_bar: ProgressBar
 @export var craft_timer: Timer
 @export var interactable: Interactable
@@ -55,5 +56,5 @@ func _on_interactable_interacted() -> void:
 func _on_interactable_exited(_area) -> void:
 	var crafting_manager: CraftingManager = get_tree().get_first_node_in_group("crafting_manager")
 	if not crafting_manager: return
-	if crafting_manager.crafting_ui.visible == true:
+	if crafting_manager.current_crafting_ui and crafting_manager.current_crafting_ui.visible == true:
 		crafting_manager.toggle_ui(self)
