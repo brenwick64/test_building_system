@@ -29,8 +29,8 @@ func _enable_ui() -> void:
 func _disable_ui() -> void:
 	button.disabled = true
 
-func _calculate_texture_size(texture: Texture) -> Vector2:
-	var tex_size: Vector2 = texture.get_size()
+func _calculate_texture_size(tex: Texture) -> Vector2:
+	var tex_size: Vector2 = tex.get_size()
 	var max_size: float = max(tex_size.x, tex_size.y)
 	if max_size < texture_min_size:
 		var percent_difference: float = max_size / texture_min_size
@@ -40,10 +40,10 @@ func _calculate_texture_size(texture: Texture) -> Vector2:
 		return Vector2(floori(tex_size.x * scalar_amount), floori(tex_size.y * scalar_amount))
 	return tex_size
 
-func _create_texture_rect(texture: Texture2D, min_size: int) -> TextureRect:
+func _create_texture_rect(tex: Texture2D, min_size: int) -> TextureRect:
 	var texture_rect: TextureRect = TextureRect.new()
-	texture_rect.custom_minimum_size = _calculate_texture_size(texture)
-	texture_rect.texture = texture
+	texture_rect.custom_minimum_size = _calculate_texture_size(tex)
+	texture_rect.texture = tex
 	return texture_rect
 
 ## -- signals --

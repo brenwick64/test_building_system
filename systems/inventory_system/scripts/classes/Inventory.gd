@@ -33,6 +33,21 @@ func remove_item(item_id: String, amount: int) -> void:
 			inv_item.count = max(0, inv_item.count - amount)
 	_prune_depleted_items()
 
+func has_items(inv_items: Array[RInventoryItem]) -> bool:
+	for inv_item: RInventoryItem in inv_items:
+		# case 1 - item doesnt exist in inventory
+		var item_exists: bool = inventory_items.filter(
+			func(i: RInventoryItem): return i.item.item_id == inv_item.item.item_id
+		).size() > 0
+		if not item_exists: return false
+			
+		# case 2 - item exists but is not enough
+		for player_inv_item: RInventoryItem in inventory_items:
+			if inv_item.item.item_id == player_inv_item.item.item_id:
+				if inv_item.count > player_inv_item.count:
+					return false
+	return true
+
 ## -- helper functions --
 func _signal_item_depleted(inv_item: RInventoryItem) -> void:
 	item_depleted.emit(inv_item.item)

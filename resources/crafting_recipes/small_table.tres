@@ -20,6 +20,7 @@ stackable = false
 [resource]
 script = ExtResource("2_48h0r")
 recipe_name = &"Small Table"
+recipe_tags = Array[String](["woodworking"])
 base_craft_time_seconds = 5
 input_items = Array[ExtResource("1_6x5ku")]([SubResource("Resource_tc7sn")])
 output_items = Array[ExtResource("1_6x5ku")]([SubResource("Resource_kb4nj")])

@@ -57,4 +57,4 @@ func _on_interactable_exited(_area) -> void:
 	var crafting_manager: CraftingManager = get_tree().get_first_node_in_group("crafting_manager")
 	if not crafting_manager: return
 	if crafting_manager.current_crafting_ui and crafting_manager.current_crafting_ui.visible == true:
-		crafting_manager.toggle_ui(self)
+		crafting_manager.remove_ui(self)

@@ -27,6 +27,7 @@ stackable = false
 [resource]
 script = ExtResource("2_lux0j")
 recipe_name = &"Dagger"
+recipe_tags = Array[String](["weapon", "metal"])
 base_craft_time_seconds = 2
 input_items = Array[ExtResource("1_y8buu")]([SubResource("Resource_5hwbs"), SubResource("Resource_hsrec")])
 output_items = Array[ExtResource("1_y8buu")]([SubResource("Resource_1pr83")])

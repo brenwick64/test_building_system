@@ -1,6 +1,8 @@
+class_name UICraftingMenu
 extends Panel
 
 @export var title: String
+@export var recipe_tags: Array[String]
 @export var crafting_manager: CraftingManager
 @export var crafting_station: CraftingStation
 
@@ -17,6 +19,7 @@ var inventory_items: Array[RInventoryItem]
 func _ready() -> void:
 	menu_title.text = title
 	recipes_rg.load_all_into(recipes_arr)
+	recipes_arr = _filter_recipes_by_tag(recipes_arr)
 	recipes_arr.sort_custom(_compare_input_item_count)
 	for recipe: RRecipe in recipes_arr:
 		var recipe_ui: Control = recipe_ui_scene.instantiate()
@@ -26,10 +29,16 @@ func _ready() -> void:
 	_check_inventory(inventory_items)
 
 ## -- helper functions --
-func _check_inventory(inventory_items: Array[RInventoryItem]) -> void:
+func _filter_recipes_by_tag(recipes: Array[RRecipe]) -> Array[RRecipe]:
+	if recipe_tags.is_empty(): return recipes
+	return recipes.filter(func(r: RRecipe) -> bool:
+		return r and r.recipe_tags and recipe_tags.any(func(tag): return r.recipe_tags.has(tag))
+	)	
+
+func _check_inventory(inv_items: Array[RInventoryItem]) -> void:
 	for child: Node in v_box_container.get_children():
 		if child is not UICraftingRecipe: continue
-		child.check_inventory(inventory_items)
+		child.check_inventory(inv_items)
 
 func _on_craft_pressed(recipe: RRecipe) -> void:
 	if not crafting_station:

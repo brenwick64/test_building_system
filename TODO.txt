@@ -1,5 +1,7 @@
-- refactor placement system with composition over inheritence
-- create "Interactor" to decouple logic from player, and add interactable array there
+refactor crafting ui code
+- the toggle_ui needs to be broken into more explicit commands
+- crafting_manager is a bit of a mess...
 
+- refactor placement system with composition over inheritence
 - have pickup behaviors follow checkbox config at pickup level
 - refacor item slot code to handle events (runaway DRY causing ambiguous code)

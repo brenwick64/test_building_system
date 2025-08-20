@@ -10,7 +10,6 @@ theme = ExtResource("1_o4byx")
 theme_type_variation = &"MainPanel"
 script = ExtResource("2_e0poc")
 title = "Workbench"
-recipe_tags = Array[String](["woodworking"])
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

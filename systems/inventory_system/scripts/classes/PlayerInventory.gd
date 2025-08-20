@@ -9,6 +9,7 @@ var selected_item: RItemData
 func _signal_item_depleted(inv_item: RInventoryItem) -> void:
 	super._signal_item_depleted(inv_item)
 	# remove equipped item if player runs out
+	if not selected_item: return
 	if inv_item.item.item_id == selected_item.item_id:
 		selected_item = null
 

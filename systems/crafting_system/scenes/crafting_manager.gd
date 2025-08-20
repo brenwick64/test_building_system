@@ -9,27 +9,38 @@ var current_crafting_ui: Control
 
 ## -- methods --
 func toggle_ui(crafting_station: CraftingStation) -> void:
+	# case 1 - no existing ui
 	if not current_crafting_ui:
-		_create_new_ui(crafting_station)
-		return
-	var is_same_station: bool = current_crafting_ui and current_crafting_ui.crafting_station == crafting_station
-	if is_same_station:
+		_create_ui(crafting_station)
+	# case 2 - crafting station ui is active
+	elif current_crafting_ui.crafting_station == crafting_station:
 		current_crafting_ui.visible = not current_crafting_ui.visible
-	else:
+	# case 3 - other ui is active
+	elif current_crafting_ui.crafting_station != crafting_station:
+		remove_ui(current_crafting_ui.crafting_station)
+		_create_ui(crafting_station)
+
+func remove_ui(crafting_station: CraftingStation) -> void:
+	if not current_crafting_ui: return
+	var is_active_ui: bool = current_crafting_ui.crafting_station == crafting_station
+	if is_active_ui: 
 		current_crafting_ui.queue_free()
-		_create_new_ui(crafting_station)
+		current_crafting_ui= null
 
 func handle_craft(recipe: RRecipe, crafting_station: CraftingStation) -> void:
 	if not crafting_station:
 		push_error("crafting_manager error: attempting to craft without current crafting station")
 		return
-	#TODO:
-	#_check_input_items()
-	_remove_input_items(recipe)
+	var has_items: bool = inventory_manager.has_items(recipe.input_items)
+	if not has_items:
+		push_error("crafting_manager error: attempted to craft item without input items in inventory")
+		return
+	for inv_item: RInventoryItem in recipe.input_items:
+		inventory_manager.remove_item(inv_item.item.item_id, inv_item.count)
 	crafting_station.craft(recipe)
 
 ## -- helper functions --
-func _create_new_ui(crafting_station: CraftingStation) -> void:
+func _create_ui(crafting_station: CraftingStation) -> void:
 	var crafting_ui: Control = crafting_station.ui_scene.instantiate()
 	crafting_ui.crafting_manager = self
 	crafting_ui.crafting_station = crafting_station

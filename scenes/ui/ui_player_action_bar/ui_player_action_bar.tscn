@@ -23,55 +23,49 @@ offset_bottom = 100.0
 [node name="ItemSlot1" parent="HBoxContainer" node_paths=PackedStringArray("parent_action_bar") instance=ExtResource("1_g7teh")]
 layout_mode = 2
 hotkey = "1"
-item_id = "f-001"
+item_id = "m-001"
 parent_action_bar = NodePath("../..")
 
 [node name="ItemSlot2" parent="HBoxContainer" node_paths=PackedStringArray("parent_action_bar") instance=ExtResource("1_g7teh")]
 layout_mode = 2
 hotkey = "2"
-item_id = "f-002"
+item_id = "m-002"
 parent_action_bar = NodePath("../..")
 
 [node name="ItemSlot3" parent="HBoxContainer" node_paths=PackedStringArray("parent_action_bar") instance=ExtResource("1_g7teh")]
 layout_mode = 2
 hotkey = "3"
-item_id = "f-003"
+item_id = "crafting_table"
 parent_action_bar = NodePath("../..")
 
 [node name="ItemSlot4" parent="HBoxContainer" node_paths=PackedStringArray("parent_action_bar") instance=ExtResource("1_g7teh")]
 layout_mode = 2
 hotkey = "4"
-item_id = "f-004"
 parent_action_bar = NodePath("../..")
 
 [node name="ItemSlot5" parent="HBoxContainer" node_paths=PackedStringArray("parent_action_bar") instance=ExtResource("1_g7teh")]
 layout_mode = 2
 hotkey = "5"
-item_id = "i-001"
 parent_action_bar = NodePath("../..")
 
 [node name="ItemSlot6" parent="HBoxContainer" node_paths=PackedStringArray("parent_action_bar") instance=ExtResource("1_g7teh")]
 layout_mode = 2
 hotkey = "6"
-item_id = "crafting_table"
 parent_action_bar = NodePath("../..")
 
 [node name="ItemSlot7" parent="HBoxContainer" node_paths=PackedStringArray("parent_action_bar") instance=ExtResource("1_g7teh")]
 layout_mode = 2
 hotkey = "7"
-item_id = "i-002"
 parent_action_bar = NodePath("../..")
 
 [node name="ItemSlot8" parent="HBoxContainer" node_paths=PackedStringArray("parent_action_bar") instance=ExtResource("1_g7teh")]
 layout_mode = 2
 hotkey = "8"
-item_id = "m-002"
 parent_action_bar = NodePath("../..")
 
 [node name="ItemSlot9" parent="HBoxContainer" node_paths=PackedStringArray("parent_action_bar") instance=ExtResource("1_g7teh")]
 layout_mode = 2
 hotkey = "9"
-item_id = "m-001"
 parent_action_bar = NodePath("../..")
 
 [node name="ItemSlot10" parent="HBoxContainer" node_paths=PackedStringArray("parent_action_bar") instance=ExtResource("1_g7teh")]

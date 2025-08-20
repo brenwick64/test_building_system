@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="RRecipe" load_steps=7 format=3 uid="uid://pybyv0qdr30s"]
+
+[ext_resource type="Script" path="res://systems/inventory_system/scripts/resource_definitions/RInventoryItem.gd" id="1_y50wl"]
+[ext_resource type="Script" path="res://systems/crafting_system/scripts/resource_definitions/RRecipe.gd" id="2_1jc0k"]
+[ext_resource type="Resource" uid="uid://cjg7gyrocbt1h" path="res://resources/item_data/materials/wood.tres" id="2_m4u6m"]
+[ext_resource type="Resource" uid="uid://ctd0aljxu3ooc" path="res://resources/item_data/furniture/2x1_table.tres" id="3_qomxt"]
+
+[sub_resource type="Resource" id="Resource_267r2"]
+script = ExtResource("1_y50wl")
+item = ExtResource("2_m4u6m")
+count = 8
+stackable = true
+
+[sub_resource type="Resource" id="Resource_7e1if"]
+script = ExtResource("1_y50wl")
+item = ExtResource("3_qomxt")
+count = 1
+stackable = true
+
+[resource]
+script = ExtResource("2_1jc0k")
+recipe_name = &"Large Table"
+recipe_tags = Array[String](["woodworking"])
+base_craft_time_seconds = 4
+input_items = Array[ExtResource("1_y50wl")]([SubResource("Resource_267r2")])
+output_items = Array[ExtResource("1_y50wl")]([SubResource("Resource_7e1if")])
