@@ -36,9 +36,25 @@ func _play_craft_animation(recipe: RRecipe) -> void:
 
 func _spawn_craft_outputs(recipe: RRecipe) -> void:
 	for inv_item: RInventoryItem in recipe.output_items:
-		# TODO: use tile manager?
+		var target_pos: Vector2
+		# check required systems / nodes
+		var tile_manager: TileManager = get_tree().get_first_node_in_group("tile_manager") 
+		if not tile_manager:
+			push_error("crafting station " + str(name) + " error: no tile manager found")
+			return
 		var player: Player = get_tree().get_first_node_in_group("player")
-		var item_pickup: Pickup = inv_item.item.pickup.new_pickup_scene(global_position, player.global_position)
+		if not player:
+			push_error("crafting station " + str(name) + " error: no player node found")
+			return
+			
+		var available_tiles: Array[Vector2i] = tile_manager.get_navigatable_neighboring_tiles(occupied_tiles)
+		if not available_tiles:
+			target_pos = global_position
+		else:
+			var closest_tiles: Array[Vector2i] = tile_manager.sort_closest_tiles(available_tiles, player.global_position)
+			target_pos = tile_manager.get_global_pos_from_tile(closest_tiles[0])
+			
+		var item_pickup: Pickup = inv_item.item.pickup.new_pickup_scene(global_position, target_pos)
 		get_tree().root.add_child(item_pickup)
 
 ## -- signals --
@@ -48,7 +64,6 @@ func _on_craft_timer_timeout(recipe: RRecipe) -> void:
 	is_crafting = false
 
 func _on_interactable_interacted() -> void:
-	if is_crafting: return
 	var crafting_manager: CraftingManager = get_tree().get_first_node_in_group("crafting_manager")
 	if not crafting_manager: return
 	crafting_manager.toggle_ui(self)
@@ -58,3 +73,4 @@ func _on_interactable_exited(_area) -> void:
 	if not crafting_manager: return
 	if crafting_manager.current_crafting_ui and crafting_manager.current_crafting_ui.visible == true:
 		crafting_manager.remove_ui(self)
+	 

@@ -25,5 +25,3 @@ remover_tool_handler = NodePath("RemoverTool")
 furniture_manager = NodePath("../FurnitureManager")
 
 [node name="RemoverTool" parent="PlacementToolManager" instance=ExtResource("6_jya0w")]
-
-[connection signal="placed_furniture_updated" from="FurnitureManager" to="." method="_on_furniture_manager_placed_furniture_updated"]

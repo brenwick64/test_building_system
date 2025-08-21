@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://jyl0pt03odje"]
+[gd_resource type="TileSet" load_steps=8 format=3 uid="uid://jyl0pt03odje"]
 
 [ext_resource type="Texture2D" uid="uid://d0s70ms6ynf31" path="res://assets/tilesets/water.png" id="1_fhqj8"]
 [ext_resource type="Texture2D" uid="uid://dd3oefjfnqkpl" path="res://assets/tilesets/grass.png" id="2_7odfo"]
@@ -83,6 +83,12 @@ texture = ExtResource("2_7odfo")
 1:1/0/terrains_peering_bit/top_side = 1
 1:1/0/terrains_peering_bit/top_right_corner = 1
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_e0gfd"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7fb2g"]
 texture = ExtResource("3_wsofh")
 1:1/0 = 0
@@ -96,6 +102,7 @@ texture = ExtResource("3_wsofh")
 1:1/0/terrains_peering_bit/top_left_corner = 2
 1:1/0/terrains_peering_bit/top_side = 2
 1:1/0/terrains_peering_bit/top_right_corner = 2
+1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_e0gfd")
 1:2/0 = 0
 1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:2/0 = 0
@@ -123,6 +130,7 @@ terrain_set_0/terrain_1/name = "Grass"
 terrain_set_0/terrain_1/color = Color(0.277718, 0.659156, 0.218666, 1)
 terrain_set_0/terrain_2/name = "ShoppeFloor"
 terrain_set_0/terrain_2/color = Color(0.866667, 0.501961, 0.25098, 1)
+navigation_layer_0/layers = 1
 sources/1 = SubResource("TileSetAtlasSource_qt4wj")
 sources/2 = SubResource("TileSetAtlasSource_cmqm0")
 sources/3 = SubResource("TileSetAtlasSource_7fb2g")

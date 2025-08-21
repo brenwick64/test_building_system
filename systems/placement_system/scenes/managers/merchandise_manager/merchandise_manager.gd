@@ -5,7 +5,7 @@ signal merchandise_placed(item: RItemData)
 
 @onready var outline_shader: Shader = preload("res://shaders/outline_shader.gdshader")
 
-@export var tile_manager: TileManager
+@export var tile_manager: PlacementTileManager
 @export var furniture_manager: FurnitureManager
 
 var equipped_merchandise: RItemData

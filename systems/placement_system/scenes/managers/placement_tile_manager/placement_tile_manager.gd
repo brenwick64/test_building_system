@@ -1,4 +1,4 @@
-class_name TileManager
+class_name PlacementTileManager
 extends Node
 
 signal new_tile_hovered(tile_coords: Vector2i)

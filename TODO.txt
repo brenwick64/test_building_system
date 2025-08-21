@@ -1,6 +1,4 @@
-refactor crafting ui code
-- the toggle_ui needs to be broken into more explicit commands
-- crafting_manager is a bit of a mess...
+- BUG - crafting manager references are stale if old tables are deleted
 
 - refactor placement system with composition over inheritence
 - have pickup behaviors follow checkbox config at pickup level

@@ -38,10 +38,13 @@ size_flags_vertical = 0
 theme = ExtResource("1_817un")
 theme_type_variation = &"CirclePanel"
 
-[node name="Label" type="Label" parent="CirclePanel"]
+[node name="CenterContainer" type="CenterContainer" parent="CirclePanel"]
 layout_mode = 0
-offset_left = 9.0
+offset_left = 3.0
 offset_top = 2.0
-offset_right = 21.0
+offset_right = 27.0
 offset_bottom = 25.0
+
+[node name="Label" type="Label" parent="CirclePanel/CenterContainer"]
+layout_mode = 2
 text = "9"

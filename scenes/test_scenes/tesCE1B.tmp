@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=4 uid="uid://de3o831n25f2l"]
+[gd_scene load_steps=64 format=4 uid="uid://de3o831n25f2l"]
 
 [ext_resource type="TileSet" uid="uid://jyl0pt03odje" path="res://resources/tilesets/main_tileset.tres" id="1_f72q3"]
 [ext_resource type="Script" path="res://scenes/debug/pickup_spawner/pickup_spawner.gd" id="1_nbrfu"]
@@ -12,7 +12,6 @@
 [ext_resource type="Script" path="res://systems/crafting_system/scenes/crafting_manager.gd" id="6_3jux3"]
 [ext_resource type="PackedScene" uid="uid://bkg7mvx22iqt3" path="res://scenes/ui/ui_player_action_bar/ui_player_action_bar.tscn" id="7_yhwru"]
 [ext_resource type="Resource" uid="uid://ctyuc3ycewbnj" path="res://resources/item_data/items/remover_tool.tres" id="12_xmisv"]
-[ext_resource type="Resource" uid="uid://c8qo30hr4rp43" path="res://resources/item_data/furniture/1x1_table.tres" id="13_uu1qf"]
 [ext_resource type="Script" path="res://scenes/tile_manager/shoppe_floor.gd" id="14_n7qxl"]
 [ext_resource type="Resource" uid="uid://b8h5q6ggevdyi" path="res://resources/item_data/furniture/crafting_table.tres" id="16_kkxdv"]
 [ext_resource type="Texture2D" uid="uid://dh2cnltobawlx" path="res://assets/characters/player.png" id="17_4bagj"]
@@ -348,9 +347,13 @@ height = 18.0
 [node name="InputManager" type="Node" parent="Managers"]
 script = ExtResource("1_qkav0")
 
-[node name="TileManager" type="Node" parent="Managers" node_paths=PackedStringArray("tilemap_layer") groups=["tile_manager"]]
+[node name="TileManager" type="Node" parent="Managers" node_paths=PackedStringArray("test_layer")]
 script = ExtResource("1_paqh8")
-tilemap_layer = NodePath("../../TileMap/ShoppeFloor")
+test_layer = NodePath("../../TileMap/ShoppeFloor")
+
+[node name="Timer" type="Timer" parent="Managers/TileManager"]
+wait_time = 0.25
+autostart = true
 
 [node name="CraftingManager" type="Node" parent="Managers" node_paths=PackedStringArray("inventory_manager", "ui") groups=["crafting_manager"]]
 script = ExtResource("6_3jux3")
@@ -368,7 +371,8 @@ inventory_items = Array[ExtResource("4_x64uq")]([SubResource("Resource_xf3qb"), 
 [node name="PickupSpawner" type="Node2D" parent="Debug"]
 position = Vector2(410, 396)
 script = ExtResource("1_nbrfu")
-items = Array[ExtResource("2_pxaiu")]([ExtResource("13_uu1qf")])
+disabled = true
+items = Array[ExtResource("2_pxaiu")]([ExtResource("3_86h2l"), ExtResource("4_3a7ax")])
 
 [node name="TileMap" type="Node2D" parent="."]
 
@@ -385,11 +389,10 @@ tile_set = ExtResource("1_f72q3")
 tile_map_data = PackedByteArray("AAAYAAsAAwABAAAAAAAZAAsAAwABAAAAAAAaAAsAAwABAAAAAAAbAAsAAwABAAAAAAAcAAsAAwABAAAAAAAdAAsAAwABAAAAAAAXAAsAAwAAAAAAAAAXAAwAAwAAAAEAAAAXAA0AAwAAAAEAAAAXAA4AAwAAAAEAAAAXAA8AAwAAAAEAAAAXABAAAwAAAAEAAAAXABEAAwAAAAEAAAAXABIAAwAAAAEAAAAXABMAAwAAAAEAAAAXABQAAwAAAAIAAAAYABQAAwABAAIAAAAZABQAAwABAAIAAAAaABQAAwABAAIAAAAeAAsAAwABAAAAAAAfAAsAAwABAAAAAAAgAAsAAwABAAAAAAAhAAsAAwABAAAAAAAiAAsAAwABAAAAAAAjAAsAAwABAAAAAAAkAAsAAwABAAAAAAAlAAsAAwABAAAAAAAmAAsAAwABAAAAAAAnAAsAAwACAAAAAAAnAAwAAwACAAEAAAAnAA0AAwACAAEAAAAnAA4AAwACAAEAAAAnAA8AAwACAAEAAAAnABAAAwACAAEAAAAnABEAAwACAAEAAAAnABIAAwACAAEAAAAnABMAAwACAAEAAAAnABQAAwACAAIAAAAkABQAAwABAAIAAAAlABQAAwABAAIAAAAmABQAAwABAAIAAAA=")
 tile_set = ExtResource("1_f72q3")
 
-[node name="ShoppeFloor" type="TileMapLayer" parent="TileMap" node_paths=PackedStringArray("tile_manager")]
+[node name="ShoppeFloor" type="TileMapLayer" parent="TileMap"]
 tile_map_data = PackedByteArray("AAAmABMAAwABAAEAAAAmABIAAwABAAEAAAAmABEAAwABAAEAAAAmABAAAwABAAEAAAAmAA8AAwABAAEAAAAmAA4AAwABAAEAAAAmAA0AAwABAAEAAAAmAAwAAwABAAEAAAAlABMAAwABAAEAAAAlABIAAwABAAEAAAAlABEAAwABAAEAAAAlABAAAwABAAEAAAAlAA8AAwABAAEAAAAlAA4AAwABAAEAAAAlAA0AAwABAAEAAAAlAAwAAwABAAEAAAAkABMAAwABAAEAAAAkABIAAwABAAEAAAAkABEAAwABAAEAAAAkABAAAwABAAEAAAAkAA8AAwABAAEAAAAkAA4AAwABAAEAAAAkAA0AAwABAAEAAAAkAAwAAwABAAEAAAAjABMAAwABAAEAAAAjABIAAwABAAEAAAAjABEAAwABAAEAAAAjABAAAwABAAEAAAAjAA8AAwABAAEAAAAjAA4AAwABAAEAAAAjAA0AAwABAAEAAAAjAAwAAwABAAEAAAAiABMAAwABAAEAAAAiABIAAwABAAEAAAAiABEAAwABAAEAAAAiABAAAwABAAEAAAAiAA8AAwABAAEAAAAiAA4AAwABAAEAAAAiAA0AAwABAAEAAAAiAAwAAwABAAEAAAAhABMAAwABAAEAAAAhABIAAwABAAEAAAAhABEAAwABAAEAAAAhABAAAwABAAEAAAAhAA8AAwABAAEAAAAhAA4AAwABAAEAAAAhAA0AAwABAAEAAAAhAAwAAwABAAEAAAAgABMAAwABAAEAAAAgABIAAwABAAEAAAAgABEAAwABAAEAAAAgABAAAwABAAEAAAAgAA8AAwABAAEAAAAgAA4AAwABAAEAAAAgAA0AAwABAAEAAAAgAAwAAwABAAEAAAAfABMAAwABAAEAAAAfABIAAwABAAEAAAAfABEAAwABAAEAAAAfABAAAwABAAEAAAAfAA8AAwABAAEAAAAfAA4AAwABAAEAAAAfAA0AAwABAAEAAAAfAAwAAwABAAEAAAAeABMAAwABAAEAAAAeABIAAwABAAEAAAAeABEAAwABAAEAAAAeABAAAwABAAEAAAAeAA8AAwABAAEAAAAeAA4AAwABAAEAAAAeAA0AAwABAAEAAAAeAAwAAwABAAEAAAAdABMAAwABAAEAAAAdABIAAwABAAEAAAAdABEAAwABAAEAAAAdABAAAwABAAEAAAAdAA8AAwABAAEAAAAdAA4AAwABAAEAAAAdAA0AAwABAAEAAAAdAAwAAwABAAEAAAAcABMAAwABAAEAAAAcABIAAwABAAEAAAAcABEAAwABAAEAAAAcABAAAwABAAEAAAAcAA8AAwABAAEAAAAcAA4AAwABAAEAAAAcAA0AAwABAAEAAAAcAAwAAwABAAEAAAAbABMAAwABAAEAAAAbABIAAwABAAEAAAAbABEAAwABAAEAAAAbABAAAwABAAEAAAAbAA8AAwABAAEAAAAbAA4AAwABAAEAAAAbAA0AAwABAAEAAAAbAAwAAwABAAEAAAAaABMAAwABAAEAAAAaABIAAwABAAEAAAAaABEAAwABAAEAAAAaABAAAwABAAEAAAAaAA8AAwABAAEAAAAaAA4AAwABAAEAAAAaAA0AAwABAAEAAAAaAAwAAwABAAEAAAAZABMAAwABAAEAAAAZABIAAwABAAEAAAAZABEAAwABAAEAAAAZABAAAwABAAEAAAAZAA8AAwABAAEAAAAZAA4AAwABAAEAAAAZAA0AAwABAAEAAAAZAAwAAwABAAEAAAAYABMAAwABAAEAAAAYABIAAwABAAEAAAAYABEAAwABAAEAAAAYABAAAwABAAEAAAAYAA8AAwABAAEAAAAYAA4AAwABAAEAAAAYAA0AAwABAAEAAAAYAAwAAwABAAEAAAAcABQAAwABAAEAAAAbABQAAwABAAEAAAAdABQAAwABAAEAAAAeABQAAwABAAEAAAAfABQAAwABAAEAAAAgABQAAwABAAEAAAAhABQAAwABAAEAAAAiABQAAwABAAEAAAAjABQAAwABAAEAAAA=")
 tile_set = ExtResource("1_f72q3")
 script = ExtResource("14_n7qxl")
-tile_manager = NodePath("../../Managers/TileManager")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(60, 49)
@@ -471,8 +474,8 @@ inventory = NodePath("../../Managers/PlayerInventoryManager")
 [connection signal="action_bar_pressed" from="Managers/InputManager" to="UI/UIPlayerActionBar" method="_on_input_manager_action_bar_pressed"]
 [connection signal="action_pressed" from="Managers/InputManager" to="Managers/PlacementManager" method="_on_input_manager_action_pressed"]
 [connection signal="rotate_pressed" from="Managers/InputManager" to="Managers/PlacementManager" method="_on_input_manager_rotate_pressed"]
+[connection signal="timeout" from="Managers/TileManager/Timer" to="Managers/TileManager" method="_on_timer_timeout"]
 [connection signal="item_placed" from="Managers/PlacementManager" to="Managers/PlayerInventoryManager" method="_on_placement_manager_item_placed"]
-[connection signal="placed_furniture_updated" from="Managers/PlacementManager" to="Managers/TileManager" method="_on_placement_manager_placed_furniture_updated"]
 [connection signal="inventory_updated" from="Managers/PlayerInventoryManager" to="UI/UIPlayerActionBar" method="_on_player_inventory_inventory_updated"]
 [connection signal="item_depleted" from="Managers/PlayerInventoryManager" to="Managers/PlacementManager" method="_on_player_inventory_manager_item_depleted"]
 [connection signal="item_depleted" from="Managers/PlayerInventoryManager" to="UI/UIPlayerActionBar" method="_on_player_inventory_item_depleted"]

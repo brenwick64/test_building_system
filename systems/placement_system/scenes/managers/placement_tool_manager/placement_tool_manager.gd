@@ -1,7 +1,7 @@
 class_name ToolManager
 extends Node
 
-@export var tile_manager: TileManager
+@export var tile_manager: PlacementTileManager
 @export var remover_tool_handler: ToolHandler
 @export var furniture_manager: FurnitureManager
 

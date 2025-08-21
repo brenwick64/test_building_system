@@ -1,11 +1,12 @@
 extends Node
 
+signal placed_furniture_updated(placed_furniture: Array[PlaceableFurniture])
 signal item_placed(item: RItemData)
 
 # required variables
 @export var placeable_layer: TileMapLayer
 # child managers
-@onready var placement_tile_manager: TileManager = $PlacementTileManager
+@onready var placement_tile_manager: PlacementTileManager = $PlacementTileManager
 @onready var furniture_manager: FurnitureManager = $FurnitureManager
 @onready var merchandise_manager: MerchandiseManager = $MerchandiseManager
 
@@ -38,3 +39,6 @@ func _on_player_inventory_manager_item_selected(item: RItemData) -> void:
 
 func _on_player_inventory_manager_item_depleted(item: RItemData) -> void:
 	_call_child_handlers("handle_item_depleted", [item])
+
+func _on_furniture_manager_placed_furniture_updated(placed_furniture: Array[PlaceableFurniture]) -> void:
+	placed_furniture_updated.emit(placed_furniture)

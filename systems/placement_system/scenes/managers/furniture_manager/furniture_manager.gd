@@ -1,9 +1,10 @@
 class_name FurnitureManager
 extends Node
 
+signal placed_furniture_updated(placed_furniture: Array[PlaceableFurniture])
 signal furniture_placed(furniture_data: RItemData)
 
-@export var tile_manager: TileManager
+@export var tile_manager: PlacementTileManager
 
 var equipped_furniture_data: RItemData
 var hovered_tile_coords: Vector2i
@@ -28,6 +29,7 @@ func remove_furniture(furniture: PlaceableFurniture) -> void:
 			item_slot.remove()
 	# remove furniture
 	placed_furniture = placed_furniture.filter(func(f): return f != furniture)
+	placed_furniture_updated.emit(placed_furniture)
 	furniture.remove()
 
 func remove_merchandise(merchandise: PlaceableMerchandise) -> void:
@@ -95,6 +97,7 @@ func _spawn_furniture() -> void:
 	furniture_ins.set_occupied_tiles(equipped_furniture_data.placeable	.get_tile_matrix(), hovered_tile_coords)
 	shoppe_furniture.add_child(furniture_ins)
 	placed_furniture.append(furniture_ins)
+	placed_furniture_updated.emit(placed_furniture)
 
 ## -- signals --
 func _on_tile_manager_new_tile_hovered(tile_coords: Vector2i) -> void:

@@ -8,7 +8,8 @@ extends PanelContainer
 
 @onready var panel: Panel = $MarginContainer/Panel
 @onready var circle_panel: Panel = $CirclePanel
-@onready var label: Label = $CirclePanel/Label
+@onready var label: Label = $CirclePanel/CenterContainer/Label
+
 @onready var center_container: CenterContainer = $MarginContainer/Panel/CenterContainer
 
 var player_has_items: bool = true
