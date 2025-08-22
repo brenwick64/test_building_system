@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://sp58wos84hs4"]
+
+[ext_resource type="Script" path="res://systems/placement_system/scenes/placement_manager.gd" id="1_4amw7"]
+[ext_resource type="PackedScene" uid="uid://dcsf7pc32gvwd" path="res://systems/placement_system/scenes/managers/placement_tile_manager/placement_tile_manager.tscn" id="1_dsuoc"]
+[ext_resource type="PackedScene" uid="uid://cuup0kq3dvqmb" path="res://systems/placement_system/scenes/managers/furniture_manager/furniture_manager.tscn" id="2_vjr03"]
+[ext_resource type="PackedScene" uid="uid://b4t86v4a7e6oo" path="res://systems/placement_system/scenes/managers/merchandise_manager/merchandise_manager.tscn" id="3_d7fct"]
+[ext_resource type="PackedScene" uid="uid://mlayytwtssik" path="res://systems/placement_system/scenes/managers/placement_tool_manager/placement_tool_manager.tscn" id="4_orgnd"]
+[ext_resource type="PackedScene" uid="uid://ihoylr88qtrb" path="res://systems/placement_system/scenes/managers/placement_tool_manager/remover_tool/remover_tool.tscn" id="6_jya0w"]
+
+[node name="PlacementManager" type="Node"]
+script = ExtResource("1_4amw7")
+
+[node name="PlacementTileManager" parent="." instance=ExtResource("1_dsuoc")]
+
+[node name="FurnitureManager" parent="." node_paths=PackedStringArray("tile_manager") instance=ExtResource("2_vjr03")]
+tile_manager = NodePath("../PlacementTileManager")
+
+[node name="MerchandiseManager" parent="." node_paths=PackedStringArray("tile_manager", "furniture_manager") instance=ExtResource("3_d7fct")]
+tile_manager = NodePath("../PlacementTileManager")
+furniture_manager = NodePath("../FurnitureManager")
+
+[node name="PlacementToolManager" parent="." node_paths=PackedStringArray("tile_manager", "remover_tool_handler", "furniture_manager") instance=ExtResource("4_orgnd")]
+tile_manager = NodePath("../PlacementTileManager")
+remover_tool_handler = NodePath("RemoverTool")
+furniture_manager = NodePath("../FurnitureManager")
+
+[node name="RemoverTool" parent="PlacementToolManager" instance=ExtResource("6_jya0w")]
+
+[connection signal="placed_furniture_updated" from="FurnitureManager" to="." method="_on_furniture_manager_placed_furniture_updated"]

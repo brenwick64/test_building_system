@@ -1,4 +1,7 @@
-- BUG - crafting manager references are stale if old tables are deleted
+- grayscale is added in multiple parts.  Have a single icon node 
+handle all of the resizing and centering
+
+- BUG - saved and re-loaded furniture cannot be deleted
 
 - refactor placement system with composition over inheritence
 - have pickup behaviors follow checkbox config at pickup level

@@ -10,6 +10,7 @@ extends PlaceableBase
 @export var item_slots: Node2D
 
 var furniture_data: RItemData
+var primary_tile: Vector2i
 var occupied_tiles: Array[Vector2i]
 
 # need this declared to override in child classes

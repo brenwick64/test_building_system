@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 ItemsDb="*res://systems/item_system/scripts/globals/ItemsDB.gd"
 UiEffects="*res://scripts/globals/UIEffects.gd"
 PlayerStats="*res://scripts/globals/PlayerStats.gd"
+SaveManager="*res://systems/save_and_load_system/scripts/globals/SaveManager.gd"
 
 [editor_plugins]
 
