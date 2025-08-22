@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=4 uid="uid://de3o831n25f2l"]
+[gd_scene load_steps=67 format=4 uid="uid://de3o831n25f2l"]
 
 [ext_resource type="TileSet" uid="uid://jyl0pt03odje" path="res://resources/tilesets/main_tileset.tres" id="1_f72q3"]
 [ext_resource type="Script" path="res://scenes/debug/pickup_spawner/pickup_spawner.gd" id="1_nbrfu"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://systems/inventory_system/scripts/resource_definitions/RInventoryItem.gd" id="4_x64uq"]
 [ext_resource type="Script" path="res://systems/crafting_system/scenes/crafting_manager.gd" id="6_3jux3"]
 [ext_resource type="PackedScene" uid="uid://bkg7mvx22iqt3" path="res://scenes/ui/ui_player_action_bar/ui_player_action_bar.tscn" id="7_yhwru"]
+[ext_resource type="Resource" uid="uid://c7nlwwsyhrqs2" path="res://resources/item_data/furniture/anvil.tres" id="11_kam7h"]
 [ext_resource type="Resource" uid="uid://ctyuc3ycewbnj" path="res://resources/item_data/items/remover_tool.tres" id="12_xmisv"]
 [ext_resource type="Resource" uid="uid://c8qo30hr4rp43" path="res://resources/item_data/furniture/1x1_table.tres" id="13_uu1qf"]
 [ext_resource type="Script" path="res://scenes/tile_manager/shoppe_floor.gd" id="14_n7qxl"]
@@ -43,6 +44,12 @@ stackable = true
 script = ExtResource("4_x64uq")
 item = ExtResource("3_86h2l")
 count = 45
+stackable = true
+
+[sub_resource type="Resource" id="Resource_p3iny"]
+script = ExtResource("4_x64uq")
+item = ExtResource("11_kam7h")
+count = 3
 stackable = true
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r5pgw"]
@@ -361,7 +368,7 @@ ui = NodePath("../../UI")
 placeable_layer = NodePath("../../TileMap/ShoppeFloor")
 
 [node name="PlayerInventoryManager" parent="Managers" groups=["player_inventory"] instance=ExtResource("2_sl7we")]
-inventory_items = Array[ExtResource("4_x64uq")]([SubResource("Resource_xf3qb"), SubResource("Resource_si6h5"), SubResource("Resource_fs0sn"), SubResource("Resource_tx2ye")])
+inventory_items = Array[ExtResource("4_x64uq")]([SubResource("Resource_xf3qb"), SubResource("Resource_si6h5"), SubResource("Resource_fs0sn"), SubResource("Resource_tx2ye"), SubResource("Resource_p3iny")])
 
 [node name="Debug" type="Node" parent="."]
 

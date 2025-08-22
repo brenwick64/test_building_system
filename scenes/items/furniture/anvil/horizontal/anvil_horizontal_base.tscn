@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://daatqqd34klyw"]
+
+[ext_resource type="Script" path="res://systems/placement_system/scripts/classes/PlaceableBase.gd" id="1_d4nlm"]
+[ext_resource type="Texture2D" uid="uid://cnaevty1anpsf" path="res://scenes/items/furniture/anvil/anvil_texture.tres" id="2_uhgkh"]
+
+[node name="AnvilHorizontalBase" type="Node2D" node_paths=PackedStringArray("sprite", "pivot")]
+script = ExtResource("1_d4nlm")
+sprite = NodePath("Sprite2D")
+pivot = NodePath("Pivot")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("2_uhgkh")
+
+[node name="Pivot" type="Marker2D" parent="."]

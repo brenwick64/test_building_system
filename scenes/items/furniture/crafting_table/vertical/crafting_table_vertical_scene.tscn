@@ -1,17 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvlel2svlnnfv"]
+[gd_scene load_steps=9 format=3 uid="uid://bvlel2svlnnfv"]
 
 [ext_resource type="Script" path="res://systems/crafting_system/scripts/classes/CraftingStation.gd" id="1_wpd8e"]
 [ext_resource type="PackedScene" uid="uid://bgvurw1lxeh8x" path="res://scenes/items/furniture/crafting_table/vertical/crafting_table_vertical_base.tscn" id="2_qrbjj"]
+[ext_resource type="PackedScene" uid="uid://dfm822fhokyl8" path="res://scenes/ui/ui_crafting_menu/ui_crafting_menu.tscn" id="2_wow5u"]
 [ext_resource type="PackedScene" uid="uid://bjkkgqs6xjbg3" path="res://scenes/components/interactable.tscn" id="3_33dxl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_trgh0"]
-size = Vector2(26, 40)
+size = Vector2(21, 35)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vsva7"]
 size = Vector2(12, 26)
 
-[node name="CraftingTableVertical" type="StaticBody2D" node_paths=PackedStringArray("interactable", "base_scene", "collision_shape_2D")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_auf17"]
+bg_color = Color(0, 0, 0, 0.403922)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hb7k"]
+bg_color = Color(0.139698, 0.622766, 0.461557, 1)
+
+[node name="CraftingTableVertical" type="StaticBody2D" node_paths=PackedStringArray("progress_bar", "craft_timer", "interactable", "base_scene", "collision_shape_2D")]
 script = ExtResource("1_wpd8e")
+ui_scene = ExtResource("2_wow5u")
+progress_bar = NodePath("ProgressBar")
+craft_timer = NodePath("Timer")
 interactable = NodePath("Interactable")
 is_horizontal = true
 item_slot_matrix = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, -1)])
@@ -23,10 +33,23 @@ collision_shape_2D = NodePath("Interactable/CollisionShape2D")
 [node name="Interactable" parent="." instance=ExtResource("3_33dxl")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
-position = Vector2(0, -1)
+position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_trgh0")
 debug_color = Color(0.719172, 0.347015, 0.840513, 0.42)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_vsva7")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+offset_left = -12.0
+offset_top = -13.0
+offset_right = 12.0
+offset_bottom = -10.0
+theme_override_styles/background = SubResource("StyleBoxFlat_auf17")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8hb7k")
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

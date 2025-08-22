@@ -41,6 +41,7 @@ parent_action_bar = NodePath("../..")
 [node name="ItemSlot4" parent="HBoxContainer" node_paths=PackedStringArray("parent_action_bar") instance=ExtResource("1_g7teh")]
 layout_mode = 2
 hotkey = "4"
+item_id = "anvil"
 parent_action_bar = NodePath("../..")
 
 [node name="ItemSlot5" parent="HBoxContainer" node_paths=PackedStringArray("parent_action_bar") instance=ExtResource("1_g7teh")]

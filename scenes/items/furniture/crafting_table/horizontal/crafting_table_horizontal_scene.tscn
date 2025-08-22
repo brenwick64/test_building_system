@@ -5,11 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://dfm822fhokyl8" path="res://scenes/ui/ui_crafting_menu/ui_crafting_menu.tscn" id="2_7o0bm"]
 [ext_resource type="PackedScene" uid="uid://bjkkgqs6xjbg3" path="res://scenes/components/interactable.tscn" id="3_0giuo"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ftnhh"]
-size = Vector2(48, 28)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vsva7"]
 size = Vector2(28, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ftnhh"]
+size = Vector2(37, 20)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wifi6"]
 bg_color = Color(0, 0, 0, 0.403922)
@@ -30,15 +30,15 @@ collision_shape_2D = NodePath("Interactable/CollisionShape2D")
 
 [node name="CraftingTableHorizontalBase" parent="." instance=ExtResource("2_2gtrt")]
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_vsva7")
+
 [node name="Interactable" parent="." instance=ExtResource("3_0giuo")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
 shape = SubResource("RectangleShape2D_ftnhh")
 debug_color = Color(0.771714, 0.325083, 0.765829, 0.42)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
-shape = SubResource("RectangleShape2D_vsva7")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 visible = false
