@@ -1,16 +1,9 @@
-[gd_resource type="Resource" script_class="RRecipe" load_steps=9 format=3 uid="uid://chyv68oapg4ib"]
+[gd_resource type="Resource" script_class="RRecipe" load_steps=7 format=3 uid="uid://chyv68oapg4ib"]
 
 [ext_resource type="Script" path="res://systems/inventory_system/scripts/resource_definitions/RInventoryItem.gd" id="1_y8buu"]
 [ext_resource type="Script" path="res://systems/crafting_system/scripts/resource_definitions/RRecipe.gd" id="2_lux0j"]
-[ext_resource type="Resource" uid="uid://cjg7gyrocbt1h" path="res://resources/item_data/materials/wood.tres" id="2_va7u6"]
 [ext_resource type="Resource" uid="uid://chlespnosrikd" path="res://resources/item_data/materials/stone.tres" id="3_xbc02"]
 [ext_resource type="Resource" uid="uid://nbbs8pdg1x8b" path="res://resources/item_data/items/dagger.tres" id="4_y4eck"]
-
-[sub_resource type="Resource" id="Resource_5hwbs"]
-script = ExtResource("1_y8buu")
-item = ExtResource("2_va7u6")
-count = 5
-stackable = true
 
 [sub_resource type="Resource" id="Resource_hsrec"]
 script = ExtResource("1_y8buu")
@@ -29,5 +22,5 @@ script = ExtResource("2_lux0j")
 recipe_name = &"Dagger"
 recipe_tags = Array[String](["weapon", "metal"])
 base_craft_time_seconds = 2
-input_items = Array[ExtResource("1_y8buu")]([SubResource("Resource_5hwbs"), SubResource("Resource_hsrec")])
+input_items = Array[ExtResource("1_y8buu")]([SubResource("Resource_hsrec")])
 output_items = Array[ExtResource("1_y8buu")]([SubResource("Resource_1pr83")])

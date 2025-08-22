@@ -1,6 +1,8 @@
 class_name UIRecipeInputItem
 extends PanelContainer
 
+var grayscale_shader: Shader = preload("res://shaders/grayscale.gdshader")
+
 @export var texture_min_size: int = 50
 @export var texture: Texture
 @export var amount: int
@@ -33,11 +35,15 @@ func _enable_ui() -> void:
 	player_has_items = true
 	panel.theme_type_variation = "SubPanel"
 	circle_panel.theme_type_variation = "CirclePanel"
+	if center_container.get_children():
+		center_container.get_children()[0].material.set_shader_parameter("use_grayscale", false)
 
 func _disable_ui() -> void:
 	player_has_items = false
 	panel.theme_type_variation = "SubPanelDisabled"
 	circle_panel.theme_type_variation = "CirclePanelDisabled"
+	if center_container.get_children():
+		center_container.get_children()[0].material.set_shader_parameter("use_grayscale", true)
 
 func _calculate_texture_size(tex: Texture) -> Vector2:
 	var tex_size: Vector2 = tex.get_size()
@@ -52,6 +58,9 @@ func _calculate_texture_size(tex: Texture) -> Vector2:
 	
 func _create_texture_rect(tex: Texture2D, min_size: int) -> TextureRect:
 	var texture_rect: TextureRect = TextureRect.new()
+	var shader_material: ShaderMaterial = ShaderMaterial.new()
+	shader_material.shader = grayscale_shader
+	texture_rect.material = shader_material
 	texture_rect.custom_minimum_size = _calculate_texture_size(tex)
 	texture_rect.texture = tex
 	return texture_rect

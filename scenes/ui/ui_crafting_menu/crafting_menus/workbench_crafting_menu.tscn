@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://t3tddf2b7hpg"]
+
+[ext_resource type="Theme" uid="uid://d27j5q3aqw7ad" path="res://scenes/ui/main_theme.tres" id="1_d618b"]
+[ext_resource type="Script" path="res://scenes/ui/ui_crafting_menu/crafting_menus/ui_crafting_menu.gd" id="2_t5n3e"]
+
+[node name="UICraftingMenu" type="Panel"]
+offset_right = 400.0
+offset_bottom = 465.0
+theme = ExtResource("1_d618b")
+theme_type_variation = &"MainPanel"
+script = ExtResource("2_t5n3e")
+title = "Workbench"
+recipe_tags = Array[String](["woodworking"])
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="MenuTitle" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "CRAFTING"
+horizontal_alignment = 1

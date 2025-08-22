@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="RRecipe" load_steps=9 format=3 uid="uid://ccg3wi6x78ne7"]
 
 [ext_resource type="Script" path="res://systems/inventory_system/scripts/resource_definitions/RInventoryItem.gd" id="1_x716m"]
-[ext_resource type="Resource" uid="uid://cjg7gyrocbt1h" path="res://resources/item_data/materials/wood.tres" id="2_jkr1e"]
+[ext_resource type="Resource" uid="uid://chlespnosrikd" path="res://resources/item_data/materials/stone.tres" id="2_l5ogp"]
 [ext_resource type="Resource" uid="uid://nbbs8pdg1x8b" path="res://resources/item_data/items/dagger.tres" id="3_3y60q"]
 [ext_resource type="Resource" uid="uid://y35mf4vnwjbm" path="res://resources/item_data/items/sword.tres" id="4_xhewc"]
 [ext_resource type="Script" path="res://systems/crafting_system/scripts/resource_definitions/RRecipe.gd" id="5_yowrg"]
 
 [sub_resource type="Resource" id="Resource_ug1ag"]
 script = ExtResource("1_x716m")
-item = ExtResource("2_jkr1e")
+item = ExtResource("2_l5ogp")
 count = 5
 stackable = true
 

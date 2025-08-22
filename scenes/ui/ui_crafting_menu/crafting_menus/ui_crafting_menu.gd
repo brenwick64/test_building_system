@@ -33,7 +33,7 @@ func _filter_recipes_by_tag(recipes: Array[RRecipe]) -> Array[RRecipe]:
 	if recipe_tags.is_empty(): return recipes
 	return recipes.filter(func(r: RRecipe) -> bool:
 		return r and r.recipe_tags and recipe_tags.any(func(tag): return r.recipe_tags.has(tag))
-	)	
+	)
 
 func _check_inventory(inv_items: Array[RInventoryItem]) -> void:
 	for child: Node in v_box_container.get_children():

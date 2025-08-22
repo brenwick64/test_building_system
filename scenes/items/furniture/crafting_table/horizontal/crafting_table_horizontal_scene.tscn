@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://systems/crafting_system/scripts/classes/CraftingStation.gd" id="1_usp3e"]
 [ext_resource type="PackedScene" uid="uid://2hnnyiwmrky4" path="res://scenes/items/furniture/crafting_table/horizontal/crafting_table_horizontal_base.tscn" id="2_2gtrt"]
-[ext_resource type="PackedScene" uid="uid://dfm822fhokyl8" path="res://scenes/ui/ui_crafting_menu/ui_crafting_menu.tscn" id="2_7o0bm"]
+[ext_resource type="PackedScene" uid="uid://t3tddf2b7hpg" path="res://scenes/ui/ui_crafting_menu/crafting_menus/workbench_crafting_menu.tscn" id="2_urc0e"]
 [ext_resource type="PackedScene" uid="uid://bjkkgqs6xjbg3" path="res://scenes/components/interactable.tscn" id="3_0giuo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vsva7"]
@@ -19,7 +19,7 @@ bg_color = Color(0.139698, 0.622766, 0.461557, 1)
 
 [node name="CraftingTableHorizontal" type="StaticBody2D" node_paths=PackedStringArray("progress_bar", "craft_timer", "interactable", "base_scene", "collision_shape_2D")]
 script = ExtResource("1_usp3e")
-ui_scene = ExtResource("2_7o0bm")
+ui_scene = ExtResource("2_urc0e")
 progress_bar = NodePath("ProgressBar")
 craft_timer = NodePath("Timer")
 interactable = NodePath("Interactable")

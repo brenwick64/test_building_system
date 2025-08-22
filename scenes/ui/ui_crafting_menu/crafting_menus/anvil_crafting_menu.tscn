@@ -1,16 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfm822fhokyl8"]
+[gd_scene load_steps=3 format=3 uid="uid://dkksfte1v4hd7"]
 
-[ext_resource type="Theme" uid="uid://d27j5q3aqw7ad" path="res://scenes/ui/main_theme.tres" id="1_o4byx"]
-[ext_resource type="Script" path="res://scenes/ui/ui_crafting_menu/ui_crafting_menu.gd" id="2_e0poc"]
+[ext_resource type="Theme" uid="uid://d27j5q3aqw7ad" path="res://scenes/ui/main_theme.tres" id="1_ckelk"]
+[ext_resource type="Script" path="res://scenes/ui/ui_crafting_menu/crafting_menus/ui_crafting_menu.gd" id="2_aekyk"]
 
-[node name="UICraftingMenu" type="Panel"]
+[node name="AnvilCraftingMenu" type="Panel"]
 offset_right = 400.0
 offset_bottom = 465.0
-theme = ExtResource("1_o4byx")
+theme = ExtResource("1_ckelk")
 theme_type_variation = &"MainPanel"
-script = ExtResource("2_e0poc")
-title = "Woodwork Bench"
-recipe_tags = Array[String](["woodworking"])
+script = ExtResource("2_aekyk")
+title = "Anvil"
+recipe_tags = Array[String](["metal"])
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
