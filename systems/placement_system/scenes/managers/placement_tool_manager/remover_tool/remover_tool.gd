@@ -38,13 +38,13 @@ func handle_new_tile_hovered(tile_coords: Vector2i, furniture_manager: Furniture
 func handle_layer_mouse_out() -> void:
 	_clear_hovered_node()
 
-func handle_action_pressed(furniture_manager: FurnitureManager) -> void:
+func handle_action_pressed(furniture_manager: FurnitureManager, merchandise_manager: MerchandiseManager) -> void:
 	if not hovered_node: return
 	if hovered_node is PlaceableFurniture:
 		furniture_manager.remove_furniture(hovered_node as PlaceableFurniture)
 		hovered_node = null
 	elif hovered_node is PlaceableMerchandise:
-		furniture_manager.remove_merchandise(hovered_node as PlaceableMerchandise)
+		merchandise_manager.remove_merchandise(hovered_node as PlaceableMerchandise)
 		hovered_node = null
 	# TODO: hacky way of checking for another item
 	handle_new_tile_hovered(hovered_tile, furniture_manager)

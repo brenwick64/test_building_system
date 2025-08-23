@@ -1,7 +1,7 @@
 - grayscale is added in multiple parts.  Have a single icon node 
 handle all of the resizing and centering
 
-- BUG - saved and re-loaded furniture cannot be deleted
+- connect player movement to refeshing of placement previews
 
 - refactor placement system with composition over inheritence
 - have pickup behaviors follow checkbox config at pickup level

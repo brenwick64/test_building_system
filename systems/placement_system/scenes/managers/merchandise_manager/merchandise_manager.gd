@@ -3,10 +3,11 @@ extends Node
 
 signal merchandise_placed(item: RItemData)
 
-@onready var outline_shader: Shader = preload("res://shaders/outline_shader.gdshader")
-
+@export var save_filename: String
 @export var tile_manager: PlacementTileManager
 @export var furniture_manager: FurnitureManager
+
+@onready var outline_shader: Shader = preload("res://shaders/outline_shader.gdshader")
 
 var equipped_merchandise: RItemData
 
@@ -18,33 +19,63 @@ func _ready() -> void:
 	_load_merchandise()
 	tile_manager.new_tile_hovered.connect(_on_tile_manager_new_tile_hovered)
 	tile_manager.layer_mouse_out.connect(_on_tile_manager_layer_mouse_out)
+
+## -- methods --
+func remove_merchandise(merchandise: PlaceableMerchandise) -> void:
+	var item_slot: FurnitureItemSlot = merchandise.get_parent()
+	item_slot.remove()
+	placed_merchandise = placed_merchandise.filter(
+		func(merch: PlaceableMerchandise): return merch.tile_coords != merchandise.tile_coords
+	)
+	_save_merchandise()
 	
 ## -- save/load --
 func _save_merchandise():
-	var save_data_arr: RSaveDataArr = RSaveDataArr.new()
 	var array: Array[RSaveData] = []
 	for merchandise_scene: PlaceableMerchandise in placed_merchandise:
-		var save_data: RMerchandiseSaveData = RMerchandiseSaveData.new()
 		var packed_scene: PackedScene = PackedScene.new()
-		save_data.item_data = merchandise_scene.merchandise_data
-		save_data.rotation = merchandise_scene.rotation
-		save_data.tile_coords = merchandise_scene.tile_coords
+		packed_scene.pack(merchandise_scene)
+		var save_data = RMerchandiseSaveData.get_resource_instance(
+			packed_scene,
+			merchandise_scene.merchandise_data,
+			merchandise_scene.rotation,
+			merchandise_scene.tile_coords
+		)
 		array.append(save_data)
-	save_data_arr.save_data_array = array
-	var response_code: int = ResourceSaver.save(save_data_arr, "user://placed_merchandise.tres")
-	if response_code != 0:
-		push_error("error: cannot save resource: " + str(save_data_arr))
+	SaveManager.save_resource_data(save_filename, array)
 
 func _load_merchandise():
-	var save_data_arr: RSaveDataArr = ResourceLoader.load("user://placed_merchandise.tres") as RSaveDataArr
-	if not save_data_arr:
-		return
-	for save_data: RMerchandiseSaveData in save_data_arr.save_data_array:
+	var save_data_arr: Array[RSaveData] = SaveManager.load_resource_data(save_filename)
+	if not save_data_arr: return
+	for save_data: RMerchandiseSaveData in save_data_arr:
 		_spawn_saved_merchandise(
 			save_data.item_data,
 			save_data.tile_coords,
 			save_data.rotation
 		)
+
+func _spawn_saved_merchandise(item_data: RItemData, coords: Vector2i, rotation: float)-> void:
+	var parent_furniture: PlaceableFurniture = furniture_manager.get_furniture_at_coords(coords)
+	if not parent_furniture: 
+		push_error("merchandise_manager error: no parent furniture found at coords: " + str(coords))
+		return
+	var item_slot: FurnitureItemSlot = parent_furniture.get_free_item_slot(item_data, coords)
+	if not item_slot:
+		push_error("merchandise_manager error: no item slot found at coords: " + str(coords))
+		return
+	var merch_ins: PlaceableMerchandise = item_data.placeable.new_placeable_scene()
+	# add outline shader
+	var sprite: Sprite2D = merch_ins.get_node("Sprite2D")
+	var material: ShaderMaterial = ShaderMaterial.new()
+	material.shader = outline_shader
+	sprite.material = material
+	# add other variables
+	merch_ins.merchandise_data = item_data
+	merch_ins.tile_coords = coords
+	merch_ins.rotation = rotation
+	item_slot.placed_item = merch_ins
+	item_slot.add_child(merch_ins)
+	placed_merchandise.append(merch_ins)
 
 ## -- helper functions --
 func _get_free_item_slot(tile_coords: Vector2i) -> Node2D:
@@ -91,29 +122,6 @@ func _spawn_merchandise(item_slot: Node2D) -> void:
 	item_slot.placed_item = merchandise_ins
 	item_slot.add_child(merchandise_ins)
 	placed_merchandise.append(merchandise_ins)
-	_save_merchandise()
-
-func _spawn_saved_merchandise(item_data: RItemData, coords: Vector2i, rotation: float)-> void:
-	var parent_furniture: PlaceableFurniture = furniture_manager.get_furniture_at_coords(coords)
-	if not parent_furniture: 
-		push_error("merchandise_manager error: no parent furniture found at coords: " + str(coords))
-		return
-	var item_slot: FurnitureItemSlot = parent_furniture.get_free_item_slot(item_data, coords)
-	if not item_slot:
-		push_error("merchandise_manager error: no item slot found at coords: " + str(coords))
-		return
-	var merch_ins: PlaceableMerchandise = item_data.placeable.new_placeable_scene()
-	# add outline shader
-	var sprite: Sprite2D = merch_ins.get_node("Sprite2D")
-	var material: ShaderMaterial = ShaderMaterial.new()
-	material.shader = outline_shader
-	sprite.material = material
-	# add other variables
-	merch_ins.merchandise_data = item_data
-	merch_ins.tile_coords = coords
-	merch_ins.rotation = rotation
-	item_slot.placed_item = merch_ins
-	item_slot.add_child(merch_ins)
 
 ### -- signals --
 func _on_tile_manager_new_tile_hovered(tile_coords: Vector2i) -> void:
@@ -138,6 +146,7 @@ func handle_action_pressed(_event: InputEvent) -> void:
 	var item_slot: Node2D = merchandise_preview.get_parent()
 	_clear_preview()
 	_spawn_merchandise(item_slot)
+	_save_merchandise()
 	merchandise_placed.emit(equipped_merchandise)
 
 func handle_rotate_pressed() -> void:

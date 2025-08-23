@@ -4,6 +4,7 @@ extends Node
 @export var tile_manager: PlacementTileManager
 @export var remover_tool_handler: ToolHandler
 @export var furniture_manager: FurnitureManager
+@export var merchandise_manager: MerchandiseManager
 
 var equipped_tool: RTool
 
@@ -35,7 +36,7 @@ func handle_action_pressed(_event: InputEvent) -> void:
 	if not equipped_tool: return
 	var tool_handler: ToolHandler = _get_tool_handler(equipped_tool)
 	if not tool_handler: return
-	tool_handler.handle_action_pressed(furniture_manager)
+	tool_handler.handle_action_pressed(furniture_manager, merchandise_manager)
 
 func handle_equipped_item_updated(current_item: RItemData) -> void:
 	# reset any stale tool state

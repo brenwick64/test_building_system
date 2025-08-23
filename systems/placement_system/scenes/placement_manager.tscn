@@ -19,10 +19,11 @@ tile_manager = NodePath("../PlacementTileManager")
 tile_manager = NodePath("../PlacementTileManager")
 furniture_manager = NodePath("../FurnitureManager")
 
-[node name="PlacementToolManager" parent="." node_paths=PackedStringArray("tile_manager", "remover_tool_handler", "furniture_manager") instance=ExtResource("4_orgnd")]
+[node name="PlacementToolManager" parent="." node_paths=PackedStringArray("tile_manager", "remover_tool_handler", "furniture_manager", "merchandise_manager") instance=ExtResource("4_orgnd")]
 tile_manager = NodePath("../PlacementTileManager")
 remover_tool_handler = NodePath("RemoverTool")
 furniture_manager = NodePath("../FurnitureManager")
+merchandise_manager = NodePath("../MerchandiseManager")
 
 [node name="RemoverTool" parent="PlacementToolManager" instance=ExtResource("6_jya0w")]
 

@@ -4,3 +4,4 @@
 
 [node name="FurnitureManager" type="Node"]
 script = ExtResource("1_cj711")
+save_filename = "placed_furniture"
