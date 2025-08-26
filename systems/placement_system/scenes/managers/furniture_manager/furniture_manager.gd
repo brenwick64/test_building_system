@@ -39,7 +39,7 @@ func _spawn_saved_furniture(
 	furniture_data: RItemData, 
 	global_pos: Vector2, 
 	primary_tile: Vector2i,
-	occupied_tiles: Array[Vector2i]
+	_occupied_tiles: Array[Vector2i]
 	) -> void:
 	var shoppe_furniture: Node2D = get_tree().get_first_node_in_group("ShoppeFurniture")
 	if not shoppe_furniture:

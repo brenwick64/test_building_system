@@ -1,6 +1,6 @@
 extends Node
 
-const RSaveDataArr = preload("res://systems/save_and_load_system/scripts/resource_definitions/RSaveDataArr.gd")
+const savedata_arr_init = preload("res://systems/save_and_load_system/scripts/resource_definitions/RSaveDataArr.gd")
 
 func save_resource_data(filename: String, array: Array[RSaveData]) -> void:
 	var path: String = "user://" + filename + ".tres"

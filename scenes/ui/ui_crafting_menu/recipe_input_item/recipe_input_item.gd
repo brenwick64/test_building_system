@@ -56,7 +56,7 @@ func _calculate_texture_size(tex: Texture) -> Vector2:
 		return Vector2(floori(tex_size.x * scalar_amount), floori(tex_size.y * scalar_amount))
 	return tex_size
 	
-func _create_texture_rect(tex: Texture2D, min_size: int) -> TextureRect:
+func _create_texture_rect(tex: Texture2D, _min_size: int) -> TextureRect:
 	var texture_rect: TextureRect = TextureRect.new()
 	var shader_material: ShaderMaterial = ShaderMaterial.new()
 	shader_material.shader = grayscale_shader

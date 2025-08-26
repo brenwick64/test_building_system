@@ -4,3 +4,4 @@
 
 [node name="MerchandiseManager" type="Node"]
 script = ExtResource("1_76t70")
+save_filename = "placed_merchandise"
