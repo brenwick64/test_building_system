@@ -6,7 +6,7 @@ signal new_item_added(item_id: String)
 signal item_depleted(item: RItemData)
 
 # TODO: Add loading of saved data
-@export var inventory_items: Array[RInventoryItem]
+var inventory_items: Array[RInventoryItem]
 
 func _ready() -> void:
 	inventory_updated.emit(inventory_items)

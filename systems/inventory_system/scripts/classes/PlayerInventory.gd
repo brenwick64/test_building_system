@@ -3,9 +3,16 @@ extends Inventory
 
 signal item_selected(item: RItemData)
 
+@export var save_load_component: SaveLoadComponent
+
 var selected_item: RItemData
 
 ## -- overrides --
+func _ready() -> void:
+	# load inventory data from file
+	inventory_items.assign(save_load_component.load_data())
+	super._ready()
+
 func _signal_item_depleted(inv_item: RInventoryItem) -> void:
 	super._signal_item_depleted(inv_item)
 	# remove equipped item if player runs out
@@ -14,7 +21,6 @@ func _signal_item_depleted(inv_item: RInventoryItem) -> void:
 		selected_item = null
 
 ## -- signals --
-	
 func _on_placement_manager_item_placed(item: RItemData) -> void:
 	remove_item(item.item_id, 1)
 
@@ -29,3 +35,6 @@ func _on_ui_player_inventory_item_selected(item_id: String) -> void:
 			else:
 				selected_item = inv_item.item
 				item_selected.emit(inv_item.item)
+
+func _on_inventory_updated(inventory_items: Array[RInventoryItem]) -> void:
+	save_load_component.save_data(inventory_items)

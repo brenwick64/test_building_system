@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=4 uid="uid://de3o831n25f2l"]
+[gd_scene load_steps=56 format=4 uid="uid://de3o831n25f2l"]
 
 [ext_resource type="TileSet" uid="uid://jyl0pt03odje" path="res://resources/tilesets/main_tileset.tres" id="1_f72q3"]
 [ext_resource type="Script" path="res://scenes/debug/pickup_spawner/pickup_spawner.gd" id="1_nbrfu"]
@@ -6,58 +6,15 @@
 [ext_resource type="Script" path="res://scenes/input/input_manager.gd" id="1_qkav0"]
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="2_pxaiu"]
 [ext_resource type="PackedScene" uid="uid://c5hnkcoj7dq84" path="res://systems/inventory_system/scripts/scenes/player_inventory.tscn" id="2_sl7we"]
-[ext_resource type="Resource" uid="uid://cjg7gyrocbt1h" path="res://resources/item_data/materials/wood.tres" id="3_86h2l"]
-[ext_resource type="Resource" uid="uid://chlespnosrikd" path="res://resources/item_data/materials/stone.tres" id="4_3a7ax"]
-[ext_resource type="Script" path="res://systems/inventory_system/scripts/resource_definitions/RInventoryItem.gd" id="4_x64uq"]
 [ext_resource type="Script" path="res://systems/crafting_system/scenes/crafting_manager.gd" id="6_3jux3"]
 [ext_resource type="PackedScene" uid="uid://bkg7mvx22iqt3" path="res://scenes/ui/ui_player_action_bar/ui_player_action_bar.tscn" id="7_yhwru"]
-[ext_resource type="Resource" uid="uid://c7nlwwsyhrqs2" path="res://resources/item_data/furniture/anvil.tres" id="11_kam7h"]
-[ext_resource type="Resource" uid="uid://ctyuc3ycewbnj" path="res://resources/item_data/items/remover_tool.tres" id="12_xmisv"]
 [ext_resource type="Resource" uid="uid://c8qo30hr4rp43" path="res://resources/item_data/furniture/1x1_table.tres" id="13_uu1qf"]
 [ext_resource type="Script" path="res://scenes/tile_manager/shoppe_floor.gd" id="14_n7qxl"]
-[ext_resource type="Resource" uid="uid://dkpdd832rs62y" path="res://resources/item_data/items/health_potion.tres" id="15_0xi0j"]
-[ext_resource type="Resource" uid="uid://b8h5q6ggevdyi" path="res://resources/item_data/furniture/crafting_table.tres" id="16_kkxdv"]
 [ext_resource type="Texture2D" uid="uid://dh2cnltobawlx" path="res://assets/characters/player.png" id="17_4bagj"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="17_utvwo"]
 [ext_resource type="PackedScene" uid="uid://sp58wos84hs4" path="res://systems/placement_system/scenes/placement_manager.tscn" id="19_tdy0a"]
 [ext_resource type="Theme" uid="uid://d27j5q3aqw7ad" path="res://scenes/ui/main_theme.tres" id="24_a85yc"]
 [ext_resource type="PackedScene" uid="uid://c7ghv2uoto2nd" path="res://scenes/components/interactor.tscn" id="24_pau2d"]
-
-[sub_resource type="Resource" id="Resource_xf3qb"]
-script = ExtResource("4_x64uq")
-item = ExtResource("12_xmisv")
-count = 1
-stackable = false
-
-[sub_resource type="Resource" id="Resource_si6h5"]
-script = ExtResource("4_x64uq")
-item = ExtResource("16_kkxdv")
-count = 3
-stackable = true
-
-[sub_resource type="Resource" id="Resource_fs0sn"]
-script = ExtResource("4_x64uq")
-item = ExtResource("4_3a7ax")
-count = 10
-stackable = true
-
-[sub_resource type="Resource" id="Resource_tx2ye"]
-script = ExtResource("4_x64uq")
-item = ExtResource("3_86h2l")
-count = 5
-stackable = true
-
-[sub_resource type="Resource" id="Resource_p3iny"]
-script = ExtResource("4_x64uq")
-item = ExtResource("11_kam7h")
-count = 3
-stackable = true
-
-[sub_resource type="Resource" id="Resource_52hkc"]
-script = ExtResource("4_x64uq")
-item = ExtResource("15_0xi0j")
-count = 10
-stackable = true
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r5pgw"]
 radius = 7.0
@@ -382,7 +339,6 @@ ui = NodePath("../../UI")
 placeable_layer = NodePath("../../TileMap/ShoppeFloor")
 
 [node name="PlayerInventoryManager" parent="Managers" groups=["player_inventory"] instance=ExtResource("2_sl7we")]
-inventory_items = Array[ExtResource("4_x64uq")]([SubResource("Resource_xf3qb"), SubResource("Resource_si6h5"), SubResource("Resource_fs0sn"), SubResource("Resource_tx2ye"), SubResource("Resource_p3iny"), SubResource("Resource_52hkc")])
 
 [node name="TileMap" type="Node2D" parent="."]
 

@@ -1,6 +1,8 @@
 - grayscale is added in multiple parts.  Have a single icon node 
 handle all of the resizing and centering
 
+- refactor save/load into component to be able to connect to signals
+
 - connect player movement to refeshing of placement previews
 
 - refactor placement system with composition over inheritence

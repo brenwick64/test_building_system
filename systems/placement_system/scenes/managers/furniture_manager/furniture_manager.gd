@@ -13,10 +13,10 @@ var furniture_preview: PlaceableFurniturePreview
 var placed_furniture: Array[PlaceableFurniture]
 
 func _ready() -> void:
-	_load_furniture()
+	#_load_furniture()
 	tile_manager.new_tile_hovered.connect(_on_tile_manager_new_tile_hovered)
 	tile_manager.layer_mouse_out.connect(_on_tile_manager_layer_mouse_out)
-	
+
 ## -- methods --
 func get_furniture_at_coords(tile_coords: Vector2i) -> PlaceableFurniture:
 	for furniture: PlaceableFurniture in placed_furniture:
@@ -33,7 +33,7 @@ func remove_furniture(furniture: PlaceableFurniture) -> void:
 	placed_furniture = placed_furniture.filter(func(f): return f != furniture)
 	placed_furniture_updated.emit(placed_furniture)
 	furniture.remove()
-	_save_furniture()
+	#_save_furniture()
 
 func _spawn_saved_furniture(
 	furniture_data: RItemData, 
@@ -55,31 +55,31 @@ func _spawn_saved_furniture(
 	placed_furniture_updated.emit(placed_furniture)
 
 ## -- save/load --
-func _save_furniture():
-	var array: Array[RSaveData] = []
-	for furniture_scene: PlaceableFurniture in placed_furniture:
-		var packed_scene: PackedScene = PackedScene.new()
-		packed_scene.pack(furniture_scene)
-		var save_data: RFurnitureSaveData = RFurnitureSaveData.new_resource_instance(
-			packed_scene,
-			furniture_scene.furniture_data,
-			furniture_scene.global_position,
-			furniture_scene.primary_tile,
-			furniture_scene.occupied_tiles
-		)
-		array.append(save_data)
-		SaveManager.save_resource_data(save_filename, array)
+#func _save_furniture():
+	#var array: Array[RSaveData] = []
+	#for furniture_scene: PlaceableFurniture in placed_furniture:
+		#var packed_scene: PackedScene = PackedScene.new()
+		#packed_scene.pack(furniture_scene)
+		#var save_data: RFurnitureSaveData = RFurnitureSaveData.new_resource_instance(
+			#packed_scene,
+			#furniture_scene.furniture_data,
+			#furniture_scene.global_position,
+			#furniture_scene.primary_tile,
+			#furniture_scene.occupied_tiles
+		#)
+		#array.append(save_data)
+		#SaveManager.save_resource_data(save_filename, array)
 
-func _load_furniture():
-	var save_data_arr: Array[RSaveData] = SaveManager.load_resource_data(save_filename)
-	if not save_data_arr: return
-	for save_data: RFurnitureSaveData in save_data_arr:
-		_spawn_saved_furniture(
-			save_data.item_data,
-			save_data.global_pos,
-			save_data.primary_tile,
-			save_data.occupied_tiles
-		)
+#func _load_furniture():
+	#var save_data_arr: Array[RSaveData] = SaveManager.load_resource_data(save_filename)
+	#if not save_data_arr: return
+	#for save_data: RFurnitureSaveData in save_data_arr:
+		#_spawn_saved_furniture(
+			#save_data.item_data,
+			#save_data.global_pos,
+			#save_data.primary_tile,
+			#save_data.occupied_tiles
+		#)
 
 ## -- helper functions --
 func _is_used_tile() -> bool:
@@ -144,7 +144,7 @@ func _spawn_furniture() -> void:
 	shoppe_furniture.add_child(furniture_ins)
 	placed_furniture.append(furniture_ins)
 	placed_furniture_updated.emit(placed_furniture)
-	_save_furniture()
+	#_save_furniture()
 
 ## -- signals --
 func _on_tile_manager_new_tile_hovered(tile_coords: Vector2i) -> void:
