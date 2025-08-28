@@ -4,7 +4,7 @@ extends Node
 signal placed_furniture_updated(placed_furniture: Array[PlaceableFurniture])
 signal furniture_placed(furniture_data: RItemData)
 
-@export var save_filename: String
+@export var save_load_component: SaveLoadComponent
 @export var tile_manager: PlacementTileManager
 
 var equipped_furniture_data: RItemData
@@ -13,7 +13,10 @@ var furniture_preview: PlaceableFurniturePreview
 var placed_furniture: Array[PlaceableFurniture]
 
 func _ready() -> void:
-	#_load_furniture()
+	var saved_furniture: Array[PlaceableFurniture] = []
+	saved_furniture.assign(save_load_component.load_data())
+	for furniture: PlaceableFurniture in saved_furniture:
+		_spawn_saved_furniture(furniture)
 	tile_manager.new_tile_hovered.connect(_on_tile_manager_new_tile_hovered)
 	tile_manager.layer_mouse_out.connect(_on_tile_manager_layer_mouse_out)
 
@@ -33,53 +36,6 @@ func remove_furniture(furniture: PlaceableFurniture) -> void:
 	placed_furniture = placed_furniture.filter(func(f): return f != furniture)
 	placed_furniture_updated.emit(placed_furniture)
 	furniture.remove()
-	#_save_furniture()
-
-func _spawn_saved_furniture(
-	furniture_data: RItemData, 
-	global_pos: Vector2, 
-	primary_tile: Vector2i,
-	_occupied_tiles: Array[Vector2i]
-	) -> void:
-	var shoppe_furniture: Node2D = get_tree().get_first_node_in_group("ShoppeFurniture")
-	if not shoppe_furniture:
-		push_warning("warning: cannot add furniture since no ShoppeFurniture scene was detected")
-		return
-	var furniture_ins: Node2D = furniture_data.placeable.get_furniture()
-	furniture_ins.furniture_data = furniture_data
-	furniture_ins.global_position = global_pos
-	furniture_ins.primary_tile = primary_tile
-	furniture_ins.set_occupied_tiles(furniture_data.placeable.get_tile_matrix(), primary_tile)
-	shoppe_furniture.add_child(furniture_ins)
-	placed_furniture.append(furniture_ins)
-	placed_furniture_updated.emit(placed_furniture)
-
-## -- save/load --
-#func _save_furniture():
-	#var array: Array[RSaveData] = []
-	#for furniture_scene: PlaceableFurniture in placed_furniture:
-		#var packed_scene: PackedScene = PackedScene.new()
-		#packed_scene.pack(furniture_scene)
-		#var save_data: RFurnitureSaveData = RFurnitureSaveData.new_resource_instance(
-			#packed_scene,
-			#furniture_scene.furniture_data,
-			#furniture_scene.global_position,
-			#furniture_scene.primary_tile,
-			#furniture_scene.occupied_tiles
-		#)
-		#array.append(save_data)
-		#SaveManager.save_resource_data(save_filename, array)
-
-#func _load_furniture():
-	#var save_data_arr: Array[RSaveData] = SaveManager.load_resource_data(save_filename)
-	#if not save_data_arr: return
-	#for save_data: RFurnitureSaveData in save_data_arr:
-		#_spawn_saved_furniture(
-			#save_data.item_data,
-			#save_data.global_pos,
-			#save_data.primary_tile,
-			#save_data.occupied_tiles
-		#)
 
 ## -- helper functions --
 func _is_used_tile() -> bool:
@@ -146,6 +102,15 @@ func _spawn_furniture() -> void:
 	placed_furniture_updated.emit(placed_furniture)
 	#_save_furniture()
 
+func _spawn_saved_furniture(saved_furniture: PlaceableFurniture) -> void:
+	var shoppe_furniture: Node2D = get_tree().get_first_node_in_group("ShoppeFurniture")
+	if not shoppe_furniture:
+		push_warning("warning: cannot add furniture since no ShoppeFurniture scene was detected")
+		return
+	shoppe_furniture.add_child(saved_furniture)
+	placed_furniture.append(saved_furniture)
+	placed_furniture_updated.emit(placed_furniture)
+
 ## -- signals --
 func _on_tile_manager_new_tile_hovered(tile_coords: Vector2i) -> void:
 	hovered_tile_coords = tile_coords
@@ -161,6 +126,9 @@ func _on_tile_manager_layer_mouse_out() -> void:
 
 func _on_furniture_preview_obstructed_updated() -> void:
 	_validate_preview()
+
+func _on_placed_furniture_updated(placed_furniture: Array[PlaceableFurniture]) -> void:
+	save_load_component.save_data(placed_furniture)
 
 ## -- handlers --
 func handle_action_pressed(_event: InputEvent) -> void:

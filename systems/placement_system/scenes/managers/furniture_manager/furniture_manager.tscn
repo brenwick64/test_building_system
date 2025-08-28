@@ -1,7 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://cuup0kq3dvqmb"]
+[gd_scene load_steps=5 format=3 uid="uid://cuup0kq3dvqmb"]
 
 [ext_resource type="Script" path="res://systems/placement_system/scenes/managers/furniture_manager/furniture_manager.gd" id="1_cj711"]
+[ext_resource type="PackedScene" uid="uid://bjnwvg8o4egp8" path="res://systems/save_and_load_system/scenes/save_load_component.tscn" id="2_fbcx7"]
+[ext_resource type="Script" path="res://systems/save_and_load_system/scripts/resource_definitions/RFurnitureSaveData.gd" id="3_ivgrc"]
 
-[node name="FurnitureManager" type="Node"]
+[sub_resource type="Resource" id="Resource_twevf"]
+script = ExtResource("3_ivgrc")
+global_position = Vector2(0, 0)
+primary_tile = Vector2i(0, 0)
+occupied_tiles = Array[Vector2i]([])
+
+[node name="FurnitureManager" type="Node" node_paths=PackedStringArray("save_load_component")]
 script = ExtResource("1_cj711")
+save_load_component = NodePath("SaveLoadComponent")
+
+[node name="SaveLoadComponent" parent="." instance=ExtResource("2_fbcx7")]
 save_filename = "placed_furniture"
+save_data_type = SubResource("Resource_twevf")
+
+[connection signal="placed_furniture_updated" from="." to="." method="_on_placed_furniture_updated"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://de3o831n25f2l"]
+[gd_scene load_steps=58 format=4 uid="uid://de3o831n25f2l"]
 
 [ext_resource type="TileSet" uid="uid://jyl0pt03odje" path="res://resources/tilesets/main_tileset.tres" id="1_f72q3"]
 [ext_resource type="Script" path="res://scenes/debug/pickup_spawner/pickup_spawner.gd" id="1_nbrfu"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://scenes/input/input_manager.gd" id="1_qkav0"]
 [ext_resource type="Script" path="res://systems/item_system/scripts/resource_definitions/RItemData.gd" id="2_pxaiu"]
 [ext_resource type="PackedScene" uid="uid://c5hnkcoj7dq84" path="res://systems/inventory_system/scripts/scenes/player_inventory.tscn" id="2_sl7we"]
+[ext_resource type="Resource" uid="uid://cjg7gyrocbt1h" path="res://resources/item_data/materials/wood.tres" id="3_efdcu"]
+[ext_resource type="Resource" uid="uid://chlespnosrikd" path="res://resources/item_data/materials/stone.tres" id="4_8j3l1"]
 [ext_resource type="Script" path="res://systems/crafting_system/scenes/crafting_manager.gd" id="6_3jux3"]
 [ext_resource type="PackedScene" uid="uid://bkg7mvx22iqt3" path="res://scenes/ui/ui_player_action_bar/ui_player_action_bar.tscn" id="7_yhwru"]
 [ext_resource type="Resource" uid="uid://c8qo30hr4rp43" path="res://resources/item_data/furniture/1x1_table.tres" id="13_uu1qf"]
@@ -319,7 +321,7 @@ height = 18.0
 [node name="PickupSpawner" type="Node2D" parent="Debug"]
 position = Vector2(410, 396)
 script = ExtResource("1_nbrfu")
-items = Array[ExtResource("2_pxaiu")]([ExtResource("13_uu1qf")])
+items = Array[ExtResource("2_pxaiu")]([ExtResource("3_efdcu"), ExtResource("4_8j3l1"), ExtResource("13_uu1qf")])
 
 [node name="Managers" type="Node" parent="."]
 

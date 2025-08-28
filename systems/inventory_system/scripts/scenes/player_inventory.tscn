@@ -1,12 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5hnkcoj7dq84"]
+[gd_scene load_steps=5 format=3 uid="uid://c5hnkcoj7dq84"]
 
 [ext_resource type="Script" path="res://systems/inventory_system/scripts/classes/PlayerInventory.gd" id="1_grqu3"]
 [ext_resource type="PackedScene" uid="uid://bjnwvg8o4egp8" path="res://systems/save_and_load_system/scenes/save_load_component.tscn" id="2_obnl1"]
+[ext_resource type="Script" path="res://systems/save_and_load_system/scripts/resource_definitions/RInventoryItemSaveData.gd" id="3_i6f8n"]
+
+[sub_resource type="Resource" id="Resource_2lpio"]
+script = ExtResource("3_i6f8n")
+count = 0
+stackable = false
 
 [node name="PlayerInventory" type="Node" node_paths=PackedStringArray("save_load_component")]
 script = ExtResource("1_grqu3")
 save_load_component = NodePath("SaveLoadComponent")
 
 [node name="SaveLoadComponent" parent="." instance=ExtResource("2_obnl1")]
+save_filename = "player_inventory"
+save_data_type = SubResource("Resource_2lpio")
 
 [connection signal="inventory_updated" from="." to="." method="_on_inventory_updated"]
